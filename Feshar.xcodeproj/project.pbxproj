@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F40C9491242939CF002CBB2C /* LoginFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C9490242939CF002CBB2C /* LoginFailureViewController.swift */; };
+		F40C9493242939F6002CBB2C /* LoginSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C9492242939F6002CBB2C /* LoginSuccessViewController.swift */; };
 		F414656B2428F0120090052F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414656A2428F0120090052F /* AppDelegate.swift */; };
 		F414656D2428F0120090052F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414656C2428F0120090052F /* SceneDelegate.swift */; };
-		F414656F2428F0120090052F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414656E2428F0120090052F /* ViewController.swift */; };
+		F414656F2428F0120090052F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414656E2428F0120090052F /* LoginViewController.swift */; };
 		F41465722428F0120090052F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41465702428F0120090052F /* Main.storyboard */; };
 		F41465742428F0130090052F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41465732428F0130090052F /* Assets.xcassets */; };
 		F41465772428F0130090052F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41465752428F0130090052F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F40C9490242939CF002CBB2C /* LoginFailureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFailureViewController.swift; sourceTree = "<group>"; };
+		F40C9492242939F6002CBB2C /* LoginSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSuccessViewController.swift; sourceTree = "<group>"; };
 		F41465672428F0120090052F /* Feshar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Feshar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F414656A2428F0120090052F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F414656C2428F0120090052F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F414656E2428F0120090052F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F414656E2428F0120090052F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F41465712428F0120090052F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F41465732428F0130090052F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F41465762428F0130090052F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,15 +60,73 @@
 		F41465692428F0120090052F /* Feshar */ = {
 			isa = PBXGroup;
 			children = (
-				F414656A2428F0120090052F /* AppDelegate.swift */,
-				F414656C2428F0120090052F /* SceneDelegate.swift */,
-				F414656E2428F0120090052F /* ViewController.swift */,
-				F41465702428F0120090052F /* Main.storyboard */,
-				F41465732428F0130090052F /* Assets.xcassets */,
-				F41465752428F0130090052F /* LaunchScreen.storyboard */,
-				F41465782428F0130090052F /* Info.plist */,
+				F414657E2428F0490090052F /* Modules */,
+				F41465832428F0F60090052F /* Assets */,
+				F41465852428F1150090052F /* Configurations */,
+				F41465842428F1010090052F /* Application */,
 			);
 			path = Feshar;
+			sourceTree = "<group>";
+		};
+		F414657E2428F0490090052F /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				F414657F2428F0AA0090052F /* Model */,
+				F41465812428F0CE0090052F /* View */,
+				F41465822428F0D40090052F /* Controller */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		F414657F2428F0AA0090052F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F41465812428F0CE0090052F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F41465702428F0120090052F /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F41465822428F0D40090052F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F414656E2428F0120090052F /* LoginViewController.swift */,
+				F40C9490242939CF002CBB2C /* LoginFailureViewController.swift */,
+				F40C9492242939F6002CBB2C /* LoginSuccessViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F41465832428F0F60090052F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F41465732428F0130090052F /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		F41465842428F1010090052F /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				F41465752428F0130090052F /* LaunchScreen.storyboard */,
+				F414656A2428F0120090052F /* AppDelegate.swift */,
+				F414656C2428F0120090052F /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		F41465852428F1150090052F /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				F41465782428F0130090052F /* Info.plist */,
+			);
+			path = Configurations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +200,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F414656F2428F0120090052F /* ViewController.swift in Sources */,
+				F414656F2428F0120090052F /* LoginViewController.swift in Sources */,
 				F414656B2428F0120090052F /* AppDelegate.swift in Sources */,
+				F40C9493242939F6002CBB2C /* LoginSuccessViewController.swift in Sources */,
+				F40C9491242939CF002CBB2C /* LoginFailureViewController.swift in Sources */,
 				F414656D2428F0120090052F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,7 +350,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B39DQ9LWFN;
-				INFOPLIST_FILE = Feshar/Info.plist;
+				INFOPLIST_FILE = Feshar/Configurations/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,7 +368,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B39DQ9LWFN;
-				INFOPLIST_FILE = Feshar/Info.plist;
+				INFOPLIST_FILE = Feshar/Configurations/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

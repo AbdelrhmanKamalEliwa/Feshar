@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginSuccessViewController.swift
 //  Feshar
 //
 //  Created by Abdelrhman Eliwa on 3/23/20.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginSuccessViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
 
-
 }
-

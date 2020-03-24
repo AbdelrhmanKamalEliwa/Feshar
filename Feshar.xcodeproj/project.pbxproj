@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F40C9491242939CF002CBB2C /* LoginFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C9490242939CF002CBB2C /* LoginFailureViewController.swift */; };
 		F40C9493242939F6002CBB2C /* LoginSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C9492242939F6002CBB2C /* LoginSuccessViewController.swift */; };
 		F414656B2428F0120090052F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414656A2428F0120090052F /* AppDelegate.swift */; };
 		F414656D2428F0120090052F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414656C2428F0120090052F /* SceneDelegate.swift */; };
@@ -15,10 +14,10 @@
 		F41465722428F0120090052F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41465702428F0120090052F /* Main.storyboard */; };
 		F41465742428F0130090052F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41465732428F0130090052F /* Assets.xcassets */; };
 		F41465772428F0130090052F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41465752428F0130090052F /* LaunchScreen.storyboard */; };
+		F4AF0898242A5CDC005E558A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AF0897242A5CDC005E558A /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F40C9490242939CF002CBB2C /* LoginFailureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFailureViewController.swift; sourceTree = "<group>"; };
 		F40C9492242939F6002CBB2C /* LoginSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSuccessViewController.swift; sourceTree = "<group>"; };
 		F41465672428F0120090052F /* Feshar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Feshar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F414656A2428F0120090052F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +27,7 @@
 		F41465732428F0130090052F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F41465762428F0130090052F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F41465782428F0130090052F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4AF0897242A5CDC005E558A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +60,7 @@
 		F41465692428F0120090052F /* Feshar */ = {
 			isa = PBXGroup;
 			children = (
+				F4AF0896242A5CAB005E558A /* Helpers */,
 				F414657E2428F0490090052F /* Modules */,
 				F41465832428F0F60090052F /* Assets */,
 				F41465852428F1150090052F /* Configurations */,
@@ -97,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				F414656E2428F0120090052F /* LoginViewController.swift */,
-				F40C9490242939CF002CBB2C /* LoginFailureViewController.swift */,
 				F40C9492242939F6002CBB2C /* LoginSuccessViewController.swift */,
 			);
 			path = Controller;
@@ -127,6 +127,14 @@
 				F41465782428F0130090052F /* Info.plist */,
 			);
 			path = Configurations;
+			sourceTree = "<group>";
+		};
+		F4AF0896242A5CAB005E558A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F4AF0897242A5CDC005E558A /* Extensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,10 +208,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4AF0898242A5CDC005E558A /* Extensions.swift in Sources */,
 				F414656F2428F0120090052F /* LoginViewController.swift in Sources */,
 				F414656B2428F0120090052F /* AppDelegate.swift in Sources */,
 				F40C9493242939F6002CBB2C /* LoginSuccessViewController.swift in Sources */,
-				F40C9491242939CF002CBB2C /* LoginFailureViewController.swift in Sources */,
 				F414656D2428F0120090052F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,11 +9,23 @@
 import UIKit
 
 class LoginSuccessViewController: UIViewController {
-
+    
+    @IBOutlet weak var usernameLabel: UILabel!
+    var username: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        usernameLabel.text = username
+//        usernameLabel.attributedText = coloredUsername
     }
-
+    
+//    func displayColoredUsername() -> NSAttributedString {
+//        let firstAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+//        let secondAttributes = [NSAttributedString.Key.foregroundColor: UIColor.green]
+//        let firstString = NSMutableAttributedString(string: "Hello, ", attributes: firstAttributes)
+//        let secondString = NSAttributedString(string: "\(username)", attributes: secondAttributes)
+//        let coloredUsername = firstString.append(secondString)
+//        return coloredUsername
+//    }
 }
+

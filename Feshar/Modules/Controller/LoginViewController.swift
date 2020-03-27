@@ -44,20 +44,22 @@ class LoginViewController: UIViewController {
     
     func checkForEmptyTextField() {
         if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
-            checkForEmptyTextFieldAlert()
+            emptyTextFieldAlert()
             
         } else {
             if checkPasswordPattern() == false {
                 checkPasswordIcon.tintColor = .red
+                checkPasswordLabel.textColor = .red
             } else {
                 checkPasswordIcon.tintColor = .green
-                checkPasswordLabel.font = UIFont.boldSystemFont(ofSize: 10)
+                checkPasswordLabel.text = "Accepted password pattern"
+                checkPasswordLabel.textColor = .green
             }
             loginAuthentication()
         }
     }
     
-    func checkForEmptyTextFieldAlert() {
+    func emptyTextFieldAlert() {
         let alert = UIAlertController(title: "Error", message: "Please, Username and Password required", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)

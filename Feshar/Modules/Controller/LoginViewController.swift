@@ -48,12 +48,9 @@ class LoginViewController: UIViewController {
             
         } else {
             if checkPasswordPattern() == false {
-                checkPasswordIcon.tintColor = .red
-                checkPasswordLabel.textColor = .red
+                displayUIPasswordPatternError(caseType: .failure)
             } else {
-                checkPasswordIcon.tintColor = .green
-                checkPasswordLabel.text = "Accepted password pattern"
-                checkPasswordLabel.textColor = .green
+                displayUIPasswordPatternError(caseType: .success)
             }
             loginAuthentication()
         }
@@ -76,6 +73,20 @@ class LoginViewController: UIViewController {
         let regex = try! NSRegularExpression(pattern: "(?=.{8,})")
         let passwordPatternChecked = regex.matches(string)
         return passwordPatternChecked
+    }
+    
+    func displayUIPasswordPatternError (caseType: UIErrorCase) {
+        switch caseType {
+        case .success:
+            checkPasswordIcon.image = UIImage(systemName: "checkmark.circle.fill")
+            checkPasswordIcon.tintColor = .green
+            checkPasswordLabel.text = "Accepted password pattern"
+            checkPasswordLabel.textColor = .green
+        case .failure:
+            checkPasswordIcon.image = UIImage(systemName: "xmark.circle.fill")
+            checkPasswordIcon.tintColor = .red
+            checkPasswordLabel.textColor = .red
+        }
     }
 }
 

@@ -15,8 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var checkPasswordIcon: UIImageView!
     @IBOutlet weak var checkPasswordLabel: UILabel!
-    let initUsername = "Robusta"
-    let initPassword = "Robusta.123"
+    let registeredUser = RegisteredUser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +29,12 @@ class LoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToLoginSuccess" {
             let loginSuccessVC = segue.destination as! LoginSuccessViewController
-            loginSuccessVC.username = initUsername
+            loginSuccessVC.username = registeredUser.username
         }
     }
     
     func loginAuthentication() {
-        if usernameTextField.text == initUsername && passwordTextField.text == initPassword {
+        if usernameTextField.text == registeredUser.username && passwordTextField.text == registeredUser.password {
             self.performSegue(withIdentifier: "goToLoginSuccess", sender: self)
         } else {
             loginAuthenticationAlert()

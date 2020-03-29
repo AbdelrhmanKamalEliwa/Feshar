@@ -10,21 +10,21 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MoviePostersCell" customModule="Feshar" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="324"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="374"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="324"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="374"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Star-Wars-Poster_2" translatesAutoresizingMaskIntoConstraints="NO" id="rmx-X8-g2J">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="324"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="374"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="375" id="KK2-Nl-hgs"/>
-                            <constraint firstAttribute="height" constant="324" id="wFG-JO-oh3"/>
+                            <constraint firstAttribute="height" constant="374" id="wFG-JO-oh3"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="20"/>
+                                <real key="value" value="10"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
@@ -41,7 +41,7 @@
             <connections>
                 <outlet property="posterImage" destination="rmx-X8-g2J" id="1Qo-ss-YLC"/>
             </connections>
-            <point key="canvasLocation" x="286.95652173913044" y="235.04464285714283"/>
+            <point key="canvasLocation" x="286.23188405797106" y="235.04464285714283"/>
         </collectionViewCell>
     </objects>
     <resources>

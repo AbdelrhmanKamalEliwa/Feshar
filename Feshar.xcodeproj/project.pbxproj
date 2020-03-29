@@ -9,13 +9,16 @@
 /* Begin PBXBuildFile section */
 		F40BD5012430C9220074E024 /* MoviePostersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40BD4FF2430C9220074E024 /* MoviePostersCell.swift */; };
 		F40BD5022430C9220074E024 /* MoviePostersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F40BD5002430C9220074E024 /* MoviePostersCell.xib */; };
-		F40C9493242939F6002CBB2C /* LoginSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C9492242939F6002CBB2C /* LoginSuccessViewController.swift */; };
+		F40BD505243120D30074E024 /* lucida-grande in Resources */ = {isa = PBXBuildFile; fileRef = F40BD504243120D30074E024 /* lucida-grande */; };
+		F40BD50824313D000074E024 /* CastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40BD50624313D000074E024 /* CastCell.swift */; };
+		F40BD50924313D000074E024 /* CastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F40BD50724313D000074E024 /* CastCell.xib */; };
 		F414656B2428F0120090052F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414656A2428F0120090052F /* AppDelegate.swift */; };
 		F414656D2428F0120090052F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414656C2428F0120090052F /* SceneDelegate.swift */; };
 		F414656F2428F0120090052F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414656E2428F0120090052F /* LoginViewController.swift */; };
 		F41465722428F0120090052F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41465702428F0120090052F /* Main.storyboard */; };
 		F41465742428F0130090052F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41465732428F0130090052F /* Assets.xcassets */; };
 		F41465772428F0130090052F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41465752428F0130090052F /* LaunchScreen.storyboard */; };
+		F46056FF24315BCF00CCC489 /* SF-Pro-Text in Resources */ = {isa = PBXBuildFile; fileRef = F46056FE24315BCF00CCC489 /* SF-Pro-Text */; };
 		F4AF0898242A5CDC005E558A /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AF0897242A5CDC005E558A /* UIViewExtension.swift */; };
 		F4ED3F56242EA267000190DE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED3F55242EA267000190DE /* Enums.swift */; };
 		F4ED3F5A242EB6F8000190DE /* RegisteredUserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */; };
@@ -25,7 +28,9 @@
 /* Begin PBXFileReference section */
 		F40BD4FF2430C9220074E024 /* MoviePostersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePostersCell.swift; sourceTree = "<group>"; };
 		F40BD5002430C9220074E024 /* MoviePostersCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviePostersCell.xib; sourceTree = "<group>"; };
-		F40C9492242939F6002CBB2C /* LoginSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSuccessViewController.swift; sourceTree = "<group>"; };
+		F40BD504243120D30074E024 /* lucida-grande */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "lucida-grande"; sourceTree = "<group>"; };
+		F40BD50624313D000074E024 /* CastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCell.swift; sourceTree = "<group>"; };
+		F40BD50724313D000074E024 /* CastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CastCell.xib; sourceTree = "<group>"; };
 		F41465672428F0120090052F /* Feshar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Feshar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F414656A2428F0120090052F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F414656C2428F0120090052F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +39,7 @@
 		F41465732428F0130090052F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F41465762428F0130090052F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F41465782428F0130090052F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F46056FE24315BCF00CCC489 /* SF-Pro-Text */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "SF-Pro-Text"; sourceTree = "<group>"; };
 		F4AF0897242A5CDC005E558A /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		F4ED3F55242EA267000190DE /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredUserClass.swift; sourceTree = "<group>"; };
@@ -51,6 +57,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F40BD503243120AE0074E024 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F46056FE24315BCF00CCC489 /* SF-Pro-Text */,
+				F40BD504243120D30074E024 /* lucida-grande */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F40BD50A24313D190074E024 /* CastCell */ = {
+			isa = PBXGroup;
+			children = (
+				F40BD50624313D000074E024 /* CastCell.swift */,
+				F40BD50724313D000074E024 /* CastCell.xib */,
+			);
+			path = CastCell;
+			sourceTree = "<group>";
+		};
 		F414655E2428F0120090052F = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +97,7 @@
 				F4AF0896242A5CAB005E558A /* Helpers */,
 				F414657E2428F0490090052F /* Modules */,
 				F41465832428F0F60090052F /* Assets */,
+				F40BD503243120AE0074E024 /* Fonts */,
 				F41465852428F1150090052F /* Configurations */,
 				F41465842428F1010090052F /* Application */,
 			);
@@ -100,6 +125,7 @@
 		F41465812428F0CE0090052F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F40BD50A24313D190074E024 /* CastCell */,
 				F4FB319A2430B53D00F4DD22 /* MoviePosters */,
 				F41465702428F0120090052F /* Main.storyboard */,
 			);
@@ -110,7 +136,6 @@
 			isa = PBXGroup;
 			children = (
 				F414656E2428F0120090052F /* LoginViewController.swift */,
-				F40C9492242939F6002CBB2C /* LoginSuccessViewController.swift */,
 				F4FB319F2430BBA000F4DD22 /* MovieDetailsViewController.swift */,
 			);
 			path = Controller;
@@ -218,10 +243,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F40BD505243120D30074E024 /* lucida-grande in Resources */,
 				F41465772428F0130090052F /* LaunchScreen.storyboard in Resources */,
 				F40BD5022430C9220074E024 /* MoviePostersCell.xib in Resources */,
 				F41465742428F0130090052F /* Assets.xcassets in Resources */,
+				F40BD50924313D000074E024 /* CastCell.xib in Resources */,
 				F41465722428F0120090052F /* Main.storyboard in Resources */,
+				F46056FF24315BCF00CCC489 /* SF-Pro-Text in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,10 +261,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4AF0898242A5CDC005E558A /* UIViewExtension.swift in Sources */,
+				F40BD50824313D000074E024 /* CastCell.swift in Sources */,
 				F4FB31A02430BBA000F4DD22 /* MovieDetailsViewController.swift in Sources */,
 				F414656F2428F0120090052F /* LoginViewController.swift in Sources */,
 				F414656B2428F0120090052F /* AppDelegate.swift in Sources */,
-				F40C9493242939F6002CBB2C /* LoginSuccessViewController.swift in Sources */,
 				F414656D2428F0120090052F /* SceneDelegate.swift in Sources */,
 				F4ED3F56242EA267000190DE /* Enums.swift in Sources */,
 				F4ED3F5A242EB6F8000190DE /* RegisteredUserClass.swift in Sources */,

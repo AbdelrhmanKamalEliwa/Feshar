@@ -18,8 +18,8 @@ class MoviePostersCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func displayPosters() {
-        posterImage.image = UIImage(named: "Star-Wars-Poster_2")
+    func displayPosters(imageNumber: Int) {
+        posterImage.image = UIImage(named: posterImageArray[imageNumber])
     }
 
 }

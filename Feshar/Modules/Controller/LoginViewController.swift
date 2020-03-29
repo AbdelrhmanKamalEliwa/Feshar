@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var checkPasswordIcon: UIImageView!
     @IBOutlet weak var checkPasswordLabel: UILabel!
     let registeredUser = RegisteredUser()
+    let segueID = "goToMovieVC"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,16 +27,16 @@ class LoginViewController: UIViewController {
         checkForEmptyTextField()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToLoginSuccess" {
-            let loginSuccessVC = segue.destination as! LoginSuccessViewController
-            loginSuccessVC.username = registeredUser.username
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == segueID {
+//            let loginSuccessVC = segue.destination as! MovieDetailsViewController
+//            loginSuccessVC.username = registeredUser.username
+//        }
+//    }
     
     func loginAuthentication() {
         if usernameTextField.text == registeredUser.username && passwordTextField.text == registeredUser.password {
-            self.performSegue(withIdentifier: "goToLoginSuccess", sender: self)
+            self.performSegue(withIdentifier: segueID, sender: self)
         } else {
             loginAuthenticationAlert()
         }
@@ -50,9 +51,8 @@ class LoginViewController: UIViewController {
                 displayUIPasswordPatternError(caseType: .failure)
             } else {
                 displayUIPasswordPatternError(caseType: .success)
-                loginAuthentication()
             }
-            
+            loginAuthentication()
         }
     }
     

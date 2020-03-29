@@ -29,8 +29,7 @@ class CastCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        castImageView.layer.cornerRadius = castImageView.frame.height / 2
     }
     
 }

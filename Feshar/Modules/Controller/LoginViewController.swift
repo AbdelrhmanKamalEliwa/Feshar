@@ -50,8 +50,9 @@ class LoginViewController: UIViewController {
                 displayUIPasswordPatternError(caseType: .failure)
             } else {
                 displayUIPasswordPatternError(caseType: .success)
+                loginAuthentication()
             }
-            loginAuthentication()
+            
         }
     }
     

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="LucidaGrande.ttf">
+            <string>LucidaGrande</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="152" id="KGk-i7-Jjw" customClass="WatchlistTableViewCell" customModule="Feshar" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="383" height="152"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" customClass="WatchlistTableViewCell" customModule="Feshar" customModuleProvider="target">
+                <rect key="frame" x="0.0" y="0.0" width="383" height="152"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="John-Wick-Poster" id="DN3-df-a2Q">
+                        <rect key="frame" x="20" y="10" width="108" height="127"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="127" id="St6-md-fZQ"/>
+                            <constraint firstAttribute="width" constant="108" id="pdb-qR-hIr"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action | Science fiction - 2h 33m" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SLU-oo-8Pi">
+                        <rect key="frame" x="148" y="70" width="205" height="11.5"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="12"/>
+                        <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star Wars: The Last Jedi (3D)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jsE-DA-wee">
+                        <rect key="frame" x="148" y="50" width="225" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IMDB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hbh-rL-QwP">
+                        <rect key="frame" x="148" y="89" width="30" height="11.5"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="12"/>
+                        <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PjC-g2-jpg">
+                        <rect key="frame" x="183" y="89" width="19" height="11.5"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="12"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="PjC-g2-jpg" firstAttribute="leading" secondItem="hbh-rL-QwP" secondAttribute="trailing" constant="5" id="HXI-fA-OBJ"/>
+                    <constraint firstAttribute="bottom" secondItem="DN3-df-a2Q" secondAttribute="bottom" constant="10" id="HzH-Mh-65F"/>
+                    <constraint firstItem="jsE-DA-wee" firstAttribute="leading" secondItem="DN3-df-a2Q" secondAttribute="trailing" constant="20" id="KfR-KM-A8S"/>
+                    <constraint firstItem="hbh-rL-QwP" firstAttribute="top" secondItem="SLU-oo-8Pi" secondAttribute="bottom" constant="7.5" id="YfT-yw-bLO"/>
+                    <constraint firstItem="hbh-rL-QwP" firstAttribute="leading" secondItem="DN3-df-a2Q" secondAttribute="trailing" constant="20" id="doj-3P-AgX"/>
+                    <constraint firstItem="DN3-df-a2Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="hTJ-Pf-Oxl"/>
+                    <constraint firstItem="SLU-oo-8Pi" firstAttribute="leading" secondItem="DN3-df-a2Q" secondAttribute="trailing" constant="20" id="jm3-62-p6o"/>
+                    <constraint firstItem="jsE-DA-wee" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="50" id="kRe-GH-eJv"/>
+                    <constraint firstItem="PjC-g2-jpg" firstAttribute="top" secondItem="SLU-oo-8Pi" secondAttribute="bottom" constant="7.5" id="nu4-Ea-GPV"/>
+                    <constraint firstItem="DN3-df-a2Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="t9O-pd-ukg"/>
+                    <constraint firstAttribute="trailing" secondItem="jsE-DA-wee" secondAttribute="trailing" constant="10" id="wka-ZT-7Wd"/>
+                    <constraint firstItem="SLU-oo-8Pi" firstAttribute="top" secondItem="jsE-DA-wee" secondAttribute="bottom" constant="5" id="xOp-rf-a4Y"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="SLU-oo-8Pi" secondAttribute="trailing" constant="10" id="yFK-mP-3Uh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="movieDetailsLabel" destination="SLU-oo-8Pi" id="AaM-Fb-Ekl"/>
+                <outlet property="movieImageView" destination="DN3-df-a2Q" id="Mp3-9g-naL"/>
+                <outlet property="movieNameLabel" destination="jsE-DA-wee" id="bFw-R3-BZz"/>
+                <outlet property="movieRateLabel" destination="PjC-g2-jpg" id="LbH-oV-qV2"/>
+            </connections>
+            <point key="canvasLocation" x="183.33333333333334" y="188.83928571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="John-Wick-Poster" width="346" height="512"/>
+    </resources>
+</document>

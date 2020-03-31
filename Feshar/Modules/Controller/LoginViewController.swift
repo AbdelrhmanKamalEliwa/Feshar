@@ -16,7 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var checkPasswordIcon: UIImageView!
     @IBOutlet weak var checkPasswordLabel: UILabel!
     let registeredUser = RegisteredUser()
-    let segueID = "goToMovieVC"
+    let segueID = "goToHomeVC"
     
     override func viewDidLoad() {
         super.viewDidLoad()

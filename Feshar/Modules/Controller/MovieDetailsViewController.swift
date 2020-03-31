@@ -9,25 +9,58 @@
 import UIKit
 
 class MovieDetailsViewController: UIViewController {
-
-    @IBOutlet weak var settingButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
+    
+    @IBOutlet weak var movieNameLabel: UILabel!
+    @IBOutlet weak var movieNameDetails: UILabel!
+    @IBOutlet weak var movieRateLabel: UILabel!
+    @IBOutlet weak var movieDescriptionLabel: UILabel!
+    
     @IBOutlet weak var castTableView: UITableView!
     @IBOutlet weak var moviePosterCollectionView: UICollectionView!
     let posterImageArray = ["Star-Wars-Poster_2", "Star-Wars-Poster_3", "Star-Wars-Poster_4"]
     let moviePosterCellIdentifier = "MoviePostersCell"
     let castCellIdentifier = "CastCell"
+    let segueID = "goToWatchlistVC"
+    var movieDetailsDataPassed: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegateAndDataSource()
         registerCollectionView()
         registerTableView()
+        updateUIMovieDetailsVC()
+    }
+    
+    func updateUIMovieDetailsVC() {
+        if let movieDetailsDataPassed = movieDetailsDataPassed {
+            displayPassedData(movieNumber: movieDetailsDataPassed)
+        } else {
+            displayDefaultData()
+        }
+    }
+    
+    func displayPassedData(movieNumber: Int) {
+        movieNameLabel.text = MovieData().movieNameArray[movieNumber]
+        movieNameDetails.text = MovieData().movieDetailsArray[movieNumber]
+        movieRateLabel.text = MovieData().movieRateArray[movieNumber]
+        movieDescriptionLabel.text = MovieData().movieDescriptionArray[movieNumber]
+    }
+    
+    func displayDefaultData() {
+        movieNameLabel.text = MovieData().movieNameArray[0]
+        movieNameDetails.text = MovieData().movieDetailsArray[0]
+        movieRateLabel.text = MovieData().movieRateArray[0]
+        movieDescriptionLabel.text = MovieData().movieDescriptionArray[0]
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func watchlistButtonTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: segueID, sender: self)
+    }
+    
     
     func setupDelegateAndDataSource() {
         moviePosterCollectionView.delegate = self
@@ -60,6 +93,8 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
         return cell
     }
     
+    
+    
 }
 
 
@@ -74,5 +109,6 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
         cell.displayCastData(castNameNumber: indexPath.row, castDiscriptionNumber: indexPath.row, castImageNumber: indexPath.row)
         return cell
     }
+    
     
 }

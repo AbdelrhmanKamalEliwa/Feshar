@@ -25,8 +25,8 @@
                         <rect key="frame" x="20" y="10" width="108" height="127"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="127" id="St6-md-fZQ"/>
-                            <constraint firstAttribute="width" constant="108" id="pdb-qR-hIr"/>
+                            <constraint firstAttribute="height" constant="127" id="XEI-Bs-B4g"/>
+                            <constraint firstAttribute="width" constant="108" id="kUV-hf-o0c"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -34,29 +34,29 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action | Science fiction - 2h 33m" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SLU-oo-8Pi">
-                        <rect key="frame" x="148" y="70" width="205" height="11.5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="12"/>
-                        <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star Wars: The Last Jedi (3D)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jsE-DA-wee">
-                        <rect key="frame" x="148" y="50" width="225" height="15"/>
+                        <rect key="frame" x="138" y="46" width="235" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action | Science fiction - 2h 33m" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SLU-oo-8Pi">
+                        <rect key="frame" x="138" y="66" width="215" height="11.5"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="12"/>
+                        <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IMDB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hbh-rL-QwP">
-                        <rect key="frame" x="148" y="89" width="30" height="11.5"/>
+                        <rect key="frame" x="138" y="82.5" width="30" height="11.5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="12"/>
                         <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PjC-g2-jpg">
-                        <rect key="frame" x="183" y="89" width="19" height="11.5"/>
+                        <rect key="frame" x="178" y="82.5" width="19" height="11.5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="12"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -64,19 +64,19 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="PjC-g2-jpg" firstAttribute="leading" secondItem="hbh-rL-QwP" secondAttribute="trailing" constant="5" id="HXI-fA-OBJ"/>
-                    <constraint firstAttribute="bottom" secondItem="DN3-df-a2Q" secondAttribute="bottom" constant="10" id="HzH-Mh-65F"/>
-                    <constraint firstItem="jsE-DA-wee" firstAttribute="leading" secondItem="DN3-df-a2Q" secondAttribute="trailing" constant="20" id="KfR-KM-A8S"/>
-                    <constraint firstItem="hbh-rL-QwP" firstAttribute="top" secondItem="SLU-oo-8Pi" secondAttribute="bottom" constant="7.5" id="YfT-yw-bLO"/>
-                    <constraint firstItem="hbh-rL-QwP" firstAttribute="leading" secondItem="DN3-df-a2Q" secondAttribute="trailing" constant="20" id="doj-3P-AgX"/>
-                    <constraint firstItem="DN3-df-a2Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="hTJ-Pf-Oxl"/>
-                    <constraint firstItem="SLU-oo-8Pi" firstAttribute="leading" secondItem="DN3-df-a2Q" secondAttribute="trailing" constant="20" id="jm3-62-p6o"/>
-                    <constraint firstItem="jsE-DA-wee" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="50" id="kRe-GH-eJv"/>
-                    <constraint firstItem="PjC-g2-jpg" firstAttribute="top" secondItem="SLU-oo-8Pi" secondAttribute="bottom" constant="7.5" id="nu4-Ea-GPV"/>
-                    <constraint firstItem="DN3-df-a2Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="t9O-pd-ukg"/>
-                    <constraint firstAttribute="trailing" secondItem="jsE-DA-wee" secondAttribute="trailing" constant="10" id="wka-ZT-7Wd"/>
-                    <constraint firstItem="SLU-oo-8Pi" firstAttribute="top" secondItem="jsE-DA-wee" secondAttribute="bottom" constant="5" id="xOp-rf-a4Y"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="SLU-oo-8Pi" secondAttribute="trailing" constant="10" id="yFK-mP-3Uh"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="SLU-oo-8Pi" secondAttribute="trailing" constant="10" id="2vF-XU-dAf"/>
+                    <constraint firstItem="hbh-rL-QwP" firstAttribute="leading" secondItem="DN3-df-a2Q" secondAttribute="trailing" constant="10" id="58q-eE-d6l"/>
+                    <constraint firstItem="hbh-rL-QwP" firstAttribute="top" secondItem="SLU-oo-8Pi" secondAttribute="bottom" constant="5" id="8iS-P4-5Am"/>
+                    <constraint firstItem="SLU-oo-8Pi" firstAttribute="top" secondItem="jsE-DA-wee" secondAttribute="bottom" constant="5" id="Mfg-ZM-eVY"/>
+                    <constraint firstItem="jsE-DA-wee" firstAttribute="leading" secondItem="DN3-df-a2Q" secondAttribute="trailing" constant="10" id="Mqm-Wh-vAw"/>
+                    <constraint firstItem="jsE-DA-wee" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="46" id="NbW-Vw-igK"/>
+                    <constraint firstItem="PjC-g2-jpg" firstAttribute="top" secondItem="SLU-oo-8Pi" secondAttribute="bottom" constant="5" id="Obr-vK-RBK"/>
+                    <constraint firstItem="DN3-df-a2Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Q3H-k0-1Fr"/>
+                    <constraint firstAttribute="trailing" secondItem="jsE-DA-wee" secondAttribute="trailing" constant="10" id="QaY-Jd-Hoh"/>
+                    <constraint firstItem="PjC-g2-jpg" firstAttribute="leading" secondItem="hbh-rL-QwP" secondAttribute="trailing" constant="10" id="ROF-NQ-HdT"/>
+                    <constraint firstItem="SLU-oo-8Pi" firstAttribute="leading" secondItem="DN3-df-a2Q" secondAttribute="trailing" constant="10" id="e88-XY-l7k"/>
+                    <constraint firstAttribute="bottom" secondItem="DN3-df-a2Q" secondAttribute="bottom" constant="10" id="r3l-uI-dNW"/>
+                    <constraint firstItem="DN3-df-a2Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="syx-vK-2C2"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

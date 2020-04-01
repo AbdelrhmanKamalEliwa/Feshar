@@ -9,17 +9,16 @@
 import UIKit
 
 class MoviePostersCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var posterImage: UIImageView!
-    let posterImageArray = ["Star-Wars-Poster_2", "Star-Wars-Poster_3", "Star-Wars-Poster_4"]
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    func displayPosters(imageNumber: Int) {
-        posterImage.image = UIImage(named: posterImageArray[imageNumber])
-    }
-
+//    func displayPosters(imageNumber: Int) {
+//        posterImage.image = UIImage(named: posterImageArray[imageNumber])
+//    }
+    
 }

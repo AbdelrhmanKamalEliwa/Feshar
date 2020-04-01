@@ -17,11 +17,12 @@ class MovieDetailsViewController: UIViewController {
     
     @IBOutlet weak var castTableView: UITableView!
     @IBOutlet weak var moviePosterCollectionView: UICollectionView!
-    let posterImageArray = ["Star-Wars-Poster_2", "Star-Wars-Poster_3", "Star-Wars-Poster_4"]
+//    let posterImageArray = ["Star-Wars-Poster_2", "Star-Wars-Poster_3", "Star-Wars-Poster_4"]
     let moviePosterCellIdentifier = "MoviePostersCell"
     let castCellIdentifier = "CastCell"
     let segueID = "goToWatchlistVC"
     var movieDetailsDataPassed: Int?
+    let posterImageArray = [MovieData().satrWarsPosterArray, MovieData().expendablesPosterArray, MovieData().johnWickPosterArray]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +90,14 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = moviePosterCollectionView.dequeueReusableCell(withReuseIdentifier: moviePosterCellIdentifier, for: indexPath) as! MoviePostersCell
-        cell.displayPosters(imageNumber: indexPath.item)
+        if movieDetailsDataPassed == 0 {
+            cell.posterImage.image = UIImage(named: MovieData().satrWarsPosterArray[indexPath.item])
+        } else if movieDetailsDataPassed == 1 {
+            cell.posterImage.image = UIImage(named: MovieData().expendablesPosterArray[indexPath.item])
+        } else if movieDetailsDataPassed == 2 {
+            cell.posterImage.image = UIImage(named: MovieData().johnWickPosterArray[indexPath.item])
+        }
+        
         return cell
     }
     

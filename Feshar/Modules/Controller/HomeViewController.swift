@@ -17,7 +17,6 @@ class HomeViewController: UIViewController {
     let movieTypeButtonNameArray = ["Romance", "Action", "Comedy"]
     let segueID = "goToWatchlistVC"
     var safeIndexPath = 0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegateAndDataSource()
@@ -33,6 +32,10 @@ class HomeViewController: UIViewController {
     
     @IBAction func watchlistButtonTapped(_ sender: Any) {
         self.performSegue(withIdentifier: segueID, sender: self)
+    }
+    
+    @IBAction func featuredButtonTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "goToFeaturedVC", sender: self)
     }
     
     func setupDelegateAndDataSource() {
@@ -77,7 +80,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -86,8 +89,18 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
-    
 }
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 300, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
+    }
+}
+
 
 
 //MARK: - Setup Table View

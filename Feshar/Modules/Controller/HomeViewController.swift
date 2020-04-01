@@ -16,26 +16,36 @@ class HomeViewController: UIViewController {
     let movieCellIdentifier = "MovieTableViewCell"
     let movieTypeButtonNameArray = ["Romance", "Action", "Comedy"]
     let segueID = "goToWatchlistVC"
-    var safeIndexPath = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCustomNavBar()
         setupDelegateAndDataSource()
         registerCollectionView()
         registerTableView()
         // Do any additional setup after loading the view.
     }
     
-    
-    @IBAction func backButtonTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func watchlistButtonTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: segueID, sender: self)
-    }
-    
     @IBAction func featuredButtonTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "goToFeaturedVC", sender: self)
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let movieDetailsViewController = storyboard.instantiateViewController(identifier: "FeaturedViewController") as! MovieDetailsViewController
+//        movieDetailsViewController.movieDetailsDataPassed = indexPath.row
+        self.navigationController?.pushViewController(movieDetailsViewController , animated: true)
+    }
+    
+    func setupCustomNavBar() {
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.default
+        nav?.tintColor = UIColor.gray
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 85, height: 30))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "logo")
+        imageView.image = image
+        navigationItem.titleView = imageView
+        let segmentBarItem = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars.inverse"), style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = segmentBarItem
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     func setupDelegateAndDataSource() {
@@ -65,13 +75,7 @@ class HomeViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToMovieDetailsVC" {
-            let movieDetailsDataToBePassed = segue.destination as! MovieDetailsViewController
-            movieDetailsDataToBePassed.movieDetailsDataPassed = safeIndexPath
-        }
-    }
-
+    
 }
 
 
@@ -117,8 +121,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        safeIndexPath = indexPath.row
-        self.performSegue(withIdentifier: "goToMovieDetailsVC", sender: nil)
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let movieDetailsViewController = storyboard.instantiateViewController(identifier: "MovieDetailsViewController") as! MovieDetailsViewController
+        movieDetailsViewController.movieDetailsDataPassed = indexPath.row
+        self.navigationController?.pushViewController(movieDetailsViewController , animated: true)
     }
     
     

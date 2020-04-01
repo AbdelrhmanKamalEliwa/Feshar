@@ -26,10 +26,26 @@ class MovieDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCustomNavBar()
         setupDelegateAndDataSource()
         registerCollectionView()
         registerTableView()
         updateUIMovieDetailsVC()
+    }
+    
+    func setupCustomNavBar() {
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.default
+        nav?.tintColor = UIColor.gray
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 85, height: 30))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "logo")
+        imageView.image = image
+        navigationItem.titleView = imageView
+        let segmentBarItem = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars.inverse"), style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = segmentBarItem
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     func updateUIMovieDetailsVC() {

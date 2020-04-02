@@ -19,6 +19,7 @@
 		F41465742428F0130090052F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41465732428F0130090052F /* Assets.xcassets */; };
 		F41465772428F0130090052F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41465752428F0130090052F /* LaunchScreen.storyboard */; };
 		F46056FF24315BCF00CCC489 /* SF-Pro-Text in Resources */ = {isa = PBXBuildFile; fileRef = F46056FE24315BCF00CCC489 /* SF-Pro-Text */; };
+		F4612E0B243580A9003C866D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4612E0A243580A9003C866D /* ProfileViewController.swift */; };
 		F4AF0898242A5CDC005E558A /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AF0897242A5CDC005E558A /* UIViewExtension.swift */; };
 		F4ED3F56242EA267000190DE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED3F55242EA267000190DE /* Enums.swift */; };
 		F4ED3F5A242EB6F8000190DE /* RegisteredUserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */; };
@@ -58,6 +59,7 @@
 		F41465762428F0130090052F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F41465782428F0130090052F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F46056FE24315BCF00CCC489 /* SF-Pro-Text */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "SF-Pro-Text"; sourceTree = "<group>"; };
+		F4612E0A243580A9003C866D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Feshar/Modules/Controller/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		F4AF0897242A5CDC005E558A /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		F4ED3F55242EA267000190DE /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredUserClass.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				F4FB319F2430BBA000F4DD22 /* MovieDetailsViewController.swift */,
 				F4EF53FB2432CC1400598B02 /* WatchlistViewController.swift */,
 				F4EF54022433AEDC00598B02 /* FeaturedViewController.swift */,
+				F4612E0A243580A9003C866D /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				F4F249AF2432A95D007ED49A /* MovieModel.swift in Sources */,
 				F4F249A724328F19007ED49A /* HomeViewController.swift in Sources */,
 				F4EF540A2433BA9100598B02 /* FeaturedTableViewCell.swift in Sources */,
+				F4612E0B243580A9003C866D /* ProfileViewController.swift in Sources */,
 				F4EF53FC2432CC1400598B02 /* WatchlistViewController.swift in Sources */,
 				F4F249B12432AC7E007ED49A /* MovieData.swift in Sources */,
 				F4ED3F56242EA267000190DE /* Enums.swift in Sources */,

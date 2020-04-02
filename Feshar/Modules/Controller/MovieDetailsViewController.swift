@@ -42,8 +42,10 @@ class MovieDetailsViewController: UIViewController {
         let image = UIImage(named: "logo")
         imageView.image = image
         navigationItem.titleView = imageView
-        let segmentBarItem = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars.inverse"), style: .plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItem = segmentBarItem
+        let backBarButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = backBarButton
+        let featuredBarButton = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars.inverse"), style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = featuredBarButton
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }

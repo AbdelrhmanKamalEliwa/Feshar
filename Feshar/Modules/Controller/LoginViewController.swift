@@ -27,15 +27,15 @@ class LoginViewController: UIViewController {
         checkForEmptyTextField()
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == segueID {
-//            let loginSuccessVC = segue.destination as! MovieDetailsViewController
-//            loginSuccessVC.username = registeredUser.username
-//        }
-//    }
+    func usernameDataToBePassed() {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let profileViewController = storyboard.instantiateViewController(identifier: "ProfileViewController") as! ProfileViewController
+        profileViewController.usernameLoggedIn = registeredUser.username
+    }
     
     func loginAuthentication() {
         if usernameTextField.text == registeredUser.username && passwordTextField.text == registeredUser.password {
+            usernameDataToBePassed() //not working!!
             self.performSegue(withIdentifier: segueID, sender: self)
         } else {
             loginAuthenticationAlert()

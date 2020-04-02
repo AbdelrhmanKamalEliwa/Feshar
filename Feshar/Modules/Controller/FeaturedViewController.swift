@@ -17,20 +17,31 @@ class FeaturedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCustomNavBar()
         featuredTableView.delegate = self
         featuredTableView.dataSource = self
+    }
+    
+    func setupCustomNavBar() {
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.default
+        nav?.tintColor = UIColor.gray
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 85, height: 30))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "logo")
+        imageView.image = image
+        navigationItem.titleView = imageView
+        let backBarButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = backBarButton
+        let featuredBarButton = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars.inverse"), style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = featuredBarButton
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     @IBAction func watchlistButtnTapped(_ sender: Any) {
     }
     
-    @IBAction func backButtonTapped(_ sender: Any) {
-        
-    }
-    
-    @IBAction func homeButtonTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
 }
 

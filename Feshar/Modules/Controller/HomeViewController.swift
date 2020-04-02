@@ -12,10 +12,15 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var movieTableView: UITableView!
     @IBOutlet weak var movieTypeCollectionView: UICollectionView!
+    let searchController = UISearchController(searchResultsController: nil)
     let movieTypeIdentifier = "MovieTypesCollectionViewCell"
     let movieCellIdentifier = "MovieTableViewCell"
     let movieTypeButtonNameArray = ["Romance", "Action", "Comedy"]
     let segueID = "goToWatchlistVC"
+    var filteredMovies: [String] = []
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +28,8 @@ class HomeViewController: UIViewController {
         setupDelegateAndDataSource()
         registerCollectionView()
         registerTableView()
+        setupSearchController()
         // Do any additional setup after loading the view.
-    }
-    
-    @IBAction func featuredButtonTapped(_ sender: Any) {
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let movieDetailsViewController = storyboard.instantiateViewController(identifier: "FeaturedViewController") as! MovieDetailsViewController
-//        movieDetailsViewController.movieDetailsDataPassed = indexPath.row
-        self.navigationController?.pushViewController(movieDetailsViewController , animated: true)
     }
     
     func setupCustomNavBar() {
@@ -42,10 +41,20 @@ class HomeViewController: UIViewController {
         let image = UIImage(named: "logo")
         imageView.image = image
         navigationItem.titleView = imageView
-        let segmentBarItem = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars.inverse"), style: .plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItem = segmentBarItem
+        let backBarButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = backBarButton
+        let featuredBarButton = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars.inverse"), style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = featuredBarButton
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Movies"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
     func setupDelegateAndDataSource() {
@@ -75,7 +84,14 @@ class HomeViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    
+//    func filterContentForSearchText(_ searchText: String,
+//                                    category: Candy.Category? = nil) {
+//      filteredCandies = candies.filter { (candy: Candy) -> Bool in
+//        return candy.name.lowercased().contains(searchText.lowercased())
+//      }
+//
+//      tableView.reloadData()
+//    }
 }
 
 
@@ -153,4 +169,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return UISwipeActionsConfiguration(actions: [shareAction])
     }
     
+}
+
+
+//MARK: - Search Bar Ext
+extension HomeViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    // TODO
+  }
 }

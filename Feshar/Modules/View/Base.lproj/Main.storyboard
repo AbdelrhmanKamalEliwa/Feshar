@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jSO-AR-bWz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jSO-AR-bWz">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -550,10 +550,10 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Maz-AN-PHw">
-                                                            <rect key="frame" x="0.0" y="0.0" width="143" height="50"/>
+                                                            <rect key="frame" x="0.0" y="10" width="143" height="173"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="eh0-qC-xnW">
-                                                                <rect key="frame" x="0.0" y="0.0" width="143" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="143" height="173"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </collectionViewCellContentView>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -732,6 +732,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vNi-P8-AfR"/>
+                                                    <action selector="watchListButtonTapped:" destination="tex-4d-OwK" eventType="touchUpInside" id="ca9-dD-CcC"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -784,6 +785,7 @@
                         <outlet property="movieNameLabel" destination="PYq-WI-ZnH" id="gfu-7q-GYG"/>
                         <outlet property="moviePosterCollectionView" destination="YA9-Zo-ZUd" id="BcS-pb-u9c"/>
                         <outlet property="movieRateLabel" destination="Jmq-OZ-uCu" id="pfp-zs-Htk"/>
+                        <outlet property="watchListButton" destination="VcS-LP-tGt" id="ciT-8P-iRn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aJI-HS-ayI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -873,8 +875,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="946"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="jxm-Hf-jyF">
+                                <rect key="frame" x="0.0" y="56" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Rh-QV-E6P">
-                                <rect key="frame" x="0.0" y="56" width="414" height="80"/>
+                                <rect key="frame" x="0.0" y="112" width="414" height="80"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="24K-Jf-Wpf"/>
@@ -897,19 +903,22 @@
                                 </cells>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TYF-Ua-FXP" userLabel="Movie Table View">
-                                <rect key="frame" x="0.0" y="144" width="414" height="719"/>
+                                <rect key="frame" x="0.0" y="200" width="414" height="663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="9Rh-QV-E6P" firstAttribute="top" secondItem="jxm-Hf-jyF" secondAttribute="bottom" id="50X-vy-Ed7"/>
                             <constraint firstItem="TYF-Ua-FXP" firstAttribute="bottom" secondItem="5BW-x7-viH" secondAttribute="bottom" id="D7o-p9-87b"/>
-                            <constraint firstItem="9Rh-QV-E6P" firstAttribute="top" secondItem="5BW-x7-viH" secondAttribute="top" id="LQ8-A6-CL6"/>
                             <constraint firstItem="5BW-x7-viH" firstAttribute="trailing" secondItem="9Rh-QV-E6P" secondAttribute="trailing" id="TSx-MY-SHK"/>
                             <constraint firstItem="TYF-Ua-FXP" firstAttribute="trailing" secondItem="5BW-x7-viH" secondAttribute="trailing" id="gxr-W8-JZI"/>
                             <constraint firstItem="9Rh-QV-E6P" firstAttribute="leading" secondItem="5BW-x7-viH" secondAttribute="leading" id="khH-li-eHF"/>
                             <constraint firstItem="TYF-Ua-FXP" firstAttribute="leading" secondItem="5BW-x7-viH" secondAttribute="leading" id="oX1-9K-KaE"/>
                             <constraint firstItem="TYF-Ua-FXP" firstAttribute="top" secondItem="9Rh-QV-E6P" secondAttribute="bottom" constant="8" symbolic="YES" id="t6d-9F-8Vt"/>
+                            <constraint firstItem="jxm-Hf-jyF" firstAttribute="leading" secondItem="5BW-x7-viH" secondAttribute="leading" id="tGE-5N-Osi"/>
+                            <constraint firstItem="jxm-Hf-jyF" firstAttribute="top" secondItem="5BW-x7-viH" secondAttribute="top" id="vY1-fm-Jwn"/>
+                            <constraint firstItem="jxm-Hf-jyF" firstAttribute="trailing" secondItem="5BW-x7-viH" secondAttribute="trailing" id="wfS-VE-QSL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5BW-x7-viH"/>
                     </view>
@@ -922,12 +931,13 @@
                     <connections>
                         <outlet property="movieTableView" destination="TYF-Ua-FXP" id="BUp-g5-3G3"/>
                         <outlet property="movieTypeCollectionView" destination="9Rh-QV-E6P" id="LJ2-wr-oQu"/>
+                        <outlet property="searchBar" destination="jxm-Hf-jyF" id="FN7-gy-LIZ"/>
                         <segue destination="tex-4d-OwK" kind="show" identifier="goToMovieDetailsVC" id="iBl-K0-3cP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HNK-pG-spz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2361" y="738"/>
+            <point key="canvasLocation" x="2360.8695652173915" y="737.94642857142856"/>
         </scene>
         <!--Watchlist View Controller-->
         <scene sceneID="s5d-kW-Yo5">
@@ -1054,12 +1064,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.left" catalog="system" width="64" height="48"/>
-        <image name="checkmark.circle.fill" catalog="system" width="64" height="60"/>
-        <image name="house.fill" catalog="system" width="64" height="52"/>
+        <image name="arrow.left" catalog="system" width="128" height="98"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="logo" width="166" height="63"/>
-        <image name="person.fill" catalog="system" width="64" height="60"/>
-        <image name="star.fill" catalog="system" width="64" height="58"/>
-        <image name="wand.and.stars.inverse" catalog="system" width="64" height="56"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="wand.and.stars.inverse" catalog="system" width="128" height="113"/>
     </resources>
 </document>

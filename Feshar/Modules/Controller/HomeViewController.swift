@@ -10,30 +10,17 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var movieTableView: UITableView!
     @IBOutlet weak var movieTypeCollectionView: UICollectionView!
-    
-    let searchController = UISearchController(searchResultsController: nil)
-    
     let movieTypeIdentifier = "MovieTypesCollectionViewCell"
     let movieCellIdentifier = "MovieTableViewCell"
     let movieTypeButtonNameArray = ["Romance", "Action", "Comedy", "Drama", "Horror"]
-    
-    var movieData = AllMovieData()
-    var movieDataName = AllMovieData().movieNameArray
-    var movieDataDetails = AllMovieData().movieDetailsArray
-    var movieDataRate = AllMovieData().movieRateArray
-    var movieDataDescription = AllMovieData().movieDescriptionArray
-    var movieDataImage = AllMovieData().movieImageArray
-    
-    let actionMovieData = ActionMovieData()
+    let searchBarIsHidden = true
     
     var movieModelData = movieModel
-    
-    var filteredMovies: [String] = []
-    var isSearchBarEmpty: Bool {
-      return searchController.searchBar.text?.isEmpty ?? true
-    }
+    var filteredMovies: [MovieModel] = []
+    var searching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,18 +28,18 @@ class HomeViewController: UIViewController {
         setupDelegateAndDataSource()
         registerCollectionView()
         registerTableView()
-        setupSearchController()
-        // Do any additional setup after loading the view.
+        searchBar.delegate = self
+        searchBar.searchTextField.delegate = self
     }
     
-    func setupSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Movies"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
+    override func viewWillAppear(_ animated: Bool) {
+      super.viewWillAppear(animated)
+      if let indexPath = movieTableView.indexPathForSelectedRow {
+        movieTableView.deselectRow(at: indexPath, animated: true)
+      }
     }
-  
+    
+    
     func setupDelegateAndDataSource() {
         movieTypeCollectionView.delegate = self
         movieTypeCollectionView.dataSource = self
@@ -79,15 +66,7 @@ class HomeViewController: UIViewController {
         alertController.addAction(cancelButton)
         present(alertController, animated: true, completion: nil)
     }
-    
-//    func filterContentForSearchText(_ searchText: String,
-//                                    category: Candy.Category? = nil) {
-//      filteredCandies = candies.filter { (candy: Candy) -> Bool in
-//        return candy.name.lowercased().contains(searchText.lowercased())
-//      }
-//
-//      tableView.reloadData()
-//    }
+
 }
 
 
@@ -135,19 +114,20 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = movieTypeCollectionView.dequeueReusableCell(withReuseIdentifier: movieTypeIdentifier, for: indexPath) as! MovieTypesCollectionViewCell
-//        cell.movieTypeButton.setTitle(movieTypeButtonNameArray[indexPath.item], for: .normal)
         cell.movieTypeTitleLabel.text = movieTypeButtonNameArray[indexPath.item]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        searching = false
+        searchBar.searchTextField.text = ""
+        searchBar.searchTextField.resignFirstResponder()
         let selectedCell = movieTypeCollectionView.cellForItem(at: indexPath) as! MovieTypesCollectionViewCell
         selectedCell.layer.backgroundColor = #colorLiteral(red: 0.9373905063, green: 0.2940055132, blue: 0.2428910136, alpha: 1)
         selectedCell.movieTypeTitleLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         var safeMovieModel: [MovieModel] = []
         for movie in movieModel {
             if movie.movieCategoryType.lowercased() == selectedCell.movieTypeTitleLabel.text?.lowercased() {
-//                print("Action")
                 safeMovieModel.append(movie)
             }
             movieModelData = [MovieModel]()
@@ -181,20 +161,35 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieModelData.count
+        if searching {
+            return filteredMovies.count
+        } else {
+            return movieModelData.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = movieTableView.dequeueReusableCell(withIdentifier: movieCellIdentifier, for: indexPath) as! MovieTableViewCell
-//        cell.displayMovieData(movieName: movieModel[indexPath.row].movieName, movieDetails: movieModel[indexPath.row].movieDetails, movieRate: movieModel[indexPath.row].movieRate, movieDescription: movieModel[indexPath.row].movieDescription, movieImage: movieModel[indexPath.row].moviePoster)
-        cell.displayMovieData(movieName: movieModelData[indexPath.row].movieName, movieDetails: movieModelData[indexPath.row].movieDetails, movieRate: movieModelData[indexPath.row].movieRate, movieDescription: movieModelData[indexPath.row].movieDescription, movieImage: movieModelData[indexPath.row].moviePoster)
-        return cell
+        if searching {
+            cell.displayMovieData(movieName: filteredMovies[indexPath.row].movieName, movieDetails: filteredMovies[indexPath.row].movieDetails, movieRate: filteredMovies[indexPath.row].movieRate, movieDescription: filteredMovies[indexPath.row].movieDescription, movieImage: filteredMovies[indexPath.row].moviePoster)
+            return cell
+        } else {
+            cell.displayMovieData(movieName: movieModelData[indexPath.row].movieName, movieDetails: movieModelData[indexPath.row].movieDetails, movieRate: movieModelData[indexPath.row].movieRate, movieDescription: movieModelData[indexPath.row].movieDescription, movieImage: movieModelData[indexPath.row].moviePoster)
+            return cell
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let movieDetailsViewController = storyboard.instantiateViewController(identifier: "MovieDetailsViewController") as! MovieDetailsViewController
-        movieDetailsViewController.movieModelDataPassed = movieModelData[indexPath.row]
+        if searching {
+            movieDetailsViewController.movieModelDataPassed = filteredMovies[indexPath.row]
+        } else {
+            movieDetailsViewController.movieModelDataPassed = movieModelData[indexPath.row]
+        }
         self.navigationController?.pushViewController(movieDetailsViewController , animated: true)
     }
     
@@ -217,6 +212,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let addAction = UIContextualAction(style: .normal, title:  "Add to Wishlist", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             print("Add to Wishlist")
+            if self.searching {
+                movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.filteredMovies[indexPath.row].movieName.lowercased()})!].isFavorite = true
+            } else {
+                movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelData[indexPath.row].movieName.lowercased()})!].isFavorite = true
+            }
             success(true)
         })
         addAction.image = UIImage(systemName: "wand.and.stars.inverse")
@@ -227,9 +227,24 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
-//MARK: - Search Bar Ext
-extension HomeViewController: UISearchResultsUpdating {
-  func updateSearchResults(for searchController: UISearchController) {
-    // TODO
-  }
+//MARK: - Setup Search Bar
+extension HomeViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredMovies = movieModel.filter {$0.movieName.lowercased().prefix(searchText.count) == searchText.lowercased()}
+        searching = true
+        if searchText.isEmpty {
+            searching = false
+        }
+        movieTableView.reloadData()
+    }
+    
+}
+
+
+//MARK: - Text Field Delegate
+extension HomeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }

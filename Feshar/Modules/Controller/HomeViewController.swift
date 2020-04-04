@@ -28,6 +28,8 @@ class HomeViewController: UIViewController {
     
     let actionMovieData = ActionMovieData()
     
+    var movieModelData = movieModel
+    
     var filteredMovies: [String] = []
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
@@ -144,14 +146,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         selectedCell.movieTypeTitleLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         var safeMovieModel: [MovieModel] = []
         for movie in movieModel {
-            if selectedCell.movieTypeTitleLabel.text?.lowercased() == movie.movieCategoryType.lowercased() {
+            if movie.movieCategoryType.lowercased() == selectedCell.movieTypeTitleLabel.text?.lowercased() {
 //                print("Action")
                 safeMovieModel.append(movie)
-                print(safeMovieModel)
-            } else {
-                print("Other")
             }
+            movieModelData = [MovieModel]()
+            movieModelData = safeMovieModel
         }
+        movieTableView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -179,38 +181,27 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieModel.count
+        return movieModelData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = movieTableView.dequeueReusableCell(withIdentifier: movieCellIdentifier, for: indexPath) as! MovieTableViewCell
-        cell.displayMovieData(movieName: movieModel[indexPath.row].movieName, movieDetails: movieModel[indexPath.row].movieDetails, movieRate: movieModel[indexPath.row].movieRate, movieDescription: movieModel[indexPath.row].movieDescription, movieImage: movieModel[indexPath.row].moviePoster)
+//        cell.displayMovieData(movieName: movieModel[indexPath.row].movieName, movieDetails: movieModel[indexPath.row].movieDetails, movieRate: movieModel[indexPath.row].movieRate, movieDescription: movieModel[indexPath.row].movieDescription, movieImage: movieModel[indexPath.row].moviePoster)
+        cell.displayMovieData(movieName: movieModelData[indexPath.row].movieName, movieDetails: movieModelData[indexPath.row].movieDetails, movieRate: movieModelData[indexPath.row].movieRate, movieDescription: movieModelData[indexPath.row].movieDescription, movieImage: movieModelData[indexPath.row].moviePoster)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let movieDetailsViewController = storyboard.instantiateViewController(identifier: "MovieDetailsViewController") as! MovieDetailsViewController
-        movieDetailsViewController.movieModelDataPassed = movieModel[indexPath.row]
+        movieDetailsViewController.movieModelDataPassed = movieModelData[indexPath.row]
         self.navigationController?.pushViewController(movieDetailsViewController , animated: true)
     }
     
     
-    //    swipe to right
-    func tableView(_ tableView: UITableView,
-                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let addAction = UIContextualAction(style: .normal, title:  "Add to Wishlist", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            print("Add to Wishlist")
-            success(true)
-        })
-        addAction.image = UIImage(systemName: "wand.and.stars.inverse")
-        addAction.backgroundColor = .systemIndigo
-        return UISwipeActionsConfiguration(actions: [addAction])
-    }
-    
     //    swipe to left
     func tableView(_ tableView: UITableView,
-                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let shareAction = UIContextualAction(style: .normal, title:  "Share", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             success(true)
             self.displayShareSheet()
@@ -219,6 +210,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         shareAction.backgroundColor = .systemBlue
         
         return UISwipeActionsConfiguration(actions: [shareAction])
+    }
+    
+    //    swipe to right
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let addAction = UIContextualAction(style: .normal, title:  "Add to Wishlist", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            print("Add to Wishlist")
+            success(true)
+        })
+        addAction.image = UIImage(systemName: "wand.and.stars.inverse")
+        addAction.backgroundColor = .systemIndigo
+        return UISwipeActionsConfiguration(actions: [addAction])
     }
     
 }

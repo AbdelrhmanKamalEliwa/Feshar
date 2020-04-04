@@ -13,8 +13,11 @@ class FeaturedTableViewCell: UITableViewCell {
     @IBOutlet weak var movieCategoryTitleLabel: UILabel!
     @IBOutlet weak var featuredCollectionView: UICollectionView!
     let cellIdentifier = "FeaturedCollectionViewCell"
-    let movieCategoryArray = ["NEW", "TRENDING", "ACTION", "ROMANCE", "COMEDY"]
-    var movieCategoryNumber = 0
+    
+    var movieModelPassed = [MovieModel]()
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         featuredCollectionView.delegate = self
@@ -22,9 +25,9 @@ class FeaturedTableViewCell: UITableViewCell {
         registerCollectionView()
     }
     
-    func updateMovieCategoryTitle(movieCategoryTitleNumber: Int) {
-        movieCategoryTitleLabel.text = movieCategoryArray[movieCategoryTitleNumber]
-        movieCategoryNumber = movieCategoryTitleNumber
+    func updateMovieCategoryTitle(movieNumber: [MovieModel]) {
+        movieModelPassed = movieNumber
+        featuredCollectionView.reloadData()
     }
     
     func registerCollectionView() {
@@ -41,23 +44,13 @@ class FeaturedTableViewCell: UITableViewCell {
 
 extension FeaturedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movieCategoryArray.count
+        return movieModelPassed.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = featuredCollectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! FeaturedCollectionViewCell
-        if movieCategoryNumber == 0 {
-            cell.movieImageView.image = UIImage(named: MovieCategories().newMoviesArray[indexPath.item])
-        } else if movieCategoryNumber == 1 {
-            cell.movieImageView.image = UIImage(named: MovieCategories().trendingMoviesArray[indexPath.item])
-        } else if movieCategoryNumber == 2 {
-            cell.movieImageView.image = UIImage(named: MovieCategories().actionMoviesArray[indexPath.item])
-        } else if movieCategoryNumber == 3 {
-            cell.movieImageView.image = UIImage(named: MovieCategories().romanceMoviesArray[indexPath.item])
-        } else if movieCategoryNumber == 4 {
-            cell.movieImageView.image = UIImage(named: MovieCategories().comedyMoviesArray[indexPath.item])
-        }
-                
+        
+        cell.movieImageView.image = UIImage(named: movieModelPassed[indexPath.item].moviePoster)
         return cell
     }
     

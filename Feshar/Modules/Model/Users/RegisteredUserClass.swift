@@ -12,3 +12,5 @@ class RegisteredUser {
     let username: String = "Robusta"
     let password: String = "Robusta.123"
 }
+
+var userName: String?

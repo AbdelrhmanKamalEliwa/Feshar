@@ -17,12 +17,13 @@ class MovieDetailsViewController: UIViewController {
     
     @IBOutlet weak var castTableView: UITableView!
     @IBOutlet weak var moviePosterCollectionView: UICollectionView!
-//    let posterImageArray = ["Star-Wars-Poster_2", "Star-Wars-Poster_3", "Star-Wars-Poster_4"]
+
     let moviePosterCellIdentifier = "MoviePostersCell"
     let castCellIdentifier = "CastCell"
-    let segueID = "goToWatchlistVC"
-    var movieDetailsDataPassed: Int?
-    let posterImageArray = [MovieData().satrWarsPosterArray, MovieData().expendablesPosterArray, MovieData().johnWickPosterArray]
+    
+    var movieModelDataPassed: MovieModel?
+    var movieImages = [String]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,54 +31,15 @@ class MovieDetailsViewController: UIViewController {
         setupDelegateAndDataSource()
         registerCollectionView()
         registerTableView()
-        updateUIMovieDetailsVC()
+        displayPassedData()
     }
     
-    func setupCustomNavBar() {
-        let nav = self.navigationController?.navigationBar
-        nav?.barStyle = UIBarStyle.default
-        nav?.tintColor = UIColor.gray
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 85, height: 30))
-        imageView.contentMode = .scaleAspectFit
-        let image = UIImage(named: "logo")
-        imageView.image = image
-        navigationItem.titleView = imageView
-        let backBarButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: nil, action: nil)
-        navigationItem.leftBarButtonItem = backBarButton
-        let featuredBarButton = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars.inverse"), style: .plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItem = featuredBarButton
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-    }
-    
-    func updateUIMovieDetailsVC() {
-        if let movieDetailsDataPassed = movieDetailsDataPassed {
-            displayPassedData(movieNumber: movieDetailsDataPassed)
-        } else {
-            displayDefaultData()
-        }
-    }
-    
-    func displayPassedData(movieNumber: Int) {
-        movieNameLabel.text = MovieData().movieNameArray[movieNumber]
-        movieNameDetails.text = MovieData().movieDetailsArray[movieNumber]
-        movieRateLabel.text = MovieData().movieRateArray[movieNumber]
-        movieDescriptionLabel.text = MovieData().movieDescriptionArray[movieNumber]
-    }
-    
-    func displayDefaultData() {
-        movieNameLabel.text = MovieData().movieNameArray[0]
-        movieNameDetails.text = MovieData().movieDetailsArray[0]
-        movieRateLabel.text = MovieData().movieRateArray[0]
-        movieDescriptionLabel.text = MovieData().movieDescriptionArray[0]
-    }
-    
-    @IBAction func backButtonTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func watchlistButtonTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: segueID, sender: self)
+    func displayPassedData() {
+        movieNameLabel.text = movieModelDataPassed?.movieName
+        movieNameDetails.text = movieModelDataPassed?.movieDetails
+        movieRateLabel.text = movieModelDataPassed?.movieRate
+        movieDescriptionLabel.text = movieModelDataPassed?.movieDescription
+        movieImages = movieModelDataPassed?.movieImages ?? [" "]
     }
     
     
@@ -99,22 +61,48 @@ class MovieDetailsViewController: UIViewController {
 }
 
 
+//MARK: - Setup Custome Nav-Bar
+extension MovieDetailsViewController {
+    func setupCustomNavBar() {
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.default
+        nav?.tintColor = UIColor.gray
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 85, height: 30))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "logo")
+        imageView.image = image
+        navigationItem.titleView = imageView
+        let backBarButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(myLeftSideBarButtonItemTapped(_:)))
+        navigationItem.leftBarButtonItem = backBarButton
+        let settingBarButton = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(myRightSideBarButtonItemTapped(_:)))
+        navigationItem.rightBarButtonItem = settingBarButton
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!)
+    {
+        print("myRightSideBarButtonItemTapped")
+    }
+    
+    @objc func myLeftSideBarButtonItemTapped(_ sender: UIBarButtonItem!)
+    {
+        self.navigationController?.popViewController(animated: true)
+    }
+}
+
+
+
 //MARK: - Setup Collection View
 extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        posterImageArray.count
+        movieImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = moviePosterCollectionView.dequeueReusableCell(withReuseIdentifier: moviePosterCellIdentifier, for: indexPath) as! MoviePostersCell
-        if movieDetailsDataPassed == 0 {
-            cell.posterImage.image = UIImage(named: MovieData().satrWarsPosterArray[indexPath.item])
-        } else if movieDetailsDataPassed == 1 {
-            cell.posterImage.image = UIImage(named: MovieData().expendablesPosterArray[indexPath.item])
-        } else if movieDetailsDataPassed == 2 {
-            cell.posterImage.image = UIImage(named: MovieData().johnWickPosterArray[indexPath.item])
-        }
+        cell.posterImage.image = UIImage(named: movieImages[indexPath.item])
         
         return cell
     }

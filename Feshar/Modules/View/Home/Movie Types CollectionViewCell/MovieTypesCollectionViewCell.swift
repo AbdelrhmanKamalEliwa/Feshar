@@ -10,19 +10,11 @@ import UIKit
 
 class MovieTypesCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var movieTypeButton: UIButton!
-    let movieTypeButtonNameArray = ["Romance", "Action", "Comedy"]
+    @IBOutlet weak var movieTypeTitleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-    
-    func setMovieTypeButtonName(nameNumber: Int) {
-//        movieTypeButton.text = movieTypeButtonNameArray[nameNumber]
         
     }
-
-    @IBAction func moveTypeButtonTapped(_ sender: Any) {
-    }
+    
 }

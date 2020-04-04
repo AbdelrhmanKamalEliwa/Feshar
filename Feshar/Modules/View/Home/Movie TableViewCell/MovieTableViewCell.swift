@@ -17,10 +17,9 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var movieRateLabel: UILabel!
     @IBOutlet weak var movieDescriptionLabel: UILabel!
     
-    func displayMovieData(movieName: String, movieDetails: String, movieType: String, movieRate: String, movieDescription: String, movieImage: String) {
+    func displayMovieData(movieName: String, movieDetails: String, movieRate: String, movieDescription: String, movieImage: String) {
         movieNameLabel.text = movieName
         movieDetailsLabel.text = movieDetails
-        movieTypeLabel.text = movieType
         movieRateLabel.text = movieRate
         movieDescriptionLabel.text = movieDescription
         movieImageView.image = UIImage(named: movieImage)

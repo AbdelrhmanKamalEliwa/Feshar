@@ -28,14 +28,12 @@ class LoginViewController: UIViewController {
     }
     
     func usernameDataToBePassed() {
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let profileViewController = storyboard.instantiateViewController(identifier: "ProfileViewController") as! ProfileViewController
-        profileViewController.usernameLoggedIn = registeredUser.username
+        userName = usernameTextField.text
     }
     
     func loginAuthentication() {
         if usernameTextField.text == registeredUser.username && passwordTextField.text == registeredUser.password {
-            usernameDataToBePassed() //not working!!
+            usernameDataToBePassed()
             self.performSegue(withIdentifier: segueID, sender: self)
         } else {
             loginAuthenticationAlert()

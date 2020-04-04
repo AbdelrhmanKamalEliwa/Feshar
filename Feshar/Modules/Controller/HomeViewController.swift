@@ -12,11 +12,22 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var movieTableView: UITableView!
     @IBOutlet weak var movieTypeCollectionView: UICollectionView!
+    
     let searchController = UISearchController(searchResultsController: nil)
+    
     let movieTypeIdentifier = "MovieTypesCollectionViewCell"
     let movieCellIdentifier = "MovieTableViewCell"
-    let movieTypeButtonNameArray = ["Romance", "Action", "Comedy"]
-    let segueID = "goToWatchlistVC"
+    let movieTypeButtonNameArray = ["Romance", "Action", "Comedy", "Drama", "Horror"]
+    
+    var movieData = AllMovieData()
+    var movieDataName = AllMovieData().movieNameArray
+    var movieDataDetails = AllMovieData().movieDetailsArray
+    var movieDataRate = AllMovieData().movieRateArray
+    var movieDataDescription = AllMovieData().movieDescriptionArray
+    var movieDataImage = AllMovieData().movieImageArray
+    
+    let actionMovieData = ActionMovieData()
+    
     var filteredMovies: [String] = []
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
@@ -32,23 +43,6 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func setupCustomNavBar() {
-        let nav = self.navigationController?.navigationBar
-        nav?.barStyle = UIBarStyle.default
-        nav?.tintColor = UIColor.gray
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 85, height: 30))
-        imageView.contentMode = .scaleAspectFit
-        let image = UIImage(named: "logo")
-        imageView.image = image
-        navigationItem.titleView = imageView
-        let backBarButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: nil, action: nil)
-        navigationItem.leftBarButtonItem = backBarButton
-        let featuredBarButton = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars.inverse"), style: .plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItem = featuredBarButton
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-    }
-    
     func setupSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -56,7 +50,7 @@ class HomeViewController: UIViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
-    
+  
     func setupDelegateAndDataSource() {
         movieTypeCollectionView.delegate = self
         movieTypeCollectionView.dataSource = self
@@ -96,28 +90,86 @@ class HomeViewController: UIViewController {
 
 
 
+//MARK: - Setup Custome Nav-Bar
+extension HomeViewController {
+    func setupCustomNavBar() {
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.default
+        nav?.tintColor = UIColor.gray
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 85, height: 30))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "logo")
+        imageView.image = image
+        navigationItem.titleView = imageView
+        let backBarButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(myLeftSideBarButtonItemTapped(_:)))
+        navigationItem.leftBarButtonItem = backBarButton
+        let featuredBarButton = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars.inverse"), style: .plain, target: self, action: #selector(myRightSideBarButtonItemTapped(_:)))
+        navigationItem.rightBarButtonItem = featuredBarButton
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!)
+    {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let watchlistViewController = storyboard.instantiateViewController(identifier: "WatchlistViewController") as! WatchlistViewController
+        self.navigationController?.pushViewController(watchlistViewController, animated: true)
+    }
+    
+    @objc func myLeftSideBarButtonItemTapped(_ sender: UIBarButtonItem!)
+    {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+
 //MARK: - Setup Collection View
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        movieTypeButtonNameArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = movieTypeCollectionView.dequeueReusableCell(withReuseIdentifier: movieTypeIdentifier, for: indexPath) as! MovieTypesCollectionViewCell
-        
+//        cell.movieTypeButton.setTitle(movieTypeButtonNameArray[indexPath.item], for: .normal)
+        cell.movieTypeTitleLabel.text = movieTypeButtonNameArray[indexPath.item]
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedCell = movieTypeCollectionView.cellForItem(at: indexPath) as! MovieTypesCollectionViewCell
+        selectedCell.layer.backgroundColor = #colorLiteral(red: 0.9373905063, green: 0.2940055132, blue: 0.2428910136, alpha: 1)
+        selectedCell.movieTypeTitleLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        var safeMovieModel: [MovieModel] = []
+        for movie in movieModel {
+            if selectedCell.movieTypeTitleLabel.text?.lowercased() == movie.movieCategoryType.lowercased() {
+//                print("Action")
+                safeMovieModel.append(movie)
+                print(safeMovieModel)
+            } else {
+                print("Other")
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//        force unwrapping crashed? whyyyy!!!
+        let selectedCell = movieTypeCollectionView.cellForItem(at: indexPath) as? MovieTypesCollectionViewCell
+        selectedCell?.layer.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.9764705882, blue: 0.9764705882, alpha: 1)
+        selectedCell?.movieTypeTitleLabel.textColor = #colorLiteral(red: 0.2392156863, green: 0.2392156863, blue: 0.2392156863, alpha: 1)
     }
     
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 300, height: 100)
+        return CGSize(width: 100, height: 48)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
+        return UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 30)
     }
 }
 
@@ -127,19 +179,19 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MovieData().movieNameArray.count
+        return movieModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = movieTableView.dequeueReusableCell(withIdentifier: movieCellIdentifier, for: indexPath) as! MovieTableViewCell
-        cell.displayMovieData(movieName: MovieData().movieNameArray[indexPath.row], movieDetails: MovieData().movieDetailsArray[indexPath.row], movieType: MovieData().movieTypeArray[indexPath.row], movieRate: MovieData().movieRateArray[indexPath.row], movieDescription: MovieData().movieDescriptionArray[indexPath.row], movieImage: MovieData().movieImageArray[indexPath.row])
+        cell.displayMovieData(movieName: movieModel[indexPath.row].movieName, movieDetails: movieModel[indexPath.row].movieDetails, movieRate: movieModel[indexPath.row].movieRate, movieDescription: movieModel[indexPath.row].movieDescription, movieImage: movieModel[indexPath.row].moviePoster)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let movieDetailsViewController = storyboard.instantiateViewController(identifier: "MovieDetailsViewController") as! MovieDetailsViewController
-        movieDetailsViewController.movieDetailsDataPassed = indexPath.row
+        movieDetailsViewController.movieModelDataPassed = movieModel[indexPath.row]
         self.navigationController?.pushViewController(movieDetailsViewController , animated: true)
     }
     

@@ -20,6 +20,8 @@
 		F41465772428F0130090052F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41465752428F0130090052F /* LaunchScreen.storyboard */; };
 		F46056FF24315BCF00CCC489 /* SF-Pro-Text in Resources */ = {isa = PBXBuildFile; fileRef = F46056FE24315BCF00CCC489 /* SF-Pro-Text */; };
 		F4612E0B243580A9003C866D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4612E0A243580A9003C866D /* ProfileViewController.swift */; };
+		F4612E102437C4DA003C866D /* ProfileInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4612E0E2437C4DA003C866D /* ProfileInfoTableViewCell.swift */; };
+		F4612E112437C4DA003C866D /* ProfileInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4612E0F2437C4DA003C866D /* ProfileInfoTableViewCell.xib */; };
 		F4AF0898242A5CDC005E558A /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AF0897242A5CDC005E558A /* UIViewExtension.swift */; };
 		F4ED3F56242EA267000190DE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED3F55242EA267000190DE /* Enums.swift */; };
 		F4ED3F5A242EB6F8000190DE /* RegisteredUserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */; };
@@ -40,7 +42,7 @@
 		F4F249AC2432A24E007ED49A /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F249AA2432A24E007ED49A /* MovieTableViewCell.swift */; };
 		F4F249AD2432A24E007ED49A /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4F249AB2432A24E007ED49A /* MovieTableViewCell.xib */; };
 		F4F249AF2432A95D007ED49A /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F249AE2432A95D007ED49A /* MovieModel.swift */; };
-		F4F249B12432AC7E007ED49A /* MovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F249B02432AC7E007ED49A /* MovieData.swift */; };
+		F4F249B12432AC7E007ED49A /* AllMovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F249B02432AC7E007ED49A /* AllMovieData.swift */; };
 		F4FB31A02430BBA000F4DD22 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FB319F2430BBA000F4DD22 /* MovieDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,8 @@
 		F41465782428F0130090052F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F46056FE24315BCF00CCC489 /* SF-Pro-Text */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "SF-Pro-Text"; sourceTree = "<group>"; };
 		F4612E0A243580A9003C866D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Feshar/Modules/Controller/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
+		F4612E0E2437C4DA003C866D /* ProfileInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoTableViewCell.swift; sourceTree = "<group>"; };
+		F4612E0F2437C4DA003C866D /* ProfileInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileInfoTableViewCell.xib; sourceTree = "<group>"; };
 		F4AF0897242A5CDC005E558A /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		F4ED3F55242EA267000190DE /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredUserClass.swift; sourceTree = "<group>"; };
@@ -80,7 +84,7 @@
 		F4F249AA2432A24E007ED49A /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		F4F249AB2432A24E007ED49A /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
 		F4F249AE2432A95D007ED49A /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
-		F4F249B02432AC7E007ED49A /* MovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieData.swift; sourceTree = "<group>"; };
+		F4F249B02432AC7E007ED49A /* AllMovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMovieData.swift; sourceTree = "<group>"; };
 		F4FB319F2430BBA000F4DD22 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieDetailsViewController.swift; path = Feshar/Modules/Controller/MovieDetailsViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -156,7 +160,7 @@
 		F414657F2428F0AA0090052F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */,
+				F4612E0C24358A80003C866D /* Users */,
 				F4EF53FD2432D00400598B02 /* Watchlist */,
 				F4F249B22432AC83007ED49A /* Movie */,
 				F4EF54132433DE1300598B02 /* MovieCategories.swift */,
@@ -168,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				F41465702428F0120090052F /* Main.storyboard */,
+				F4612E0D2437C48B003C866D /* Profile */,
 				F4EF53F52432CB7C00598B02 /* Watchlist */,
 				F4EF540C2433BAA600598B02 /* Featured */,
 				F4F249A1243288A3007ED49A /* Home */,
@@ -213,6 +218,23 @@
 				F41465782428F0130090052F /* Info.plist */,
 			);
 			path = Configurations;
+			sourceTree = "<group>";
+		};
+		F4612E0C24358A80003C866D /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		F4612E0D2437C48B003C866D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F4612E0E2437C4DA003C866D /* ProfileInfoTableViewCell.swift */,
+				F4612E0F2437C4DA003C866D /* ProfileInfoTableViewCell.xib */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		F4AF0896242A5CAB005E558A /* Helpers */ = {
@@ -316,7 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				F4F249AE2432A95D007ED49A /* MovieModel.swift */,
-				F4F249B02432AC7E007ED49A /* MovieData.swift */,
+				F4F249B02432AC7E007ED49A /* AllMovieData.swift */,
 			);
 			path = Movie;
 			sourceTree = "<group>";
@@ -393,6 +415,7 @@
 				F4EF53FA2432CBD900598B02 /* WatchlistTableViewCell.xib in Resources */,
 				F41465772428F0130090052F /* LaunchScreen.storyboard in Resources */,
 				F4F249A5243288F8007ED49A /* MovieTypesCollectionViewCell.xib in Resources */,
+				F4612E112437C4DA003C866D /* ProfileInfoTableViewCell.xib in Resources */,
 				F40BD5022430C9220074E024 /* MoviePostersCell.xib in Resources */,
 				F41465742428F0130090052F /* Assets.xcassets in Resources */,
 				F40BD50924313D000074E024 /* CastCell.xib in Resources */,
@@ -419,6 +442,7 @@
 				F4FB31A02430BBA000F4DD22 /* MovieDetailsViewController.swift in Sources */,
 				F4F249A4243288F8007ED49A /* MovieTypesCollectionViewCell.swift in Sources */,
 				F414656F2428F0120090052F /* LoginViewController.swift in Sources */,
+				F4612E102437C4DA003C866D /* ProfileInfoTableViewCell.swift in Sources */,
 				F414656B2428F0120090052F /* AppDelegate.swift in Sources */,
 				F414656D2428F0120090052F /* SceneDelegate.swift in Sources */,
 				F4EF54012432D03D00598B02 /* WatchlistData.swift in Sources */,
@@ -427,7 +451,7 @@
 				F4EF540A2433BA9100598B02 /* FeaturedTableViewCell.swift in Sources */,
 				F4612E0B243580A9003C866D /* ProfileViewController.swift in Sources */,
 				F4EF53FC2432CC1400598B02 /* WatchlistViewController.swift in Sources */,
-				F4F249B12432AC7E007ED49A /* MovieData.swift in Sources */,
+				F4F249B12432AC7E007ED49A /* AllMovieData.swift in Sources */,
 				F4ED3F56242EA267000190DE /* Enums.swift in Sources */,
 				F4ED3F5A242EB6F8000190DE /* RegisteredUserClass.swift in Sources */,
 				F4EF53F92432CBD900598B02 /* WatchlistTableViewCell.swift in Sources */,

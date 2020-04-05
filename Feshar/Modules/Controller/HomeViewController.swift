@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var movieTypeCollectionView: UICollectionView!
     let movieTypeIdentifier = "MovieTypesCollectionViewCell"
     let movieCellIdentifier = "MovieTableViewCell"
-    let movieTypeButtonNameArray = ["Romance", "Action", "Comedy", "Drama", "Horror"]
+    let movieTypeButtonNameArray = ["All Movies", "Romance", "Action", "Comedy", "Drama"]
     let searchBarIsHidden = true
     
     var movieModelData = movieModel
@@ -65,6 +65,12 @@ class HomeViewController: UIViewController {
         alertController.addAction(shareOnTwitter)
         alertController.addAction(cancelButton)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func displaySharing() {
+        let items: [Any] = ["my movie", UIImage(named: "logo")!]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
     }
 
 }
@@ -125,15 +131,21 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let selectedCell = movieTypeCollectionView.cellForItem(at: indexPath) as! MovieTypesCollectionViewCell
         selectedCell.layer.backgroundColor = #colorLiteral(red: 0.9373905063, green: 0.2940055132, blue: 0.2428910136, alpha: 1)
         selectedCell.movieTypeTitleLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        var safeMovieModel: [MovieModel] = []
-        for movie in movieModel {
-            if movie.movieCategoryType.lowercased() == selectedCell.movieTypeTitleLabel.text?.lowercased() {
-                safeMovieModel.append(movie)
+        if indexPath.item == 0 {
+            movieModelData = movieModel
+            movieTableView.reloadData()
+        } else {
+            var safeMovieModel: [MovieModel] = []
+            for movie in movieModel {
+                if movie.movieCategoryType.lowercased() == selectedCell.movieTypeTitleLabel.text?.lowercased() {
+                    safeMovieModel.append(movie)
+                }
+                movieModelData = [MovieModel]()
+                movieModelData = safeMovieModel
             }
-            movieModelData = [MovieModel]()
-            movieModelData = safeMovieModel
+            movieTableView.reloadData()
         }
-        movieTableView.reloadData()
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -198,8 +210,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let shareAction = UIContextualAction(style: .normal, title:  "Share", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            if self.searching {
+                let items: [Any] = [self.filteredMovies[indexPath.row].movieName, self.filteredMovies[indexPath.row].moviePoster]
+                let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+                self.present(activityViewController, animated: true)
+            } else {
+                let items: [Any] = [self.movieModelData[indexPath.row].movieName, self.movieModelData[indexPath.row].moviePoster]
+                let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+                self.present(activityViewController, animated: true)
+            }
             success(true)
-            self.displayShareSheet()
         })
         shareAction.image = UIImage(systemName: "square.and.arrow.up")
         shareAction.backgroundColor = .systemBlue
@@ -211,7 +231,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let addAction = UIContextualAction(style: .normal, title:  "Add to Wishlist", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            print("Add to Wishlist")
+            
             if self.searching {
                 movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.filteredMovies[indexPath.row].movieName.lowercased()})!].isFavorite = true
             } else {

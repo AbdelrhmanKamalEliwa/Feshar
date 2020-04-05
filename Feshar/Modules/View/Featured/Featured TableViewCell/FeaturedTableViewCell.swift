@@ -54,7 +54,12 @@ extension FeaturedTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
         return cell
     }
     
-    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+//        let movieDetailsViewController = storyboard.instantiateViewController(identifier: "MovieDetailsViewController") as! MovieDetailsViewController
+//        movieDetailsViewController.movieModelDataPassed = movieModelPassed[indexPath.row]
+//        self.navigationController?.pushViewController(movieDetailsViewController , animated: true)
+//    }
 }
 
 

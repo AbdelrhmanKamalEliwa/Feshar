@@ -161,7 +161,7 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password must be at least 8 characters." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNI-Oa-xwU">
-                                <rect key="frame" x="50" y="440" width="194" height="12"/>
+                                <rect key="frame" x="50" y="440" width="354" height="12"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="12" id="0Mo-bq-aOT"/>
                                     <constraint firstAttribute="height" constant="12" id="EJp-d1-g2T"/>
@@ -310,7 +310,7 @@
                             <constraint firstItem="FpI-2c-pFm" firstAttribute="top" secondItem="Pbw-AU-5yO" secondAttribute="bottom" constant="8" id="eap-6Z-J1s"/>
                             <constraint firstItem="Sec-q7-Dn5" firstAttribute="top" secondItem="Pbw-AU-5yO" secondAttribute="bottom" constant="18" id="fHQ-ux-SP8"/>
                             <constraint firstItem="FpI-2c-pFm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="213" id="fTf-Mh-X8j"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tNI-Oa-xwU" secondAttribute="trailing" constant="170" id="feq-ad-zKC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tNI-Oa-xwU" secondAttribute="trailing" constant="10" id="feq-ad-zKC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ISN-Q7-YUE" secondAttribute="trailing" constant="131" id="hJA-1u-l2p"/>
                             <constraint firstItem="ISN-Q7-YUE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="232" id="hwE-Pt-hlA"/>
                             <constraint firstItem="FpI-2c-pFm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="iVQ-pe-MX8"/>

@@ -64,7 +64,9 @@ extension ProfileViewController {
     
     @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!)
     {
-        print("myRightSideBarButtonItemTapped")
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let watchlistViewController = storyboard.instantiateViewController(identifier: "WatchlistViewController") as! WatchlistViewController
+        self.navigationController?.pushViewController(watchlistViewController, animated: true)
     }
     
     @objc func myLeftSideBarButtonItemTapped(_ sender: UIBarButtonItem!)

@@ -20,13 +20,8 @@ class FeaturedViewController: UIViewController {
         featuredTableView.delegate = self
         featuredTableView.dataSource = self
     }
-    
-    
-    @IBAction func watchlistButtnTapped(_ sender: Any) {
-    }
-    
-    
 }
+
 
 
 //MARK: - Setup Custome Nav-Bar
@@ -50,7 +45,9 @@ extension FeaturedViewController {
     
     @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!)
     {
-        print("myRightSideBarButtonItemTapped")
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let watchlistViewController = storyboard.instantiateViewController(identifier: "WatchlistViewController") as! WatchlistViewController
+        self.navigationController?.pushViewController(watchlistViewController, animated: true)
     }
     
     @objc func myLeftSideBarButtonItemTapped(_ sender: UIBarButtonItem!)

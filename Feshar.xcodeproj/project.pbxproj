@@ -29,20 +29,16 @@
 		F4EF53F92432CBD900598B02 /* WatchlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF53F72432CBD900598B02 /* WatchlistTableViewCell.swift */; };
 		F4EF53FA2432CBD900598B02 /* WatchlistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4EF53F82432CBD900598B02 /* WatchlistTableViewCell.xib */; };
 		F4EF53FC2432CC1400598B02 /* WatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF53FB2432CC1400598B02 /* WatchlistViewController.swift */; };
-		F4EF53FF2432D02000598B02 /* WatchlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF53FE2432D02000598B02 /* WatchlistModel.swift */; };
-		F4EF54012432D03D00598B02 /* WatchlistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF54002432D03D00598B02 /* WatchlistData.swift */; };
 		F4EF54032433AEDC00598B02 /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF54022433AEDC00598B02 /* FeaturedViewController.swift */; };
 		F4EF540A2433BA9100598B02 /* FeaturedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF54082433BA9000598B02 /* FeaturedTableViewCell.swift */; };
 		F4EF54112433BEC600598B02 /* FeaturedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF540F2433BEC600598B02 /* FeaturedCollectionViewCell.swift */; };
 		F4EF54122433BEC600598B02 /* FeaturedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4EF54102433BEC600598B02 /* FeaturedCollectionViewCell.xib */; };
-		F4EF54142433DE1300598B02 /* MovieCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF54132433DE1300598B02 /* MovieCategories.swift */; };
 		F4F249A4243288F8007ED49A /* MovieTypesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F249A2243288F8007ED49A /* MovieTypesCollectionViewCell.swift */; };
 		F4F249A5243288F8007ED49A /* MovieTypesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4F249A3243288F8007ED49A /* MovieTypesCollectionViewCell.xib */; };
 		F4F249A724328F19007ED49A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F249A624328F19007ED49A /* HomeViewController.swift */; };
 		F4F249AC2432A24E007ED49A /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F249AA2432A24E007ED49A /* MovieTableViewCell.swift */; };
 		F4F249AD2432A24E007ED49A /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4F249AB2432A24E007ED49A /* MovieTableViewCell.xib */; };
 		F4F249AF2432A95D007ED49A /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F249AE2432A95D007ED49A /* MovieModel.swift */; };
-		F4F249B12432AC7E007ED49A /* AllMovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F249B02432AC7E007ED49A /* AllMovieData.swift */; };
 		F4FB31A02430BBA000F4DD22 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FB319F2430BBA000F4DD22 /* MovieDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,20 +67,16 @@
 		F4EF53F72432CBD900598B02 /* WatchlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistTableViewCell.swift; sourceTree = "<group>"; };
 		F4EF53F82432CBD900598B02 /* WatchlistTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchlistTableViewCell.xib; sourceTree = "<group>"; };
 		F4EF53FB2432CC1400598B02 /* WatchlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistViewController.swift; sourceTree = "<group>"; };
-		F4EF53FE2432D02000598B02 /* WatchlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistModel.swift; sourceTree = "<group>"; };
-		F4EF54002432D03D00598B02 /* WatchlistData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistData.swift; sourceTree = "<group>"; };
 		F4EF54022433AEDC00598B02 /* FeaturedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
 		F4EF54082433BA9000598B02 /* FeaturedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedTableViewCell.swift; sourceTree = "<group>"; };
 		F4EF540F2433BEC600598B02 /* FeaturedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedCollectionViewCell.swift; sourceTree = "<group>"; };
 		F4EF54102433BEC600598B02 /* FeaturedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeaturedCollectionViewCell.xib; sourceTree = "<group>"; };
-		F4EF54132433DE1300598B02 /* MovieCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCategories.swift; sourceTree = "<group>"; };
 		F4F249A2243288F8007ED49A /* MovieTypesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTypesCollectionViewCell.swift; sourceTree = "<group>"; };
 		F4F249A3243288F8007ED49A /* MovieTypesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTypesCollectionViewCell.xib; sourceTree = "<group>"; };
 		F4F249A624328F19007ED49A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Feshar/Modules/Controller/HomeViewController.swift; sourceTree = SOURCE_ROOT; };
 		F4F249AA2432A24E007ED49A /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		F4F249AB2432A24E007ED49A /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
 		F4F249AE2432A95D007ED49A /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
-		F4F249B02432AC7E007ED49A /* AllMovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMovieData.swift; sourceTree = "<group>"; };
 		F4FB319F2430BBA000F4DD22 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieDetailsViewController.swift; path = Feshar/Modules/Controller/MovieDetailsViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -161,9 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				F4612E0C24358A80003C866D /* Users */,
-				F4EF53FD2432D00400598B02 /* Watchlist */,
 				F4F249B22432AC83007ED49A /* Movie */,
-				F4EF54132433DE1300598B02 /* MovieCategories.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -263,15 +253,6 @@
 			path = WatchlistCell;
 			sourceTree = "<group>";
 		};
-		F4EF53FD2432D00400598B02 /* Watchlist */ = {
-			isa = PBXGroup;
-			children = (
-				F4EF53FE2432D02000598B02 /* WatchlistModel.swift */,
-				F4EF54002432D03D00598B02 /* WatchlistData.swift */,
-			);
-			path = Watchlist;
-			sourceTree = "<group>";
-		};
 		F4EF540C2433BAA600598B02 /* Featured */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,7 +319,6 @@
 			isa = PBXGroup;
 			children = (
 				F4F249AE2432A95D007ED49A /* MovieModel.swift */,
-				F4F249B02432AC7E007ED49A /* AllMovieData.swift */,
 			);
 			path = Movie;
 			sourceTree = "<group>";
@@ -433,9 +413,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4EF53FF2432D02000598B02 /* WatchlistModel.swift in Sources */,
 				F4AF0898242A5CDC005E558A /* UIViewExtension.swift in Sources */,
-				F4EF54142433DE1300598B02 /* MovieCategories.swift in Sources */,
 				F40BD50824313D000074E024 /* CastCell.swift in Sources */,
 				F4F249AC2432A24E007ED49A /* MovieTableViewCell.swift in Sources */,
 				F4EF54032433AEDC00598B02 /* FeaturedViewController.swift in Sources */,
@@ -445,13 +423,11 @@
 				F4612E102437C4DA003C866D /* ProfileInfoTableViewCell.swift in Sources */,
 				F414656B2428F0120090052F /* AppDelegate.swift in Sources */,
 				F414656D2428F0120090052F /* SceneDelegate.swift in Sources */,
-				F4EF54012432D03D00598B02 /* WatchlistData.swift in Sources */,
 				F4F249AF2432A95D007ED49A /* MovieModel.swift in Sources */,
 				F4F249A724328F19007ED49A /* HomeViewController.swift in Sources */,
 				F4EF540A2433BA9100598B02 /* FeaturedTableViewCell.swift in Sources */,
 				F4612E0B243580A9003C866D /* ProfileViewController.swift in Sources */,
 				F4EF53FC2432CC1400598B02 /* WatchlistViewController.swift in Sources */,
-				F4F249B12432AC7E007ED49A /* AllMovieData.swift in Sources */,
 				F4ED3F56242EA267000190DE /* Enums.swift in Sources */,
 				F4ED3F5A242EB6F8000190DE /* RegisteredUserClass.swift in Sources */,
 				F4EF53F92432CBD900598B02 /* WatchlistTableViewCell.swift in Sources */,

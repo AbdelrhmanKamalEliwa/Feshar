@@ -511,7 +511,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3241" y="-1644"/>
+            <point key="canvasLocation" x="2362" y="-897"/>
         </scene>
         <!--Featured View Controller-->
         <scene sceneID="gdi-1V-RGD">
@@ -918,7 +918,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="FiA-2V-jx1">
-                                <rect key="frame" x="24" y="98" width="158.5" height="36"/>
+                                <rect key="frame" x="24" y="54" width="158.5" height="36"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watchlist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NsB-D4-a7n">
                                         <rect key="frame" x="0.0" y="0.0" width="123" height="36"/>
@@ -933,7 +933,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="167" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YOq-az-8ko" userLabel="Watchlist Table View">
-                                <rect key="frame" x="0.0" y="142" width="414" height="754"/>
+                                <rect key="frame" x="0.0" y="98" width="414" height="798"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -955,7 +955,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m7G-JA-e97" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5102.898550724638" y="-897.32142857142856"/>
+            <point key="canvasLocation" x="4106" y="-897"/>
         </scene>
         <!--Home-->
         <scene sceneID="hnw-TN-SnD">
@@ -1013,24 +1013,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uvZ-8O-bwv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4105.7971014492759" y="-35.491071428571423"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Yly-dt-66F">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wYF-bS-wTq" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="doF-Am-JaH">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="ofi-WG-WBU" kind="relationship" relationship="rootViewController" id="3lZ-PL-5Mb"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NEN-fq-HC4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4277" y="-897"/>
         </scene>
     </scenes>
     <resources>

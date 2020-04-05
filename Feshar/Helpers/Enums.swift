@@ -12,11 +12,3 @@ enum UIErrorCase {
     case success
     case failure
 }
-
-enum MovieCategory: String{
-    case new = "NEW"
-    case trending = "TRENDING"
-    case action = "ACTION"
-    case romance = "ROMANCE"
-    case comedy = "COMEDY"
-}

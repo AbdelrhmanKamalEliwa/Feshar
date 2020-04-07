@@ -9,7 +9,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    
+    let movieHomeScreen = [MovieHomeScreen]()
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var movieTableView: UITableView!
     @IBOutlet weak var movieTypeCollectionView: UICollectionView!
@@ -30,6 +30,7 @@ class HomeViewController: UIViewController {
         registerTableView()
         searchBar.delegate = self
         searchBar.searchTextField.delegate = self
+        fetchData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -266,5 +267,32 @@ extension HomeViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+}
+
+
+//MARK: - Networking
+extension HomeViewController {
+    func fetchData() {
+        let networkManager = NetworkManager()
+        let _ = networkManager.request(url: EndPointRouter.getHomeScreen, httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<MovieHomeScreen>) in
+            switch result {
+                
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                if let error = error {
+                    print(error)
+                }
+            case .decodingFailure(let error):
+                if let error = error {
+                    print(error)
+                }
+            case .badRequest(let error):
+                if let error = error {
+                    print(error)
+                }
+            }
+        }
     }
 }

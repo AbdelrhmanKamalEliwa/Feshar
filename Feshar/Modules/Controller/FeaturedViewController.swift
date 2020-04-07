@@ -13,6 +13,7 @@ class FeaturedViewController: UIViewController {
     @IBOutlet weak var featuredTableView: UITableView!
     let featuredCellIdentifier = "FeaturedTableViewCell"
     var movieModelData = [MovieModel]()
+    var movieFeaturedScreenArray = allMovies
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,15 +67,16 @@ extension FeaturedViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = featuredTableView.dequeueReusableCell(withIdentifier: featuredCellIdentifier, for: indexPath) as! FeaturedTableViewCell
-        var safeMovieModel: [MovieModel] = []
-        for movie in movieModel {
-            if movie.movieCategoryType.lowercased() == movieCategoryArray[indexPath.row].lowercased() {
+        var safeMovieModel: [Results] = []
+        for movie in allMovies {
+            if movie.mediaType.lowercased() == movieCategoryArray[indexPath.row].lowercased() {
                 safeMovieModel.append(movie)
             }
         }
-        movieModelData = safeMovieModel
+        movieFeaturedScreenArray = safeMovieModel
+//        da msh hn2rblo
         cell.movieCategoryTitleLabel.text = movieCategoryArray[indexPath.row]
-        cell.updateMovieCategoryTitle(movieNumber: movieModelData)
+        cell.updateMovieCategoryTitle(movieNumber: movieFeaturedScreenArray)
         return cell
     }
     

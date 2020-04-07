@@ -14,7 +14,7 @@ class FeaturedTableViewCell: UITableViewCell {
     @IBOutlet weak var featuredCollectionView: UICollectionView!
     let cellIdentifier = "FeaturedCollectionViewCell"
     
-    var movieModelPassed = [MovieModel]()
+    var movieModelPassed = [Results]()
     
     
     
@@ -25,7 +25,7 @@ class FeaturedTableViewCell: UITableViewCell {
         registerCollectionView()
     }
     
-    func updateMovieCategoryTitle(movieNumber: [MovieModel]) {
+    func updateMovieCategoryTitle(movieNumber: [Results]) {
         movieModelPassed = movieNumber
         featuredCollectionView.reloadData()
     }
@@ -49,8 +49,7 @@ extension FeaturedTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = featuredCollectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! FeaturedCollectionViewCell
-        
-        cell.movieImageView.image = UIImage(named: movieModelPassed[indexPath.item].moviePoster)
+        cell.displayMovieData(movieImage: baseImage)
         return cell
     }
     

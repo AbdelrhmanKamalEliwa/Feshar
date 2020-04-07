@@ -9,7 +9,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    let baseImage = "http://image.tmdb.org/t/p/w300/y95lQLnuNKdPAzw9F9Ab8kJ80c3.jpg"
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var movieTableView: UITableView!
     @IBOutlet weak var movieTypeCollectionView: UICollectionView!
@@ -168,10 +168,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = movieTableView.dequeueReusableCell(withIdentifier: movieCellIdentifier, for: indexPath) as! MovieTableViewCell
         if searching {
-            cell.displayMovieData(movieName: filteredMovies[indexPath.row].title, movieDetails: filteredMovies[indexPath.row].title, movieRate: "\(filteredMovies[indexPath.row].vote_average)", movieDescription: filteredMovies[indexPath.row].overview, movieImage: baseImage)
+            cell.displayMovieData(movieName: filteredMovies[indexPath.row].title, movieDetails: filteredMovies[indexPath.row].title, movieRate: "\(filteredMovies[indexPath.row].voteAverage)", movieDescription: filteredMovies[indexPath.row].overview, movieImage: baseImage)
             return cell
         } else {
-            cell.displayMovieData(movieName: movieHomeScreenArray[indexPath.row].title, movieDetails: movieHomeScreenArray[indexPath.row].title, movieRate: "\(movieHomeScreenArray[indexPath.row].vote_average)", movieDescription: movieHomeScreenArray[indexPath.row].overview, movieImage: baseImage)
+            cell.displayMovieData(movieName: movieHomeScreenArray[indexPath.row].title, movieDetails: movieHomeScreenArray[indexPath.row].title, movieRate: String(movieHomeScreenArray[indexPath.row].voteAverage), movieDescription: movieHomeScreenArray[indexPath.row].overview, movieImage: baseImage)
             return cell
         }
         
@@ -182,9 +182,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let movieDetailsViewController = storyboard.instantiateViewController(identifier: "MovieDetailsViewController") as! MovieDetailsViewController
         if searching {
-            movieDetailsViewController.movieModelDataPassed = filteredMovies[indexPath.row]
+            movieDetailsViewController.movieIdPassed = filteredMovies[indexPath.row].id
         } else {
-            movieDetailsViewController.movieModelDataPassed = movieHomeScreenArray[indexPath.row]
+            movieDetailsViewController.movieIdPassed = movieHomeScreenArray[indexPath.row].id
         }
         self.navigationController?.pushViewController(movieDetailsViewController , animated: true)
     }
@@ -263,6 +263,7 @@ extension HomeViewController {
                 
             case .success(let data):
                 self.movieHomeScreenArray = data.results
+                allMovies = data.results
                 DispatchQueue.main.async {
                     self.movieTableView.reloadData()
                 }

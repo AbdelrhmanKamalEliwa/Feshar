@@ -18,11 +18,12 @@ class MovieDetailsViewController: UIViewController {
     
     @IBOutlet weak var castTableView: UITableView!
     @IBOutlet weak var moviePosterCollectionView: UICollectionView!
-
+    
     let moviePosterCellIdentifier = "MoviePostersCell"
     let castCellIdentifier = "CastCell"
     
-    var movieModelDataPassed: Results?
+    var movieDetailsScreenObject: MovieDetailsScreen?
+    var movieIdPassed: Int?
     var movieImages = [String]()
     
     
@@ -32,46 +33,49 @@ class MovieDetailsViewController: UIViewController {
         setupDelegateAndDataSource()
         registerCollectionView()
         registerTableView()
-//        displayPassedData()
-//        displayWatchListButton()
+        fetchData()
+        //        displayWatchListButton()
     }
-    
-//    func displayWatchListButton() {
-//        if movieModelDataPassed?.isFavorite == true {
-//            watchListButton.setTitle("REMOVE FROM WATCHLIST", for: .normal)
-//            watchListButton.backgroundColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
-//        } else if movieModelDataPassed?.isFavorite == false {
-//            watchListButton.setTitle("ADD TO WATCHLIST", for: .normal)
-//        }
-//    }
+//    *Need to replace movieModelDataPassed with movieDetailsScreenObject*
+    //    func displayWatchListButton() {
+    //        if movieModelDataPassed?.isFavorite == true {
+    //            watchListButton.setTitle("REMOVE FROM WATCHLIST", for: .normal)
+    //            watchListButton.backgroundColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
+    //        } else if movieModelDataPassed?.isFavorite == false {
+    //            watchListButton.setTitle("ADD TO WATCHLIST", for: .normal)
+    //        }
+    //    }
     
     @IBAction func watchListButtonTapped(_ sender: Any) {
-//        if movieModelDataPassed?.isFavorite == true {
-////            for movie in movieModel {
-////                if movie.isFavorite == movieModelDataPassed?.isFavorite {
-////                    movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelDataPassed!.movieName.lowercased()})!].isFavorite = false
-////                }
-////            }
-//            watchListButton.setTitle("ADD TO WATCHLIST", for: .normal)
-//            watchListButton.backgroundColor = #colorLiteral(red: 0.9276102185, green: 0.3129869699, blue: 0.2666297853, alpha: 1)
-//        } else if movieModelDataPassed?.isFavorite == false {
-////            for movie in movieModel {
-////                if movie.isFavorite == movieModelDataPassed?.isFavorite {
-////                    movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelDataPassed!.movieName.lowercased()})!].isFavorite = false
-////                }
-////            }
-//            watchListButton.setTitle("REMOVE FROM WATCHLIST", for: .normal)
-//            watchListButton.backgroundColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
-//        }
+//        *Need to replace movieModelDataPassed with movieDetailsScreenObject*
+        //        if movieModelDataPassed?.isFavorite == true {
+        ////            for movie in movieModel {
+        ////                if movie.isFavorite == movieModelDataPassed?.isFavorite {
+        ////                    movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelDataPassed!.movieName.lowercased()})!].isFavorite = false
+        ////                }
+        ////            }
+        //            watchListButton.setTitle("ADD TO WATCHLIST", for: .normal)
+        //            watchListButton.backgroundColor = #colorLiteral(red: 0.9276102185, green: 0.3129869699, blue: 0.2666297853, alpha: 1)
+        //        } else if movieModelDataPassed?.isFavorite == false {
+        ////            for movie in movieModel {
+        ////                if movie.isFavorite == movieModelDataPassed?.isFavorite {
+        ////                    movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelDataPassed!.movieName.lowercased()})!].isFavorite = false
+        ////                }
+        ////            }
+        //            watchListButton.setTitle("REMOVE FROM WATCHLIST", for: .normal)
+        //            watchListButton.backgroundColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
+        //        }
     }
     
-//    func displayPassedData() {
-//        movieNameLabel.text = movieModelDataPassed?.movieName
-//        movieNameDetails.text = movieModelDataPassed?.movieDetails
-//        movieRateLabel.text = movieModelDataPassed?.movieRate
-//        movieDescriptionLabel.text = movieModelDataPassed?.movieDescription
-//        movieImages = movieModelDataPassed?.movieImages ?? [" "]
-//    }
+    func displayPassedData() {
+        
+        movieNameLabel.text = movieDetailsScreenObject!.title
+        movieNameDetails.text = movieDetailsScreenObject!.title
+        movieRateLabel.text = String(movieDetailsScreenObject!.voteAverage)
+        movieDescriptionLabel.text = movieDetailsScreenObject!.overview
+        
+        //        movieImages = movieModelDataPassed?.movieImages ?? [" "]
+    }
     
     
     func setupDelegateAndDataSource() {
@@ -91,6 +95,31 @@ class MovieDetailsViewController: UIViewController {
     
 }
 
+
+//MARK: - Networking
+extension MovieDetailsViewController {
+    func fetchData() {
+        if let safeMovieId = movieIdPassed {
+            let networkManager = NetworkManager()
+            let _ = networkManager.request(url: EndPointRouter.getMovieDetails(movieId: String(safeMovieId)), httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<MovieDetailsScreen>) in
+                switch result {
+                case .success(let data):
+                    self.movieDetailsScreenObject = data
+                    DispatchQueue.main.async {
+                        self.displayPassedData()
+                    }
+                case .failure(let error):
+                    if let error = error { print(error) }
+                case .decodingFailure(let error):
+                    if let error = error { print(error) }
+                case .badRequest(let error):
+                    if let error = error { print(error) }
+                }
+            }
+        }
+    }
+    
+}
 
 //MARK: - Setup Custome Nav-Bar
 extension MovieDetailsViewController {

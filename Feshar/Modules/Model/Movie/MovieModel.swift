@@ -33,7 +33,11 @@ class MovieModel {
     
 }
 
-let movieCategoryArray = ["NEW", "TRENDING", "ACTION", "ROMANCE", "COMEDY"]
+let movieCategoryArray = ["Movie", "NEW", "TRENDING", "ACTION", "ROMANCE", "COMEDY"]
+
+var allMovies: [Results] = []
+let baseImage = "http://image.tmdb.org/t/p/w300/y95lQLnuNKdPAzw9F9Ab8kJ80c3.jpg"
+
 
 var movieModel: [MovieModel] = [
     MovieModel(movieName: "Star Wars: The Last Jedi (3D)", movieDetails: "Action | Science fiction - 2h 33m", movieCategoryType: "Action", movieRate: "7.5", movieDescription: "Luke Skywalker unwillingly attempts to guide young hopeful Rey in the ways of the force", moviePoster: "Star-Wars-Poster_2", movieImages: ["Star-Wars-Poster_2", "Star-Wars-Poster_3", "Star-Wars-Poster_4"], movieTrailers: nil, isFavorite: false),

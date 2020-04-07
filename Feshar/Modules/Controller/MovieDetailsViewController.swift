@@ -22,7 +22,7 @@ class MovieDetailsViewController: UIViewController {
     let moviePosterCellIdentifier = "MoviePostersCell"
     let castCellIdentifier = "CastCell"
     
-    var movieModelDataPassed: MovieModel?
+    var movieModelDataPassed: Results?
     var movieImages = [String]()
     
     
@@ -32,46 +32,46 @@ class MovieDetailsViewController: UIViewController {
         setupDelegateAndDataSource()
         registerCollectionView()
         registerTableView()
-        displayPassedData()
-        displayWatchListButton()
+//        displayPassedData()
+//        displayWatchListButton()
     }
     
-    func displayWatchListButton() {
-        if movieModelDataPassed?.isFavorite == true {
-            watchListButton.setTitle("REMOVE FROM WATCHLIST", for: .normal)
-            watchListButton.backgroundColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
-        } else if movieModelDataPassed?.isFavorite == false {
-            watchListButton.setTitle("ADD TO WATCHLIST", for: .normal)
-        }
-    }
+//    func displayWatchListButton() {
+//        if movieModelDataPassed?.isFavorite == true {
+//            watchListButton.setTitle("REMOVE FROM WATCHLIST", for: .normal)
+//            watchListButton.backgroundColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
+//        } else if movieModelDataPassed?.isFavorite == false {
+//            watchListButton.setTitle("ADD TO WATCHLIST", for: .normal)
+//        }
+//    }
     
     @IBAction func watchListButtonTapped(_ sender: Any) {
-        if movieModelDataPassed?.isFavorite == true {
-//            for movie in movieModel {
-//                if movie.isFavorite == movieModelDataPassed?.isFavorite {
-//                    movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelDataPassed!.movieName.lowercased()})!].isFavorite = false
-//                }
-//            }
-            watchListButton.setTitle("ADD TO WATCHLIST", for: .normal)
-            watchListButton.backgroundColor = #colorLiteral(red: 0.9276102185, green: 0.3129869699, blue: 0.2666297853, alpha: 1)
-        } else if movieModelDataPassed?.isFavorite == false {
-//            for movie in movieModel {
-//                if movie.isFavorite == movieModelDataPassed?.isFavorite {
-//                    movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelDataPassed!.movieName.lowercased()})!].isFavorite = false
-//                }
-//            }
-            watchListButton.setTitle("REMOVE FROM WATCHLIST", for: .normal)
-            watchListButton.backgroundColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
-        }
+//        if movieModelDataPassed?.isFavorite == true {
+////            for movie in movieModel {
+////                if movie.isFavorite == movieModelDataPassed?.isFavorite {
+////                    movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelDataPassed!.movieName.lowercased()})!].isFavorite = false
+////                }
+////            }
+//            watchListButton.setTitle("ADD TO WATCHLIST", for: .normal)
+//            watchListButton.backgroundColor = #colorLiteral(red: 0.9276102185, green: 0.3129869699, blue: 0.2666297853, alpha: 1)
+//        } else if movieModelDataPassed?.isFavorite == false {
+////            for movie in movieModel {
+////                if movie.isFavorite == movieModelDataPassed?.isFavorite {
+////                    movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelDataPassed!.movieName.lowercased()})!].isFavorite = false
+////                }
+////            }
+//            watchListButton.setTitle("REMOVE FROM WATCHLIST", for: .normal)
+//            watchListButton.backgroundColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
+//        }
     }
     
-    func displayPassedData() {
-        movieNameLabel.text = movieModelDataPassed?.movieName
-        movieNameDetails.text = movieModelDataPassed?.movieDetails
-        movieRateLabel.text = movieModelDataPassed?.movieRate
-        movieDescriptionLabel.text = movieModelDataPassed?.movieDescription
-        movieImages = movieModelDataPassed?.movieImages ?? [" "]
-    }
+//    func displayPassedData() {
+//        movieNameLabel.text = movieModelDataPassed?.movieName
+//        movieNameDetails.text = movieModelDataPassed?.movieDetails
+//        movieRateLabel.text = movieModelDataPassed?.movieRate
+//        movieDescriptionLabel.text = movieModelDataPassed?.movieDescription
+//        movieImages = movieModelDataPassed?.movieImages ?? [" "]
+//    }
     
     
     func setupDelegateAndDataSource() {

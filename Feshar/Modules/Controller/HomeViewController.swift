@@ -9,7 +9,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    let movieHomeScreen = [MovieHomeScreen]()
+    let baseImage = "http://image.tmdb.org/t/p/w300/y95lQLnuNKdPAzw9F9Ab8kJ80c3.jpg"
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var movieTableView: UITableView!
     @IBOutlet weak var movieTypeCollectionView: UICollectionView!
@@ -17,9 +17,9 @@ class HomeViewController: UIViewController {
     let movieCellIdentifier = "MovieTableViewCell"
     let movieTypeButtonNameArray = ["All Movies", "Romance", "Action", "Comedy", "Drama"]
     let searchBarIsHidden = true
-    
-    var movieModelData = movieModel
-    var filteredMovies: [MovieModel] = []
+    var movieHomeScreenArray = [Results]()
+//    var movieModelData = movieModel
+    var filteredMovies: [Results] = []
     var searching = false
     
     override func viewDidLoad() {
@@ -54,24 +54,6 @@ class HomeViewController: UIViewController {
     
     func registerTableView() {
         movieTableView.register(UINib.init(nibName: movieCellIdentifier, bundle: nil), forCellReuseIdentifier: movieCellIdentifier)
-    }
-    
-    func displayShareSheet() {
-        let alertController = UIAlertController(title: "Action Sheet", message: "What would you like to do?", preferredStyle: .actionSheet)
-        let shareOnFacebook = UIAlertAction(title: "Share on Facebook", style: .default, handler: nil)
-        let shareOnTwitter = UIAlertAction(title: "Share on Twitter", style: .default, handler: { (action) -> Void in
-        })
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alertController.addAction(shareOnFacebook)
-        alertController.addAction(shareOnTwitter)
-        alertController.addAction(cancelButton)
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func displaySharing() {
-        let items: [Any] = ["my movie", UIImage(named: "logo")!]
-        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        present(ac, animated: true)
     }
 
 }
@@ -132,20 +114,21 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let selectedCell = movieTypeCollectionView.cellForItem(at: indexPath) as! MovieTypesCollectionViewCell
         selectedCell.layer.backgroundColor = #colorLiteral(red: 0.9373905063, green: 0.2940055132, blue: 0.2428910136, alpha: 1)
         selectedCell.movieTypeTitleLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        if indexPath.item == 0 {
-            movieModelData = movieModel
-            movieTableView.reloadData()
-        } else {
-            var safeMovieModel: [MovieModel] = []
-            for movie in movieModel {
-                if movie.movieCategoryType.lowercased() == selectedCell.movieTypeTitleLabel.text?.lowercased() {
-                    safeMovieModel.append(movie)
-                }
-                movieModelData = [MovieModel]()
-                movieModelData = safeMovieModel
-            }
-            movieTableView.reloadData()
-        }
+//        *Need to know the type of the movie in the API*
+//        if indexPath.item == 0 {
+//            movieModelData = movieModel
+//            movieTableView.reloadData()
+//        } else {
+//            var safeMovieModel: [MovieModel] = []
+//            for movie in movieModel {
+//                if movie.movieCategoryType.lowercased() == selectedCell.movieTypeTitleLabel.text?.lowercased() {
+//                    safeMovieModel.append(movie)
+//                }
+//                movieModelData = [MovieModel]()
+//                movieModelData = safeMovieModel
+//            }
+//            movieTableView.reloadData()
+//        }
         
     }
     
@@ -177,7 +160,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         if searching {
             return filteredMovies.count
         } else {
-            return movieModelData.count
+            return movieHomeScreenArray.count
         }
         
     }
@@ -185,10 +168,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = movieTableView.dequeueReusableCell(withIdentifier: movieCellIdentifier, for: indexPath) as! MovieTableViewCell
         if searching {
-            cell.displayMovieData(movieName: filteredMovies[indexPath.row].movieName, movieDetails: filteredMovies[indexPath.row].movieDetails, movieRate: filteredMovies[indexPath.row].movieRate, movieDescription: filteredMovies[indexPath.row].movieDescription, movieImage: filteredMovies[indexPath.row].moviePoster)
+            cell.displayMovieData(movieName: filteredMovies[indexPath.row].title, movieDetails: filteredMovies[indexPath.row].title, movieRate: "\(filteredMovies[indexPath.row].vote_average)", movieDescription: filteredMovies[indexPath.row].overview, movieImage: baseImage)
             return cell
         } else {
-            cell.displayMovieData(movieName: movieModelData[indexPath.row].movieName, movieDetails: movieModelData[indexPath.row].movieDetails, movieRate: movieModelData[indexPath.row].movieRate, movieDescription: movieModelData[indexPath.row].movieDescription, movieImage: movieModelData[indexPath.row].moviePoster)
+            cell.displayMovieData(movieName: movieHomeScreenArray[indexPath.row].title, movieDetails: movieHomeScreenArray[indexPath.row].title, movieRate: "\(movieHomeScreenArray[indexPath.row].vote_average)", movieDescription: movieHomeScreenArray[indexPath.row].overview, movieImage: baseImage)
             return cell
         }
         
@@ -201,7 +184,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         if searching {
             movieDetailsViewController.movieModelDataPassed = filteredMovies[indexPath.row]
         } else {
-            movieDetailsViewController.movieModelDataPassed = movieModelData[indexPath.row]
+            movieDetailsViewController.movieModelDataPassed = movieHomeScreenArray[indexPath.row]
         }
         self.navigationController?.pushViewController(movieDetailsViewController , animated: true)
     }
@@ -212,11 +195,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                    leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let shareAction = UIContextualAction(style: .normal, title:  "Share", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             if self.searching {
-                let items: [Any] = [self.filteredMovies[indexPath.row].movieName, self.filteredMovies[indexPath.row].moviePoster]
+                let items: [Any] = [self.filteredMovies[indexPath.row].title, self.filteredMovies[indexPath.row].title]
                 let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
                 self.present(activityViewController, animated: true)
             } else {
-                let items: [Any] = [self.movieModelData[indexPath.row].movieName, self.movieModelData[indexPath.row].moviePoster]
+                let items: [Any] = [self.movieHomeScreenArray[indexPath.row].title, self.movieHomeScreenArray[indexPath.row].title]
                 let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
                 self.present(activityViewController, animated: true)
             }
@@ -232,12 +215,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let addAction = UIContextualAction(style: .normal, title:  "Add to Wishlist", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            
-            if self.searching {
-                movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.filteredMovies[indexPath.row].movieName.lowercased()})!].isFavorite = true
-            } else {
-                movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelData[indexPath.row].movieName.lowercased()})!].isFavorite = true
-            }
+//           *Need to change movieModel obj to movieHomeScreenArray obj*
+//            if self.searching {
+//                movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.filteredMovies[indexPath.row].title.lowercased()})!].isFavorite = true
+//            } else {
+//                movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelData[indexPath.row].movieName.lowercased()})!].isFavorite = true
+//            }
             success(true)
         })
         addAction.image = UIImage(systemName: "wand.and.stars.inverse")
@@ -251,7 +234,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 //MARK: - Setup Search Bar
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredMovies = movieModel.filter {$0.movieName.lowercased().prefix(searchText.count) == searchText.lowercased()}
+        filteredMovies = movieHomeScreenArray.filter {$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()}
         searching = true
         if searchText.isEmpty {
             searching = false
@@ -279,7 +262,10 @@ extension HomeViewController {
             switch result {
                 
             case .success(let data):
-                print(data)
+                self.movieHomeScreenArray = data.results
+                DispatchQueue.main.async {
+                    self.movieTableView.reloadData()
+                }
             case .failure(let error):
                 if let error = error {
                     print(error)

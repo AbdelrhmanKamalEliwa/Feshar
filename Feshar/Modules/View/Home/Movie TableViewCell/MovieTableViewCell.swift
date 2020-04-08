@@ -24,8 +24,7 @@ class MovieTableViewCell: UITableViewCell {
         movieRateLabel.text = movieRate
         movieDescriptionLabel.text = movieDescription
         
-        if movieImage != nil
-        {
+        if movieImage != nil {
             guard let url = URL(string: movieImage!) else { return }
             movieImageView.kf.indicatorType = .activity
             movieImageView.kf.setImage(with: url, placeholder: nil, options: nil, progressBlock: nil) { (result) in

@@ -168,10 +168,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = movieTableView.dequeueReusableCell(withIdentifier: movieCellIdentifier, for: indexPath) as! MovieTableViewCell
         if searching {
-            cell.displayMovieData(movieName: filteredMovies[indexPath.row].title, movieDetails: filteredMovies[indexPath.row].title, movieRate: "\(filteredMovies[indexPath.row].voteAverage)", movieDescription: filteredMovies[indexPath.row].overview, movieImage: baseImage)
+            cell.displayMovieData(movieName: filteredMovies[indexPath.row].title, movieDetails: filteredMovies[indexPath.row].title, movieRate: "\(filteredMovies[indexPath.row].imdbRate)", movieDescription: filteredMovies[indexPath.row].description, movieImage: EndPointRouter.getMoviePoster(posterPath: filteredMovies[indexPath.row].poster))
             return cell
         } else {
-            cell.displayMovieData(movieName: movieHomeScreenArray[indexPath.row].title, movieDetails: movieHomeScreenArray[indexPath.row].title, movieRate: String(movieHomeScreenArray[indexPath.row].voteAverage), movieDescription: movieHomeScreenArray[indexPath.row].overview, movieImage: baseImage)
+            cell.displayMovieData(movieName: movieHomeScreenArray[indexPath.row].title, movieDetails: movieHomeScreenArray[indexPath.row].title, movieRate: String(movieHomeScreenArray[indexPath.row].imdbRate), movieDescription: movieHomeScreenArray[indexPath.row].description, movieImage: EndPointRouter.getMoviePoster(posterPath: movieHomeScreenArray[indexPath.row].poster))
             return cell
         }
         
@@ -263,9 +263,9 @@ extension HomeViewController {
                 
             case .success(let data):
                 self.movieHomeScreenArray = data.results
-                allMovies = data.results
                 DispatchQueue.main.async {
                     self.movieTableView.reloadData()
+                    allMovies = data.results
                 }
             case .failure(let error):
                 if let error = error {

@@ -14,30 +14,34 @@ struct MovieHomeScreen: Codable {
 
 struct Results: Codable {
     let id: Int
-    let voteAverage: Double
+    let imdbRate: Double
     let title: String
-    let overview: String
+    let description: String
     let mediaType: String
+    let poster: String
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
-        case voteAverage = "vote_average"
+        case imdbRate = "vote_average"
         case title = "title"
-        case overview = "overview"
+        case description = "overview"
         case mediaType = "media_type"
+        case poster = "poster_path"
     }
 }
 
 struct MovieDetailsScreen: Codable {
     let id: Int
     let title: String
-    let voteAverage: Double
-    let overview: String
+    let imdbRate: Double
+    let description: String
+    let poster: String
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case title = "title"
-        case voteAverage = "vote_average"
-        case overview = "overview"
+        case imdbRate = "vote_average"
+        case description = "overview"
+        case poster = "poster_path"
     }
 }

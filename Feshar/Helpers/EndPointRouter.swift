@@ -16,4 +16,8 @@ struct EndPointRouter {
     static func getMovieDetails(movieId: String) -> URL {
         return URL(string: APIService.baseURL() + "/3/movie/" + movieId + "?api_key=6c52966d9be717e486a2a0c499867009&language=en-US")!
     }
+    
+    static func getMoviePoster(posterPath: String) -> String {
+        return MoviePosterServices.baseUrlImage() + posterPath
+    }
 }

@@ -49,7 +49,7 @@ extension FeaturedTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = featuredCollectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! FeaturedCollectionViewCell
-        cell.displayMovieData(movieImage: baseImage)
+        cell.displayMovieData(movieImage: EndPointRouter.getMoviePoster(posterPath: movieModelPassed[indexPath.item].poster))
         return cell
     }
     

@@ -24,7 +24,7 @@ class MovieDetailsViewController: UIViewController {
     
     var movieDetailsScreenObject: MovieDetailsScreen?
     var movieIdPassed: Int?
-    var movieImages = [String]()
+    var moviePosters = [String]()
     
     
     override func viewDidLoad() {
@@ -34,6 +34,11 @@ class MovieDetailsViewController: UIViewController {
         registerCollectionView()
         registerTableView()
         fetchData()
+        DispatchQueue.main.async {
+            self.displayPassedData()
+            print(self.moviePosters)
+        }
+        
         //        displayWatchListButton()
     }
 //    *Need to replace movieModelDataPassed with movieDetailsScreenObject*
@@ -68,15 +73,12 @@ class MovieDetailsViewController: UIViewController {
     }
     
     func displayPassedData() {
-        
         movieNameLabel.text = movieDetailsScreenObject!.title
         movieNameDetails.text = movieDetailsScreenObject!.title
-        movieRateLabel.text = String(movieDetailsScreenObject!.voteAverage)
-        movieDescriptionLabel.text = movieDetailsScreenObject!.overview
-        
-        //        movieImages = movieModelDataPassed?.movieImages ?? [" "]
+        movieRateLabel.text = String(movieDetailsScreenObject!.imdbRate)
+        movieDescriptionLabel.text = movieDetailsScreenObject!.description
+        moviePosters = [EndPointRouter.getMoviePoster(posterPath: movieDetailsScreenObject!.poster)]
     }
-    
     
     func setupDelegateAndDataSource() {
         moviePosterCollectionView.delegate = self
@@ -157,12 +159,12 @@ extension MovieDetailsViewController {
 extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        movieImages.count
+        moviePosters.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = moviePosterCollectionView.dequeueReusableCell(withReuseIdentifier: moviePosterCellIdentifier, for: indexPath) as! MoviePostersCell
-        cell.posterImage.image = UIImage(named: movieImages[indexPath.item])
+        cell.displayMoviePosters(moviePoster: moviePosters[indexPath.item])
         return cell
     }
     

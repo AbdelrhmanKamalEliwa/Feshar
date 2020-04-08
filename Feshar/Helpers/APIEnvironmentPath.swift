@@ -9,11 +9,17 @@
 import Foundation
 
 struct APIService {
-    static func baseURL() -> String
-    {
+    static func baseURL() -> String {
         return APIEnvironmentPath.development.scheme() + APIEnvironmentPath.development.host()
     }
 }
+
+struct MoviePosterServices {
+    static func baseUrlImage() -> String {
+        return MoviePosterEnvironmentPath.development.scheme() + MoviePosterEnvironmentPath.development.host()
+    }
+}
+
 
 enum APIEnvironmentPath {
     
@@ -21,10 +27,8 @@ enum APIEnvironmentPath {
     case testing
     case production
     
-    func scheme() -> String
-    {
-        switch self
-        {
+    func scheme() -> String {
+        switch self {
         case .development:
             return "http://"
         case .testing:
@@ -34,12 +38,40 @@ enum APIEnvironmentPath {
         }
     }
     
-    func host() -> String
-    {
-        switch self
-        {
+    func host() -> String {
+        switch self {
             case .development:
                 return "api.themoviedb.org"
+            case .testing:
+                return ""
+            case .production:
+                return ""
+        }
+    }
+}
+
+
+enum MoviePosterEnvironmentPath {
+    
+    case development
+    case testing
+    case production
+    
+    func scheme() -> String {
+        switch self {
+        case .development:
+            return "http://"
+        case .testing:
+            return ""
+        case .production:
+            return ""
+        }
+    }
+    
+    func host() -> String {
+        switch self {
+            case .development:
+                return "image.tmdb.org/t/p/w300"
             case .testing:
                 return ""
             case .production:

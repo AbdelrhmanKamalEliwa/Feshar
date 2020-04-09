@@ -12,6 +12,14 @@ struct APIService {
     static func baseURL() -> String {
         return APIEnvironmentPath.development.scheme() + APIEnvironmentPath.development.host()
     }
+    
+    static func apiKey() -> String {
+        return APIEnvironmentPath.development.apiKey()
+    }
+    
+//    static func newBaseUrl(body: String) -> String {
+//        return APIEnvironmentPath.development.scheme() + APIEnvironmentPath.development.host() + body + APIEnvironmentPath.development.apiKey()
+//    }
 }
 
 struct MoviePosterServices {
@@ -41,11 +49,22 @@ enum APIEnvironmentPath {
     func host() -> String {
         switch self {
             case .development:
-                return "api.themoviedb.org"
+                return "api.themoviedb.org/3"
             case .testing:
                 return ""
             case .production:
                 return ""
+        }
+    }
+    
+    func apiKey() -> String {
+        switch self {
+        case .development:
+            return "f824a0924aa255d33dd65226199f9bbf"
+        case .testing:
+            return ""
+        case .production:
+            return ""
         }
     }
 }
@@ -79,3 +98,4 @@ enum MoviePosterEnvironmentPath {
         }
     }
 }
+

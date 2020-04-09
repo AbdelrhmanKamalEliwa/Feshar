@@ -12,7 +12,7 @@ class NetworkManager {
     
     public let session = URLSession(configuration: .default)
     
-    func request<T: Codable>(url: URL, httpMethod: HTTPMethod, parameters: [String : String]?, headers: [String : String]?, completionHandler: @escaping(_ result: APIResult<T>) -> ()) -> URLSessionTask {
+    func request<T: Codable>(url: URL, httpMethod: HTTPMethod, parameters: Data?, headers: [String : String]?, completionHandler: @escaping(_ result: APIResult<T>) -> ()) -> URLSessionTask {
         
         // defining the type of method
         var urlRequest: URLRequest = URLRequest(url: url)
@@ -20,21 +20,16 @@ class NetworkManager {
         
         // adding parameters to request body
         if parameters != nil {
-            do {
-                let dataParameters = try JSONSerialization.data(withJSONObject: parameters!)
-                urlRequest.httpBody = dataParameters
-            } catch let error {
-                completionHandler(.badRequest(error))
-            }
+            urlRequest.httpBody = parameters
         }
         
         // adding header value
         if headers != nil {
             for header in headers! {
-                urlRequest.setValue(header.value, forHTTPHeaderField: header.key)
+                urlRequest.addValue(header.value, forHTTPHeaderField: header.key)
             }
         }
-        
+       
         // doing the task
         let task = session.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
@@ -53,7 +48,6 @@ class NetworkManager {
                     
                     let decodedData = try JSONDecoder().decode(T.self, from: jsonData)
                     completionHandler(.success(decodedData))
-//                    print(decodedData)
                 } catch let error {
                     completionHandler(.decodingFailure(error))
                 }

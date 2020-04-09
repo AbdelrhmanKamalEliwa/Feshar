@@ -9,7 +9,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -17,15 +17,30 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var checkPasswordLabel: UILabel!
     let registeredUser = RegisteredUser()
     let segueID = "goToHomeVC"
+    fileprivate var canLogin = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         usernameTextField.delegate = self
         passwordTextField.delegate = self
         checkPasswordIcon.image = UIImage(systemName: " ")
+        createLoginRequest()
     }
-
+    
+    func createLoginRequest() {
+        fetchAccessToken { (data: RequestTokenResponse?) in
+            if let data = data {
+                self.fetchSessionId(requestToken: data.requestToken) { (response: SessionResponse?) in
+                    if let response = response {
+                        if let success = response.success { if success { self.canLogin = success } }
+                    }
+                }
+            }
+        }
+    }
+    
     @IBAction func loginButtonTapped(_ sender: Any) {
+        
         checkForEmptyTextField()
     }
     
@@ -34,7 +49,7 @@ class LoginViewController: UIViewController {
     }
     
     func loginAuthentication() {
-        if usernameTextField.text == registeredUser.username && passwordTextField.text == registeredUser.password {
+        if usernameTextField.text == registeredUser.username && passwordTextField.text == registeredUser.password && canLogin {
             usernameDataToBePassed()
             self.performSegue(withIdentifier: segueID, sender: self)
         } else {
@@ -97,4 +112,60 @@ extension LoginViewController: UITextFieldDelegate {
         self.view.endEditing(true)
         return false
     }
+}
+
+
+//MARK: - Networking
+extension LoginViewController {
+    
+    func fetchAccessToken(comletion: @escaping(_ data: RequestTokenResponse?) -> ()) {
+        let networkManager = NetworkManager()
+        let _ = networkManager.request(url: EndPointRouter.createRequestToken, httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<RequestTokenResponse>) in
+            switch result {
+            case .success(let data):
+                comletion(data)
+            case .failure(let error):
+                if let error = error {
+                    print(error)
+                }
+            case .decodingFailure(let error):
+                if let error = error {
+                    print(error)
+                }
+            case .badRequest(let error):
+                if let error = error {
+                    print(error)
+                }
+            }
+        }
+        
+    }
+    
+    
+    func fetchSessionId(requestToken: String, completion: @escaping(_ response: SessionResponse?) -> ()) {
+        let networkManager = NetworkManager()
+        let postData = try! JSONEncoder().encode(LoginRequest(username: RegisteredUser().username, password: RegisteredUser().password, requestToken: requestToken))
+        
+        let _ = networkManager.request(url: EndPointRouter.createLoginAuthentication, httpMethod: .post, parameters: postData, headers: ["Content-Type":"application/json"]) { (result: APIResult<SessionResponse>) in
+            switch result {
+            case .success(let data):
+                completion(data)
+            case .failure(let error):
+                if let error = error {
+                    print(error)
+                }
+            case .decodingFailure(let error):
+                if let error = error {
+                    print(error)
+                }
+            case .badRequest(let error):
+                if let error = error {
+                    print(error)
+                }
+            }
+        }
+        
+    }
+    
+    
 }

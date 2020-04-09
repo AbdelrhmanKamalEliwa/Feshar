@@ -36,6 +36,7 @@ class MovieDetailsViewController: UIViewController {
         fetchData()
         DispatchQueue.main.async {
             self.displayPassedData()
+            self.moviePosterCollectionView.reloadData()
             print(self.moviePosters)
         }
         

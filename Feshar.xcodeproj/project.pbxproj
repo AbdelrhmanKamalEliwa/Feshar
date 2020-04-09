@@ -19,6 +19,7 @@
 		F41465722428F0120090052F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41465702428F0120090052F /* Main.storyboard */; };
 		F41465742428F0130090052F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41465732428F0130090052F /* Assets.xcassets */; };
 		F41465772428F0130090052F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41465752428F0130090052F /* LaunchScreen.storyboard */; };
+		F43A6230243ED41500E684A5 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43A622F243ED41500E684A5 /* SessionResponse.swift */; };
 		F46056FF24315BCF00CCC489 /* SF-Pro-Text in Resources */ = {isa = PBXBuildFile; fileRef = F46056FE24315BCF00CCC489 /* SF-Pro-Text */; };
 		F4612E0B243580A9003C866D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4612E0A243580A9003C866D /* ProfileViewController.swift */; };
 		F4612E102437C4DA003C866D /* ProfileInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4612E0E2437C4DA003C866D /* ProfileInfoTableViewCell.swift */; };
@@ -47,6 +48,8 @@
 		F4F9447D243CA03400B88582 /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F9447C243CA03400B88582 /* APIResult.swift */; };
 		F4F9447F243CA6C500B88582 /* FesharMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F9447E243CA6C500B88582 /* FesharMovieModel.swift */; };
 		F4FB31A02430BBA000F4DD22 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FB319F2430BBA000F4DD22 /* MovieDetailsViewController.swift */; };
+		F4FF02F2243DDA4D00C20FC1 /* RequestTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF02F1243DDA4D00C20FC1 /* RequestTokenResponse.swift */; };
+		F4FF02F4243DE35100C20FC1 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF02F3243DE35100C20FC1 /* LoginRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +69,7 @@
 		F41465732428F0130090052F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F41465762428F0130090052F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F41465782428F0130090052F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F43A622F243ED41500E684A5 /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
 		F46056FE24315BCF00CCC489 /* SF-Pro-Text */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "SF-Pro-Text"; sourceTree = "<group>"; };
 		F4612E0A243580A9003C866D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Feshar/Modules/Controller/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		F4612E0E2437C4DA003C866D /* ProfileInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 		F4F9447C243CA03400B88582 /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
 		F4F9447E243CA6C500B88582 /* FesharMovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FesharMovieModel.swift; sourceTree = "<group>"; };
 		F4FB319F2430BBA000F4DD22 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieDetailsViewController.swift; path = Feshar/Modules/Controller/MovieDetailsViewController.swift; sourceTree = SOURCE_ROOT; };
+		F4FF02F1243DDA4D00C20FC1 /* RequestTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTokenResponse.swift; sourceTree = "<group>"; };
+		F4FF02F3243DE35100C20FC1 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +195,7 @@
 		F414657F2428F0AA0090052F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F4FF02F5243E212400C20FC1 /* Client Authentication */,
 				F4612E0C24358A80003C866D /* Users */,
 				F4F249B22432AC83007ED49A /* Movie */,
 			);
@@ -390,6 +397,16 @@
 			path = "Movie Posters";
 			sourceTree = "<group>";
 		};
+		F4FF02F5243E212400C20FC1 /* Client Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				F4FF02F1243DDA4D00C20FC1 /* RequestTokenResponse.swift */,
+				F4FF02F3243DE35100C20FC1 /* LoginRequest.swift */,
+				F43A622F243ED41500E684A5 /* SessionResponse.swift */,
+			);
+			path = "Client Authentication";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -534,12 +551,15 @@
 				F4EF540A2433BA9100598B02 /* FeaturedTableViewCell.swift in Sources */,
 				F4612E0B243580A9003C866D /* ProfileViewController.swift in Sources */,
 				F4EF53FC2432CC1400598B02 /* WatchlistViewController.swift in Sources */,
+				F4FF02F4243DE35100C20FC1 /* LoginRequest.swift in Sources */,
+				F43A6230243ED41500E684A5 /* SessionResponse.swift in Sources */,
 				F4ED3F56242EA267000190DE /* Enums.swift in Sources */,
 				F4ED3F5A242EB6F8000190DE /* RegisteredUserClass.swift in Sources */,
 				F4F9447B243CA02100B88582 /* HTTPMethod.swift in Sources */,
 				F4EF53F92432CBD900598B02 /* WatchlistTableViewCell.swift in Sources */,
 				F40BD5012430C9220074E024 /* MoviePostersCell.swift in Sources */,
 				F4EF54112433BEC600598B02 /* FeaturedCollectionViewCell.swift in Sources */,
+				F4FF02F2243DDA4D00C20FC1 /* RequestTokenResponse.swift in Sources */,
 				F4F9447F243CA6C500B88582 /* FesharMovieModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

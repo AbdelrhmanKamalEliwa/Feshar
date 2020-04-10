@@ -17,9 +17,9 @@ class HomeViewController: UIViewController {
     let movieCellIdentifier = "MovieTableViewCell"
     let movieTypeButtonNameArray = ["All Movies", "Romance", "Action", "Comedy", "Drama"]
     let searchBarIsHidden = true
-    var movieHomeScreenArray = [Results]()
+    var movieHomeScreenArray = [MovieResults]()
 //    var movieModelData = movieModel
-    var filteredMovies: [Results] = []
+    var filteredMovies: [MovieResults] = []
     var searching = false
     
     override func viewDidLoad() {
@@ -258,7 +258,7 @@ extension HomeViewController: UITextFieldDelegate {
 extension HomeViewController {
     func fetchData() {
         let networkManager = NetworkManager()
-        let _ = networkManager.request(url: EndPointRouter.getHomeScreen, httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<MovieHomeScreen>) in
+        let _ = networkManager.request(url: EndPointRouter.getMovies, httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<MovieModel>) in
             switch result {
                 
             case .success(let data):

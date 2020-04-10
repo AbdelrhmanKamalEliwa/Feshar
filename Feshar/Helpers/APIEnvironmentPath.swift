@@ -9,6 +9,7 @@
 import Foundation
 
 struct APIService {
+    
     static func baseURL() -> String {
         return APIEnvironmentPath.development.scheme() + APIEnvironmentPath.development.host()
     }
@@ -38,7 +39,7 @@ enum APIEnvironmentPath {
     func scheme() -> String {
         switch self {
         case .development:
-            return "http://"
+            return "https://"
         case .testing:
             return ""
         case .production:
@@ -79,7 +80,7 @@ enum MoviePosterEnvironmentPath {
     func scheme() -> String {
         switch self {
         case .development:
-            return "http://"
+            return "https://"
         case .testing:
             return ""
         case .production:

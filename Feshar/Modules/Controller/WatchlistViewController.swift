@@ -12,7 +12,7 @@ class WatchlistViewController: UIViewController {
     
     @IBOutlet weak var watchlistTableView: UITableView!
     let watchlistCellIdentifier = "WatchlistTableViewCell"
-    var movieModelData = [MovieModel]()
+//    var movieModelData = [MovieModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +37,13 @@ class WatchlistViewController: UIViewController {
     }
     
     func returnWatchListMovies() {
-        var safeMovieModel: [MovieModel] = []
-        for movie in movieModel {
-            if movie.isFavorite == true {
-                safeMovieModel.append(movie)
-            }
-        }
-        movieModelData = safeMovieModel
+//        var safeMovieModel: [MovieModel] = []
+//        for movie in movieModel {
+//            if movie.isFavorite == true {
+//                safeMovieModel.append(movie)
+//            }
+//        }
+//        movieModelData = safeMovieModel
     }
 }
 
@@ -85,12 +85,13 @@ extension WatchlistViewController {
 extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieModelData.count
+//        return movieModelData.count
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = watchlistTableView.dequeueReusableCell(withIdentifier: watchlistCellIdentifier, for: indexPath) as! WatchlistTableViewCell
-        cell.displayMovieData(movieName: movieModelData[indexPath.row].movieName, movieDetails: movieModelData[indexPath.row].movieDetails, movieRate: movieModelData[indexPath.row].movieRate, movieImage: movieModelData[indexPath.row].moviePoster)
+//        cell.displayMovieData(movieName: movieModelData[indexPath.row].movieName, movieDetails: movieModelData[indexPath.row].movieDetails, movieRate: movieModelData[indexPath.row].movieRate, movieImage: movieModelData[indexPath.row].moviePoster)
         return cell
     }
     
@@ -100,9 +101,9 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title:  "Remove", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelData[indexPath.row].movieName.lowercased()})!].isFavorite = false
-            self.movieModelData.remove(at: indexPath.row)
-            self.watchlistTableView.reloadData()
+//            movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelData[indexPath.row].movieName.lowercased()})!].isFavorite = false
+//            self.movieModelData.remove(at: indexPath.row)
+//            self.watchlistTableView.reloadData()
             success(true)
             
         })

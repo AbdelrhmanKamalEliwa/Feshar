@@ -9,12 +9,11 @@
 import UIKit
 import Kingfisher
 
-class FeaturedCollectionViewCell: UICollectionViewCell {
+class MoviesCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var movieImageView: UIImageView!
     
     func displayMovieData(movieImage: String?) {
-        
         if movieImage != nil {
             guard let url = URL(string: movieImage!) else { return }
             movieImageView.kf.indicatorType = .activity

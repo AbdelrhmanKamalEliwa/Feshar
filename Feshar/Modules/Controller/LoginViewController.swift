@@ -30,6 +30,7 @@ class LoginViewController: UIViewController {
     func createLoginRequest() {
         fetchAccessToken { (data: RequestTokenResponse?) in
             if let data = data {
+//                print(data.requestToken)
                 self.fetchSessionId(requestToken: data.requestToken) { (response: SessionResponse?) in
                     if let response = response {
                         if let success = response.success { if success { self.canLogin = success } }

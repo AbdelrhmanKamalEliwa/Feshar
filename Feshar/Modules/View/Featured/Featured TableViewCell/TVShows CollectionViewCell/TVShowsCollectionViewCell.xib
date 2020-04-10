@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TVShowsCollectionViewCell" customModule="Feshar" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="143" height="173"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="143" height="173"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Star-Wars-Poster_2" translatesAutoresizingMaskIntoConstraints="NO" id="OOe-nO-PdV" userLabel="TVShow Image View">
+                        <rect key="frame" x="15" y="10" width="108" height="123"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="108" id="fLz-dV-Bx0"/>
+                            <constraint firstAttribute="height" constant="123" id="k02-qV-uGG"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AhI-k3-0Fo">
+                        <rect key="frame" x="60" y="150.5" width="22" height="14.5"/>
+                        <color key="tintColor" red="0.90980392160000001" green="0.20000000000000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="05h-YY-32S"/>
+                            <constraint firstAttribute="height" constant="19" id="IEj-Le-obZ"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <color key="tintColor" red="0.8980392157" green="0.21960784310000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="AhI-k3-0Fo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="60" id="NgS-FY-KVJ"/>
+                <constraint firstAttribute="trailing" secondItem="AhI-k3-0Fo" secondAttribute="trailing" constant="61" id="Nja-gm-jyL"/>
+                <constraint firstItem="AhI-k3-0Fo" firstAttribute="top" secondItem="OOe-nO-PdV" secondAttribute="bottom" constant="15" id="OOf-GP-jHk"/>
+                <constraint firstAttribute="bottom" secondItem="AhI-k3-0Fo" secondAttribute="bottom" constant="6" id="PC3-jL-1Xl"/>
+                <constraint firstItem="OOe-nO-PdV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="V0i-IG-jpH"/>
+                <constraint firstItem="AhI-k3-0Fo" firstAttribute="top" secondItem="OOe-nO-PdV" secondAttribute="bottom" constant="15" id="ZMY-VM-m2X"/>
+                <constraint firstItem="OOe-nO-PdV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="zyY-fz-XlP"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="tvShowImageView" destination="OOe-nO-PdV" id="GlK-ju-epJ"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Star-Wars-Poster_2" width="1699" height="2000"/>
+        <image name="video.fill" catalog="system" width="128" height="82"/>
+    </resources>
+</document>

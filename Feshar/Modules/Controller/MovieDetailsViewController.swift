@@ -34,11 +34,6 @@ class MovieDetailsViewController: UIViewController {
         registerCollectionView()
         registerTableView()
         fetchData()
-        DispatchQueue.main.async {
-            self.displayPassedData()
-            self.moviePosterCollectionView.reloadData()
-            print(self.moviePosters)
-        }
         
         //        displayWatchListButton()
     }
@@ -110,6 +105,7 @@ extension MovieDetailsViewController {
                     self.movieDetailsScreenObject = data
                     DispatchQueue.main.async {
                         self.displayPassedData()
+                        self.moviePosterCollectionView.reloadData()
                     }
                 case .failure(let error):
                     if let error = error { print(error) }

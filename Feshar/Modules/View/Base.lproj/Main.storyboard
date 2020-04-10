@@ -525,7 +525,7 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="786"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeaturedTableViewCell" rowHeight="232" id="jr0-MD-dqu" customClass="FeaturedTableViewCell" customModule="Feshar" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MoviesTableViewCell" rowHeight="232" id="jr0-MD-dqu" userLabel="MoviesTableViewCell" customClass="MoviesTableViewCell" customModule="Feshar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="232"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jr0-MD-dqu" id="ZPf-NI-2WM">
@@ -561,8 +561,48 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="featuredCollectionView" destination="S9O-nH-iYd" id="jdr-Yj-uHU"/>
-                                            <outlet property="movieCategoryTitleLabel" destination="yub-4x-0PB" id="Mc2-Lb-J0a"/>
+                                            <outlet property="categoryTitleLabel" destination="yub-4x-0PB" id="Mc2-Lb-J0a"/>
+                                            <outlet property="moviesCollectionView" destination="S9O-nH-iYd" id="jdr-Yj-uHU"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TVShowsTableViewCell" rowHeight="232" id="6t7-5G-FTk" userLabel="TVShowsTableViewCell" customClass="TVShowsTableViewCell" customModule="Feshar" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="260" width="414" height="232"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6t7-5G-FTk" id="4IB-Xz-y2D">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="232"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZbQ-Dh-jkz">
+                                                    <rect key="frame" x="20" y="11" width="379" height="18.5"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wwj-tW-oXX">
+                                                    <rect key="frame" x="0.0" y="39.5" width="414" height="192.5"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5nw-kH-zme">
+                                                        <size key="itemSize" width="143" height="173"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells/>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="wwj-tW-oXX" secondAttribute="bottom" id="6yi-jU-U2i"/>
+                                                <constraint firstAttribute="trailing" secondItem="wwj-tW-oXX" secondAttribute="trailing" id="9zm-kM-OgK"/>
+                                                <constraint firstItem="wwj-tW-oXX" firstAttribute="top" secondItem="ZbQ-Dh-jkz" secondAttribute="bottom" constant="10" id="JIK-D7-5L9"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZbQ-Dh-jkz" secondAttribute="trailing" constant="15" id="bss-YC-oYL"/>
+                                                <constraint firstItem="wwj-tW-oXX" firstAttribute="leading" secondItem="4IB-Xz-y2D" secondAttribute="leading" id="mNy-dL-uXp"/>
+                                                <constraint firstItem="ZbQ-Dh-jkz" firstAttribute="leading" secondItem="4IB-Xz-y2D" secondAttribute="leading" constant="20" id="qh1-t1-1KI"/>
+                                                <constraint firstItem="ZbQ-Dh-jkz" firstAttribute="top" secondItem="4IB-Xz-y2D" secondAttribute="topMargin" id="rdb-z1-qUr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="categoryTitleLabel" destination="ZbQ-Dh-jkz" id="idQ-Pb-G70"/>
+                                            <outlet property="tvShowsCollectionView" destination="wwj-tW-oXX" id="i8P-eE-BoA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

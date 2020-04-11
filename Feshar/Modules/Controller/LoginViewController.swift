@@ -30,18 +30,25 @@ class LoginViewController: UIViewController {
     func createLoginRequest() {
         fetchAccessToken { (data: RequestTokenResponse?) in
             if let data = data {
-//                print(data.requestToken)
-                self.fetchSessionId(requestToken: data.requestToken) { (response: SessionResponse?) in
+                self.fetchLogin(requestToken: data.requestToken) { (response: LoginResponse?) in
                     if let response = response {
                         if let success = response.success { if success { self.canLogin = success } }
+                        if let resquestToken = response.requestToken {
+                            self.fetchSessionId(requestToken: resquestToken) { (sessionResponse: SessionResponse?) in
+                                if let sessionResponse = sessionResponse {
+                                    if sessionResponse.success { self.canLogin = sessionResponse.success }
+                                    sessionID = sessionResponse.sessionID
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     }
     
+    
     @IBAction func loginButtonTapped(_ sender: Any) {
-        
         checkForEmptyTextField()
     }
     
@@ -143,11 +150,11 @@ extension LoginViewController {
     }
     
     
-    func fetchSessionId(requestToken: String, completion: @escaping(_ response: SessionResponse?) -> ()) {
+    func fetchLogin(requestToken: String, completion: @escaping(_ response: LoginResponse?) -> ()) {
         let networkManager = NetworkManager()
         let postData = try! JSONEncoder().encode(LoginRequest(username: RegisteredUser().username, password: RegisteredUser().password, requestToken: requestToken))
         
-        let _ = networkManager.request(url: EndPointRouter.createLoginAuthentication, httpMethod: .post, parameters: postData, headers: ["Content-Type":"application/json"]) { (result: APIResult<SessionResponse>) in
+        let _ = networkManager.request(url: EndPointRouter.createLoginAuthentication, httpMethod: .post, parameters: postData, headers: ["Content-Type":"application/json"]) { (result: APIResult<LoginResponse>) in
             switch result {
             case .success(let data):
                 completion(data)
@@ -166,6 +173,32 @@ extension LoginViewController {
             }
         }
         
+    }
+    
+    
+    func fetchSessionId(requestToken: String, completion: @escaping(_ sessionResponse: SessionResponse?) -> ()) {
+        let networkManager = NetworkManager()
+        let postData = try! JSONEncoder().encode(SessionRequest(requestToken: requestToken))
+        
+        let _ = networkManager.request(url: EndPointRouter.createSessionId, httpMethod: .post, parameters: postData, headers: ["Content-Type":"application/json"]) { (result: APIResult<SessionResponse>) in
+            switch result {
+            case .success(let data):
+                completion(data)
+            case .failure(let error):
+                if let error = error {
+                    print(error)
+                }
+            case .decodingFailure(let error):
+                if let error = error {
+                    print(error)
+                }
+            case .badRequest(let error):
+                if let error = error {
+                    print(error)
+                }
+                
+            }
+        }
     }
     
     

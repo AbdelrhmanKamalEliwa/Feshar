@@ -14,3 +14,9 @@ class RegisteredUser {
 }
 
 var userName: String?
+var sessionID: String?
+
+struct LoggedInUser {
+    let username: String?
+    let sessionID: String?
+}

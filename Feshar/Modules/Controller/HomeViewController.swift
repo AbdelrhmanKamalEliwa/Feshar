@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
     let movieTypeButtonNameArray = ["All Movies", "Romance", "Action", "Comedy", "Drama"]
     let searchBarIsHidden = true
     var movieHomeScreenArray = [MovieResults]()
-//    var movieModelData = movieModel
+    //    var movieModelData = movieModel
     var filteredMovies: [MovieResults] = []
     var searching = false
     
@@ -30,14 +30,14 @@ class HomeViewController: UIViewController {
         registerTableView()
         searchBar.delegate = self
         searchBar.searchTextField.delegate = self
-        fetchData()
+        fetchMoviesData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-      super.viewWillAppear(animated)
-      if let indexPath = movieTableView.indexPathForSelectedRow {
-        movieTableView.deselectRow(at: indexPath, animated: true)
-      }
+        super.viewWillAppear(animated)
+        if let indexPath = movieTableView.indexPathForSelectedRow {
+            movieTableView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
     
@@ -55,7 +55,7 @@ class HomeViewController: UIViewController {
     func registerTableView() {
         movieTableView.register(UINib.init(nibName: movieCellIdentifier, bundle: nil), forCellReuseIdentifier: movieCellIdentifier)
     }
-
+    
 }
 
 
@@ -114,26 +114,26 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let selectedCell = movieTypeCollectionView.cellForItem(at: indexPath) as! MovieTypesCollectionViewCell
         selectedCell.layer.backgroundColor = #colorLiteral(red: 0.9373905063, green: 0.2940055132, blue: 0.2428910136, alpha: 1)
         selectedCell.movieTypeTitleLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//        *Need to know the type of the movie in the API*
-//        if indexPath.item == 0 {
-//            movieModelData = movieModel
-//            movieTableView.reloadData()
-//        } else {
-//            var safeMovieModel: [MovieModel] = []
-//            for movie in movieModel {
-//                if movie.movieCategoryType.lowercased() == selectedCell.movieTypeTitleLabel.text?.lowercased() {
-//                    safeMovieModel.append(movie)
-//                }
-//                movieModelData = [MovieModel]()
-//                movieModelData = safeMovieModel
-//            }
-//            movieTableView.reloadData()
-//        }
+        //        *Need to know the type of the movie in the API*
+        //        if indexPath.item == 0 {
+        //            movieModelData = movieModel
+        //            movieTableView.reloadData()
+        //        } else {
+        //            var safeMovieModel: [MovieModel] = []
+        //            for movie in movieModel {
+        //                if movie.movieCategoryType.lowercased() == selectedCell.movieTypeTitleLabel.text?.lowercased() {
+        //                    safeMovieModel.append(movie)
+        //                }
+        //                movieModelData = [MovieModel]()
+        //                movieModelData = safeMovieModel
+        //            }
+        //            movieTableView.reloadData()
+        //        }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-//        force unwrapping crashed? whyyyy!!!
+        //        force unwrapping crashed? whyyyy!!!
         let selectedCell = movieTypeCollectionView.cellForItem(at: indexPath) as? MovieTypesCollectionViewCell
         selectedCell?.layer.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.9764705882, blue: 0.9764705882, alpha: 1)
         selectedCell?.movieTypeTitleLabel.textColor = #colorLiteral(red: 0.2392156863, green: 0.2392156863, blue: 0.2392156863, alpha: 1)
@@ -215,12 +215,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let addAction = UIContextualAction(style: .normal, title:  "Add to Wishlist", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-//           *Need to change movieModel obj to movieHomeScreenArray obj*
-//            if self.searching {
-//                movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.filteredMovies[indexPath.row].title.lowercased()})!].isFavorite = true
-//            } else {
-//                movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelData[indexPath.row].movieName.lowercased()})!].isFavorite = true
-//            }
+            //           *Need to change movieModel obj to movieHomeScreenArray obj*
+            //            if self.searching {
+            //                movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.filteredMovies[indexPath.row].title.lowercased()})!].isFavorite = true
+            //            } else {
+            //                movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelData[indexPath.row].movieName.lowercased()})!].isFavorite = true
+            //            }
             success(true)
         })
         addAction.image = UIImage(systemName: "wand.and.stars.inverse")
@@ -234,7 +234,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 //MARK: - Setup Search Bar
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredMovies = movieHomeScreenArray.filter {$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()}
+        fetchSearchOnMoviesData(textSearch: searchText.lowercased())
+//        filteredMovies = movieHomeScreenArray.filter {$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()}
         searching = true
         if searchText.isEmpty {
             searching = false
@@ -256,13 +257,41 @@ extension HomeViewController: UITextFieldDelegate {
 
 //MARK: - Networking
 extension HomeViewController {
-    func fetchData() {
+    func fetchMoviesData() {
         let networkManager = NetworkManager()
         let _ = networkManager.request(url: EndPointRouter.getMovies, httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<MovieModel>) in
             switch result {
                 
             case .success(let data):
                 self.movieHomeScreenArray = data.results
+                DispatchQueue.main.async {
+                    self.movieTableView.reloadData()
+                    allMovies = data.results
+                }
+            case .failure(let error):
+                if let error = error {
+                    print(error)
+                }
+            case .decodingFailure(let error):
+                if let error = error {
+                    print(error)
+                }
+            case .badRequest(let error):
+                if let error = error {
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    
+    func fetchSearchOnMoviesData(textSearch: String) {
+        let networkManager = NetworkManager()
+        let _ = networkManager.request(url: EndPointRouter.searchOnMovies(movieName: textSearch), httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<MovieModel>) in
+            switch result {
+                
+            case .success(let data):
+                self.filteredMovies = data.results
                 DispatchQueue.main.async {
                     self.movieTableView.reloadData()
                     allMovies = data.results

@@ -13,6 +13,10 @@ struct EndPointRouter {
         return URL(string: APIService.baseURL() + "/discover/movie?api_key=" + APIService.apiKey() + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1")!
     }
     
+    static func searchOnMovies(movieName: String) -> URL {
+        return URL(string: APIService.baseURL() + "/search/movie?api_key=" + APIService.apiKey() + "&language=en-US&query=" + movieName + "%20exp&page=1&include_adult=false")!
+    }
+    
     static func getMovieDetails(movieId: String) -> URL {
         return URL(string: APIService.baseURL() + "/movie/" + movieId + "?api_key=" + APIService.apiKey() + "&language=en-US")!
     }
@@ -36,6 +40,10 @@ struct EndPointRouter {
     
     static var createLoginAuthentication: URL {
         return URL(string: APIService.baseURL() + "/authentication/token/validate_with_login?api_key=" + APIService.apiKey())!
+    }
+    
+    static var createSessionId: URL {
+        return URL(string: APIService.baseURL() + "/authentication/session/new?api_key=" + APIService.apiKey())!
     }
 //    static var c
 }

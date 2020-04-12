@@ -34,10 +34,18 @@ class MovieDetailsViewController: UIViewController {
         registerCollectionView()
         registerTableView()
         fetchData()
-        
-        //        displayWatchListButton()
     }
-//    *Need to replace movieModelDataPassed with movieDetailsScreenObject*
+    
+    func checkIfMovieInWatchlist() {
+        for movie in actualWatchlistMoviesArray {
+            if movie.id == movieDetailsScreenObject!.id {
+                watchListButton.setTitle("REMOVE FROM WATCHLIST", for: .normal)
+                watchListButton.backgroundColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
+            }
+        }
+    }
+    
+    //    *Need to replace movieModelDataPassed with movieDetailsScreenObject*
     //    func displayWatchListButton() {
     //        if movieModelDataPassed?.isFavorite == true {
     //            watchListButton.setTitle("REMOVE FROM WATCHLIST", for: .normal)
@@ -48,24 +56,26 @@ class MovieDetailsViewController: UIViewController {
     //    }
     
     @IBAction func watchListButtonTapped(_ sender: Any) {
-//        *Need to replace movieModelDataPassed with movieDetailsScreenObject*
-        //        if movieModelDataPassed?.isFavorite == true {
-        ////            for movie in movieModel {
-        ////                if movie.isFavorite == movieModelDataPassed?.isFavorite {
-        ////                    movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelDataPassed!.movieName.lowercased()})!].isFavorite = false
-        ////                }
-        ////            }
-        //            watchListButton.setTitle("ADD TO WATCHLIST", for: .normal)
-        //            watchListButton.backgroundColor = #colorLiteral(red: 0.9276102185, green: 0.3129869699, blue: 0.2666297853, alpha: 1)
-        //        } else if movieModelDataPassed?.isFavorite == false {
-        ////            for movie in movieModel {
-        ////                if movie.isFavorite == movieModelDataPassed?.isFavorite {
-        ////                    movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelDataPassed!.movieName.lowercased()})!].isFavorite = false
-        ////                }
-        ////            }
-        //            watchListButton.setTitle("REMOVE FROM WATCHLIST", for: .normal)
-        //            watchListButton.backgroundColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
-        //        }
+        
+        for movie in actualWatchlistMoviesArray {
+            if movie.id == movieDetailsScreenObject!.id {
+                let alert = UIAlertController(title: "Error" , message: "Movie Already in Watchlist", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                WatchlistNetworkManager().fetchAddToWatchlistMovies(mediaId: movieDetailsScreenObject!.id) { (addToWatchlistResponse: AddToWatchlistResponse?) in
+                    DispatchQueue.main.async {
+                        if let addToWatchlistResponse = addToWatchlistResponse {
+                            let alert = UIAlertController(title: addToWatchlistResponse.statusMessage , message: "Movie Added to Watchlist", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                            self.watchListButton.setTitle("REMOVE FROM WATCHLIST", for: .normal)
+                            self.watchListButton.backgroundColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func displayPassedData() {
@@ -91,6 +101,8 @@ class MovieDetailsViewController: UIViewController {
         castTableView.register(UINib.init(nibName: castCellIdentifier, bundle: nil), forCellReuseIdentifier: castCellIdentifier)
     }
     
+    func backToPreviousViewController() { self.navigationController?.popViewController(animated: true) }
+    
 }
 
 
@@ -104,6 +116,7 @@ extension MovieDetailsViewController {
                 case .success(let data):
                     self.movieDetailsScreenObject = data
                     DispatchQueue.main.async {
+                        self.checkIfMovieInWatchlist()
                         self.displayPassedData()
                         self.moviePosterCollectionView.reloadData()
                     }
@@ -117,7 +130,6 @@ extension MovieDetailsViewController {
             }
         }
     }
-    
 }
 
 //MARK: - Setup Custome Nav-Bar
@@ -139,15 +151,11 @@ extension MovieDetailsViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
-    @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!)
-    {
+    @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!) {
         print("myRightSideBarButtonItemTapped")
     }
     
-    @objc func myLeftSideBarButtonItemTapped(_ sender: UIBarButtonItem!)
-    {
-        self.navigationController?.popViewController(animated: true)
-    }
+    @objc func myLeftSideBarButtonItemTapped(_ sender: UIBarButtonItem!) { backToPreviousViewController() }
 }
 
 

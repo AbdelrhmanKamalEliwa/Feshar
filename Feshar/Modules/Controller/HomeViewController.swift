@@ -18,8 +18,8 @@ class HomeViewController: UIViewController {
     let movieTypeButtonNameArray = ["All Movies", "Romance", "Action", "Comedy", "Drama"]
     let searchBarIsHidden = true
     var movieHomeScreenArray = [MovieResults]()
-    //    var movieModelData = movieModel
-    var filteredMovies: [MovieResults] = []
+    var allMoviesArray = [MovieResults]()
+    var filteredMovies: [SearchMovieResults] = []
     var searching = false
     
     override func viewDidLoad() {
@@ -31,6 +31,12 @@ class HomeViewController: UIViewController {
         searchBar.delegate = self
         searchBar.searchTextField.delegate = self
         fetchMoviesData()
+        WatchlistNetworkManager().fetchWatchlistMoviesData { (data: WatchlistMovieModel?) in
+            if let data = data {
+                actualWatchlistMoviesArray = data.results
+//                print(actualWatchlistMoviesArray.count)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +62,28 @@ class HomeViewController: UIViewController {
         movieTableView.register(UINib.init(nibName: movieCellIdentifier, bundle: nil), forCellReuseIdentifier: movieCellIdentifier)
     }
     
+    func logout() {
+        if let sessionId = sessionID {
+            LogoutNetworkManager().logout(sessionId: sessionId) { (response: LogoutResponse?) in
+//                print(response)
+                if let response = response {
+                    if response.success {
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: nil)
+                            sessionID = nil
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func goToWatchlistViewController() {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let watchlistViewController = storyboard.instantiateViewController(identifier: "WatchlistViewController") as! WatchlistViewController
+        self.navigationController?.pushViewController(watchlistViewController, animated: true)
+    }
+    
 }
 
 
@@ -79,17 +107,9 @@ extension HomeViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
-    @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!)
-    {
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let watchlistViewController = storyboard.instantiateViewController(identifier: "WatchlistViewController") as! WatchlistViewController
-        self.navigationController?.pushViewController(watchlistViewController, animated: true)
-    }
+    @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!) { goToWatchlistViewController() }
     
-    @objc func myLeftSideBarButtonItemTapped(_ sender: UIBarButtonItem!)
-    {
-        self.dismiss(animated: true, completion: nil)
-    }
+    @objc func myLeftSideBarButtonItemTapped(_ sender: UIBarButtonItem!) { logout() }
 }
 
 
@@ -114,22 +134,25 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let selectedCell = movieTypeCollectionView.cellForItem(at: indexPath) as! MovieTypesCollectionViewCell
         selectedCell.layer.backgroundColor = #colorLiteral(red: 0.9373905063, green: 0.2940055132, blue: 0.2428910136, alpha: 1)
         selectedCell.movieTypeTitleLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        //        *Need to know the type of the movie in the API*
-        //        if indexPath.item == 0 {
-        //            movieModelData = movieModel
-        //            movieTableView.reloadData()
-        //        } else {
-        //            var safeMovieModel: [MovieModel] = []
-        //            for movie in movieModel {
-        //                if movie.movieCategoryType.lowercased() == selectedCell.movieTypeTitleLabel.text?.lowercased() {
-        //                    safeMovieModel.append(movie)
-        //                }
-        //                movieModelData = [MovieModel]()
-        //                movieModelData = safeMovieModel
-        //            }
-        //            movieTableView.reloadData()
-        //        }
         
+        var safeMovieModel: [MovieResults] = []
+        print(safeMovieModel.count)
+        for movie in allMoviesArray {
+            if movie.category.contains(28) && (selectedCell.movieTypeTitleLabel.text!.lowercased() == "action"){
+                safeMovieModel.append(movie)
+            } else if movie.category.contains(35) && (selectedCell.movieTypeTitleLabel.text!.lowercased() == "comedy"){
+                safeMovieModel.append(movie)
+            } else if movie.category.contains(18) && selectedCell.movieTypeTitleLabel.text?.lowercased() == "drama"{
+                safeMovieModel.append(movie)
+            } else if movie.category.contains(10749) && selectedCell.movieTypeTitleLabel.text?.lowercased() == "romance"{
+                safeMovieModel.append(movie)
+            } else if selectedCell.movieTypeTitleLabel.text!.lowercased() == "all movies" {
+                safeMovieModel = allMoviesArray
+            }
+        }
+
+        movieHomeScreenArray = safeMovieModel
+        movieTableView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -168,7 +191,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = movieTableView.dequeueReusableCell(withIdentifier: movieCellIdentifier, for: indexPath) as! MovieTableViewCell
         if searching {
-            cell.displayMovieData(movieName: filteredMovies[indexPath.row].title, movieDetails: filteredMovies[indexPath.row].title, movieRate: "\(filteredMovies[indexPath.row].imdbRate)", movieDescription: filteredMovies[indexPath.row].description, movieImage: EndPointRouter.getMoviePoster(posterPath: filteredMovies[indexPath.row].poster))
+            cell.displayMovieData(movieName: filteredMovies[indexPath.row].title, movieDetails: filteredMovies[indexPath.row].title, movieRate: "\(filteredMovies[indexPath.row].imdbRate)", movieDescription: filteredMovies[indexPath.row].description, movieImage: EndPointRouter.getMoviePoster(posterPath: filteredMovies[indexPath.row].poster ?? ""))
             return cell
         } else {
             cell.displayMovieData(movieName: movieHomeScreenArray[indexPath.row].title, movieDetails: movieHomeScreenArray[indexPath.row].title, movieRate: String(movieHomeScreenArray[indexPath.row].imdbRate), movieDescription: movieHomeScreenArray[indexPath.row].description, movieImage: EndPointRouter.getMoviePoster(posterPath: movieHomeScreenArray[indexPath.row].poster))
@@ -215,12 +238,45 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let addAction = UIContextualAction(style: .normal, title:  "Add to Wishlist", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            //           *Need to change movieModel obj to movieHomeScreenArray obj*
-            //            if self.searching {
-            //                movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.filteredMovies[indexPath.row].title.lowercased()})!].isFavorite = true
-            //            } else {
-            //                movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelData[indexPath.row].movieName.lowercased()})!].isFavorite = true
-            //            }
+            
+            if self.searching {
+                for movie in actualWatchlistMoviesArray {
+                    if movie.id == self.filteredMovies[indexPath.row].id {
+                        let alert = UIAlertController(title: "Error" , message: "Movie Already in Watchlist", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        WatchlistNetworkManager().fetchAddToWatchlistMovies(mediaId: self.filteredMovies[indexPath.row].id) { (addToWatchlistResponse: AddToWatchlistResponse?) in
+                            DispatchQueue.main.async {
+                                if let addToWatchlistResponse = addToWatchlistResponse {
+                                    let alert = UIAlertController(title: addToWatchlistResponse.statusMessage , message: "Movie Added to Watchlist", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                    self.present(alert, animated: true, completion: nil)
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                for movie in actualWatchlistMoviesArray {
+                    if movie.id == self.movieHomeScreenArray[indexPath.row].id {
+                        let alert = UIAlertController(title: "Error" , message: "Movie Already in Watchlist", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        WatchlistNetworkManager().fetchAddToWatchlistMovies(mediaId: self.movieHomeScreenArray[indexPath.row].id) { (addToWatchlistResponse: AddToWatchlistResponse?) in
+                            DispatchQueue.main.async {
+                                if let addToWatchlistResponse = addToWatchlistResponse {
+                                    let alert = UIAlertController(title: addToWatchlistResponse.statusMessage , message: "Movie Added to Watchlist", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                    self.present(alert, animated: true, completion: nil)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
             success(true)
         })
         addAction.image = UIImage(systemName: "wand.and.stars.inverse")
@@ -235,7 +291,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         fetchSearchOnMoviesData(textSearch: searchText.lowercased())
-//        filteredMovies = movieHomeScreenArray.filter {$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()}
         searching = true
         if searchText.isEmpty {
             searching = false
@@ -264,6 +319,7 @@ extension HomeViewController {
                 
             case .success(let data):
                 self.movieHomeScreenArray = data.results
+                self.allMoviesArray = data.results
                 DispatchQueue.main.async {
                     self.movieTableView.reloadData()
                     allMovies = data.results
@@ -287,20 +343,20 @@ extension HomeViewController {
     
     func fetchSearchOnMoviesData(textSearch: String) {
         let networkManager = NetworkManager()
-        let _ = networkManager.request(url: EndPointRouter.searchOnMovies(movieName: textSearch), httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<MovieModel>) in
+        let _ = networkManager.request(url: EndPointRouter.searchOnMovies(movieName: textSearch), httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<SearchMovieModel>) in
             switch result {
                 
             case .success(let data):
                 self.filteredMovies = data.results
                 DispatchQueue.main.async {
                     self.movieTableView.reloadData()
-                    allMovies = data.results
                 }
             case .failure(let error):
                 if let error = error {
                     print(error)
                 }
             case .decodingFailure(let error):
+                
                 if let error = error {
                     print(error)
                 }

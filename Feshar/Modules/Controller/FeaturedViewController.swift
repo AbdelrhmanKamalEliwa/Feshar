@@ -24,6 +24,27 @@ class FeaturedViewController: UIViewController {
         getMoviesData()
         getTVShowsData()
     }
+    
+    func logout() {
+        if let sessionId = sessionID {
+            LogoutNetworkManager().logout(sessionId: sessionId) { (response: LogoutResponse?) in
+                if let response = response {
+                    if response.success {
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: nil)
+                            sessionID = nil
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func goToWatchlistViewController() {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let watchlistViewController = storyboard.instantiateViewController(identifier: "WatchlistViewController") as! WatchlistViewController
+        self.navigationController?.pushViewController(watchlistViewController, animated: true)
+    }
 }
 
 
@@ -47,17 +68,9 @@ extension FeaturedViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
-    @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!)
-    {
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let watchlistViewController = storyboard.instantiateViewController(identifier: "WatchlistViewController") as! WatchlistViewController
-        self.navigationController?.pushViewController(watchlistViewController, animated: true)
-    }
+    @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!) { goToWatchlistViewController() }
     
-    @objc func myLeftSideBarButtonItemTapped(_ sender: UIBarButtonItem!)
-    {
-        self.dismiss(animated: true, completion: nil)
-    }
+    @objc func myLeftSideBarButtonItemTapped(_ sender: UIBarButtonItem!) { logout() }
 }
 
 

@@ -12,14 +12,23 @@ class WatchlistViewController: UIViewController {
     
     @IBOutlet weak var watchlistTableView: UITableView!
     let watchlistCellIdentifier = "WatchlistTableViewCell"
-//    var movieModelData = [MovieModel]()
+    var watchlistMoviesArray = [WatchlistMovieResults]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCustomNavBar()
         setupDelegateAndDataSource()
         registerTableView()
-        returnWatchListMovies()
+        WatchlistNetworkManager().fetchWatchlistMoviesData { (data: WatchlistMovieModel?) in
+            if let data = data {
+                self.watchlistMoviesArray = data.results
+                actualWatchlistMoviesArray = data.results
+                DispatchQueue.main.async {
+                    self.watchlistTableView.reloadData()
+                }
+            }
+        }
+//        returnWatchListMovies()
     }
     
     
@@ -35,6 +44,8 @@ class WatchlistViewController: UIViewController {
     func registerTableView() {
         watchlistTableView.register(UINib.init(nibName: watchlistCellIdentifier, bundle: nil), forCellReuseIdentifier: watchlistCellIdentifier)
     }
+    
+    func backToPreviousViewController() { self.navigationController?.popViewController(animated: true) }
     
     func returnWatchListMovies() {
 //        var safeMovieModel: [MovieModel] = []
@@ -68,15 +79,11 @@ extension WatchlistViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
-    @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!)
-    {
+    @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!) {
         print("myRightSideBarButtonItemTapped")
     }
     
-    @objc func myLeftSideBarButtonItemTapped(_ sender: UIBarButtonItem!)
-    {
-        self.navigationController?.popViewController(animated: true)
-    }
+    @objc func myLeftSideBarButtonItemTapped(_ sender: UIBarButtonItem!) { backToPreviousViewController() }
 }
 
 
@@ -85,13 +92,12 @@ extension WatchlistViewController {
 extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return movieModelData.count
-        return 0
+        return watchlistMoviesArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = watchlistTableView.dequeueReusableCell(withIdentifier: watchlistCellIdentifier, for: indexPath) as! WatchlistTableViewCell
-//        cell.displayMovieData(movieName: movieModelData[indexPath.row].movieName, movieDetails: movieModelData[indexPath.row].movieDetails, movieRate: movieModelData[indexPath.row].movieRate, movieImage: movieModelData[indexPath.row].moviePoster)
+        cell.displayMovieData(movieName: watchlistMoviesArray[indexPath.row].title, movieDetails: watchlistMoviesArray[indexPath.row].title, movieRate: String(watchlistMoviesArray[indexPath.row].imdbRate), movieImage: EndPointRouter.getMoviePoster(posterPath: watchlistMoviesArray[indexPath.row].poster))
         return cell
     }
     
@@ -104,12 +110,39 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
 //            movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelData[indexPath.row].movieName.lowercased()})!].isFavorite = false
 //            self.movieModelData.remove(at: indexPath.row)
 //            self.watchlistTableView.reloadData()
+            WatchlistNetworkManager().fetchDeleteFromWatchlistMovies(mediaId: self.watchlistMoviesArray[indexPath.row].id) { (addToWatchlistResponse: AddToWatchlistResponse?) in
+                DispatchQueue.main.async {
+                    if let addToWatchlistResponse = addToWatchlistResponse {
+                        let alert = UIAlertController(title: "SUCCESS" , message: addToWatchlistResponse.statusMessage, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                        
+                        WatchlistNetworkManager().fetchWatchlistMoviesData { (data: WatchlistMovieModel?) in
+                            if let data = data {
+                                print("hi")
+                                self.watchlistMoviesArray = data.results
+                                self.watchlistTableView.reloadData()
+                            }
+                        }
+                    }
+                }
+            }
+            
+//            WatchlistNetworkManager().fetchWatchlistMoviesData { (data: WatchlistMovieModel?) in
+//                if let data = data {
+//                    DispatchQueue.main.async {
+//                        print("hi")
+//                        self.watchlistMoviesArray = data.results
+//                        self.watchlistTableView.reloadData()
+//                    }
+//                }
+//            }
+            
             success(true)
             
         })
         deleteAction.backgroundColor = .systemRed
         deleteAction.image = UIImage(systemName: "trash")
-        
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     

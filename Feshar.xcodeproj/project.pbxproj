@@ -32,6 +32,13 @@
 		F4612E0B243580A9003C866D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4612E0A243580A9003C866D /* ProfileViewController.swift */; };
 		F4612E102437C4DA003C866D /* ProfileInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4612E0E2437C4DA003C866D /* ProfileInfoTableViewCell.swift */; };
 		F4612E112437C4DA003C866D /* ProfileInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4612E0F2437C4DA003C866D /* ProfileInfoTableViewCell.xib */; };
+		F4743033244173E60016A43A /* AddToWatchlistRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4743032244173E60016A43A /* AddToWatchlistRequestModel.swift */; };
+		F4743035244175860016A43A /* AddToWatchlistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4743034244175860016A43A /* AddToWatchlistResponse.swift */; };
+		F474303724417DE90016A43A /* WatchlistNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F474303624417DE90016A43A /* WatchlistNetworkManager.swift */; };
+		F4743039244187750016A43A /* SearchMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4743038244187750016A43A /* SearchMovieModel.swift */; };
+		F474303D24427ACE0016A43A /* LogoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F474303C24427ACE0016A43A /* LogoutRequest.swift */; };
+		F474303F24427AE10016A43A /* LogoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F474303E24427AE10016A43A /* LogoutResponse.swift */; };
+		F474304524427C2F0016A43A /* LogoutNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F474304424427C2F0016A43A /* LogoutNetworkManager.swift */; };
 		F4AF0898242A5CDC005E558A /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AF0897242A5CDC005E558A /* UIViewExtension.swift */; };
 		F4ED3F56242EA267000190DE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED3F55242EA267000190DE /* Enums.swift */; };
 		F4ED3F5A242EB6F8000190DE /* RegisteredUserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */; };
@@ -90,6 +97,13 @@
 		F4612E0A243580A9003C866D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Feshar/Modules/Controller/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		F4612E0E2437C4DA003C866D /* ProfileInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoTableViewCell.swift; sourceTree = "<group>"; };
 		F4612E0F2437C4DA003C866D /* ProfileInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileInfoTableViewCell.xib; sourceTree = "<group>"; };
+		F4743032244173E60016A43A /* AddToWatchlistRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWatchlistRequestModel.swift; sourceTree = "<group>"; };
+		F4743034244175860016A43A /* AddToWatchlistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWatchlistResponse.swift; sourceTree = "<group>"; };
+		F474303624417DE90016A43A /* WatchlistNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistNetworkManager.swift; sourceTree = "<group>"; };
+		F4743038244187750016A43A /* SearchMovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieModel.swift; sourceTree = "<group>"; };
+		F474303C24427ACE0016A43A /* LogoutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRequest.swift; sourceTree = "<group>"; };
+		F474303E24427AE10016A43A /* LogoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResponse.swift; sourceTree = "<group>"; };
+		F474304424427C2F0016A43A /* LogoutNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutNetworkManager.swift; sourceTree = "<group>"; };
 		F4AF0897242A5CDC005E558A /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		F4ED3F55242EA267000190DE /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredUserClass.swift; sourceTree = "<group>"; };
@@ -296,6 +310,42 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		F474304024427B2F0016A43A /* Session ID */ = {
+			isa = PBXGroup;
+			children = (
+				F43017BC24414CBD00A4C615 /* SessionRequest.swift */,
+				F43A622F243ED41500E684A5 /* SessionResponse.swift */,
+			);
+			path = "Session ID";
+			sourceTree = "<group>";
+		};
+		F474304124427B3B0016A43A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F4FF02F3243DE35100C20FC1 /* LoginRequest.swift */,
+				F43017BA24414C6700A4C615 /* LoginResponse.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F474304224427B440016A43A /* Logout */ = {
+			isa = PBXGroup;
+			children = (
+				F474303C24427ACE0016A43A /* LogoutRequest.swift */,
+				F474303E24427AE10016A43A /* LogoutResponse.swift */,
+				F474304424427C2F0016A43A /* LogoutNetworkManager.swift */,
+			);
+			path = Logout;
+			sourceTree = "<group>";
+		};
+		F474304324427B6E0016A43A /* Request Token */ = {
+			isa = PBXGroup;
+			children = (
+				F4FF02F1243DDA4D00C20FC1 /* RequestTokenResponse.swift */,
+			);
+			path = "Request Token";
+			sourceTree = "<group>";
+		};
 		F4AF0896242A5CAB005E558A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,10 +442,13 @@
 			isa = PBXGroup;
 			children = (
 				F4F249AE2432A95D007ED49A /* MovieModel.swift */,
+				F4743038244187750016A43A /* SearchMovieModel.swift */,
 				F4F9447E243CA6C500B88582 /* MovieDetailsModel.swift */,
 				F409EEC0244018CC0091024E /* TVShowModel.swift */,
 				F409EEC224401BF50091024E /* TrendingMoviesModel.swift */,
 				F43017B8244137A400A4C615 /* WatchlistMoviesModel.swift */,
+				F4743032244173E60016A43A /* AddToWatchlistRequestModel.swift */,
+				F4743034244175860016A43A /* AddToWatchlistResponse.swift */,
 			);
 			path = Movie;
 			sourceTree = "<group>";
@@ -404,6 +457,7 @@
 			isa = PBXGroup;
 			children = (
 				F4F94478243C9FDE00B88582 /* NetworkManager.swift */,
+				F474303624417DE90016A43A /* WatchlistNetworkManager.swift */,
 				F4F94477243C9FC800B88582 /* Entities */,
 			);
 			path = Networking;
@@ -430,11 +484,10 @@
 		F4FF02F5243E212400C20FC1 /* Client Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				F4FF02F1243DDA4D00C20FC1 /* RequestTokenResponse.swift */,
-				F4FF02F3243DE35100C20FC1 /* LoginRequest.swift */,
-				F43017BA24414C6700A4C615 /* LoginResponse.swift */,
-				F43017BC24414CBD00A4C615 /* SessionRequest.swift */,
-				F43A622F243ED41500E684A5 /* SessionResponse.swift */,
+				F474304324427B6E0016A43A /* Request Token */,
+				F474304124427B3B0016A43A /* Login */,
+				F474304024427B2F0016A43A /* Session ID */,
+				F474304224427B440016A43A /* Logout */,
 			);
 			path = "Client Authentication";
 			sourceTree = "<group>";
@@ -579,21 +632,28 @@
 				F4F94475243C9FAA00B88582 /* EndPointRouter.swift in Sources */,
 				F414656F2428F0120090052F /* LoginViewController.swift in Sources */,
 				F4612E102437C4DA003C866D /* ProfileInfoTableViewCell.swift in Sources */,
+				F474304524427C2F0016A43A /* LogoutNetworkManager.swift in Sources */,
 				F414656B2428F0120090052F /* AppDelegate.swift in Sources */,
 				F414656D2428F0120090052F /* SceneDelegate.swift in Sources */,
 				F4F249AF2432A95D007ED49A /* MovieModel.swift in Sources */,
 				F4F249A724328F19007ED49A /* HomeViewController.swift in Sources */,
+				F474303F24427AE10016A43A /* LogoutResponse.swift in Sources */,
+				F474303D24427ACE0016A43A /* LogoutRequest.swift in Sources */,
 				F4EF540A2433BA9100598B02 /* MoviesTableViewCell.swift in Sources */,
 				F4612E0B243580A9003C866D /* ProfileViewController.swift in Sources */,
 				F43017BD24414CBD00A4C615 /* SessionRequest.swift in Sources */,
 				F43017B9244137A400A4C615 /* WatchlistMoviesModel.swift in Sources */,
 				F4EF53FC2432CC1400598B02 /* WatchlistViewController.swift in Sources */,
+				F4743035244175860016A43A /* AddToWatchlistResponse.swift in Sources */,
 				F4FF02F4243DE35100C20FC1 /* LoginRequest.swift in Sources */,
+				F4743033244173E60016A43A /* AddToWatchlistRequestModel.swift in Sources */,
 				F43017B224410F4600A4C615 /* TVShowsTableViewCell.swift in Sources */,
 				F43A6230243ED41500E684A5 /* SessionResponse.swift in Sources */,
 				F4ED3F56242EA267000190DE /* Enums.swift in Sources */,
 				F4ED3F5A242EB6F8000190DE /* RegisteredUserClass.swift in Sources */,
+				F474303724417DE90016A43A /* WatchlistNetworkManager.swift in Sources */,
 				F4F9447B243CA02100B88582 /* HTTPMethod.swift in Sources */,
+				F4743039244187750016A43A /* SearchMovieModel.swift in Sources */,
 				F4EF53F92432CBD900598B02 /* WatchlistTableViewCell.swift in Sources */,
 				F40BD5012430C9220074E024 /* MoviePostersCell.swift in Sources */,
 				F43017B62441107A00A4C615 /* TVShowsCollectionViewCell.swift in Sources */,

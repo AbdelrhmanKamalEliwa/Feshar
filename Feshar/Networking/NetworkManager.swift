@@ -37,8 +37,14 @@ class NetworkManager {
                 return
             }
             
+            
+            
             if let safeData = data {
                 do {
+//                    if(url.absoluteString.contains("query")){
+//                    print("hii \(data)")
+//                    print(String(bytes: data!, encoding: .utf8))
+//                    }
                     // checking of response if it actual string response
                     let stringResponse = String.init(data: safeData, encoding: .utf8)
                     guard let jsonData = stringResponse?.data(using: .utf8) else {

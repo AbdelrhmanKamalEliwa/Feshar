@@ -18,6 +18,10 @@ class LoginViewController: UIViewController {
     let registeredUser = RegisteredUser()
     let segueID = "goToHomeVC"
     fileprivate var canLogin = false
+    fileprivate var sessionUsername = ""
+    fileprivate var sessionPassword = ""
+    fileprivate var safeUsername = ""
+    fileprivate var safePassword = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +29,7 @@ class LoginViewController: UIViewController {
         passwordTextField.delegate = self
         checkPasswordIcon.image = UIImage(systemName: " ")
         createLoginRequest()
+        
     }
     
     func createLoginRequest() {
@@ -32,12 +37,19 @@ class LoginViewController: UIViewController {
             if let data = data {
                 self.fetchLogin(requestToken: data.requestToken) { (response: LoginResponse?) in
                     if let response = response {
-                        if let success = response.success { if success { self.canLogin = success } }
+                        if let success = response.success {
+                            if success {
+                            self.canLogin = success
+                            //TODO: set username & password
+                                
+                            }
+                        }
                         if let resquestToken = response.requestToken {
                             self.fetchSessionId(requestToken: resquestToken) { (sessionResponse: SessionResponse?) in
                                 if let sessionResponse = sessionResponse {
                                     if sessionResponse.success { self.canLogin = sessionResponse.success }
                                     sessionID = sessionResponse.sessionID
+                                    print(sessionID)
                                 }
                             }
                         }
@@ -57,6 +69,8 @@ class LoginViewController: UIViewController {
     }
     
     func loginAuthentication() {
+//        sessionUsername = usernameTextField.text!
+//        sessionPassword = passwordTextField.text!
         if usernameTextField.text == registeredUser.username && passwordTextField.text == registeredUser.password && canLogin {
             usernameDataToBePassed()
             self.performSegue(withIdentifier: segueID, sender: self)

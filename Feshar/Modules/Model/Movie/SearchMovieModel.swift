@@ -1,5 +1,5 @@
 //
-//  WatchlistMoviesModel.swift
+//  SearchMovieModel.swift
 //  Feshar
 //
 //  Created by Abdelrhman Eliwa on 4/11/20.
@@ -8,24 +8,22 @@
 
 import Foundation
 
-struct WatchlistMovieModel: Codable {
-    let results: [WatchlistMovieResults]
+struct SearchMovieModel: Codable {
+    let results: [SearchMovieResults]
 }
 
-struct WatchlistMovieResults: Codable {
+struct SearchMovieResults: Codable {
     let id: Int
     let imdbRate: Double
     let title: String
     let description: String
-    let category: [Int]?
-    let poster: String
+    let poster: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case imdbRate = "vote_average"
         case title = "title"
         case description = "overview"
-        case category = "genre_ids"
         case poster = "poster_path"
     }
 }

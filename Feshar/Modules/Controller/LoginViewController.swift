@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
                                 if let sessionResponse = sessionResponse {
                                     if sessionResponse.success { self.canLogin = sessionResponse.success }
                                     sessionID = sessionResponse.sessionID
-                                    print(sessionID)
+                                    print(sessionID!)
                                 }
                             }
                         }

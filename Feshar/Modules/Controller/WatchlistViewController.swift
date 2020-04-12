@@ -105,9 +105,10 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
                         
                         WatchlistNetworkManager().fetchWatchlistMoviesData { (data: WatchlistMovieModel?) in
                             if let data = data {
-                                print("hi")
-                                self.watchlistMoviesArray = data.results
-                                self.watchlistTableView.reloadData()
+                                DispatchQueue.main.async {
+                                    self.watchlistMoviesArray = data.results
+                                    self.watchlistTableView.reloadData()
+                                }
                             }
                         }
                     }

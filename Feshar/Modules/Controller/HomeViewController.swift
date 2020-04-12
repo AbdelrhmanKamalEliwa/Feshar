@@ -99,10 +99,12 @@ extension HomeViewController {
         let image = UIImage(named: "logo")
         imageView.image = image
         navigationItem.titleView = imageView
-        let backBarButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(myLeftSideBarButtonItemTapped(_:)))
+        let backBarButton = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(myLeftSideBarButtonItemTapped(_:)))
         navigationItem.leftBarButtonItem = backBarButton
-        let featuredBarButton = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars.inverse"), style: .plain, target: self, action: #selector(myRightSideBarButtonItemTapped(_:)))
+        navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 0.08921027929, blue: 0.1636223793, alpha: 1)
+        let featuredBarButton = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars.inverse"), style: .done, target: self, action: #selector(myRightSideBarButtonItemTapped(_:)))
         navigationItem.rightBarButtonItem = featuredBarButton
+        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.6209790111, green: 0.3204901814, blue: 0, alpha: 1)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }

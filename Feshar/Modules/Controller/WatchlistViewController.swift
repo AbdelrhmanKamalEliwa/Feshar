@@ -28,7 +28,6 @@ class WatchlistViewController: UIViewController {
                 }
             }
         }
-//        returnWatchListMovies()
     }
     
     
@@ -46,16 +45,6 @@ class WatchlistViewController: UIViewController {
     }
     
     func backToPreviousViewController() { self.navigationController?.popViewController(animated: true) }
-    
-    func returnWatchListMovies() {
-//        var safeMovieModel: [MovieModel] = []
-//        for movie in movieModel {
-//            if movie.isFavorite == true {
-//                safeMovieModel.append(movie)
-//            }
-//        }
-//        movieModelData = safeMovieModel
-    }
 }
 
 
@@ -107,9 +96,6 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title:  "Remove", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-//            movieModel[movieModel.firstIndex(where: {$0.movieName.lowercased() == self.movieModelData[indexPath.row].movieName.lowercased()})!].isFavorite = false
-//            self.movieModelData.remove(at: indexPath.row)
-//            self.watchlistTableView.reloadData()
             WatchlistNetworkManager().fetchDeleteFromWatchlistMovies(mediaId: self.watchlistMoviesArray[indexPath.row].id) { (addToWatchlistResponse: AddToWatchlistResponse?) in
                 DispatchQueue.main.async {
                     if let addToWatchlistResponse = addToWatchlistResponse {

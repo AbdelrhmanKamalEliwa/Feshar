@@ -45,16 +45,6 @@ class MovieDetailsViewController: UIViewController {
         }
     }
     
-    //    *Need to replace movieModelDataPassed with movieDetailsScreenObject*
-    //    func displayWatchListButton() {
-    //        if movieModelDataPassed?.isFavorite == true {
-    //            watchListButton.setTitle("REMOVE FROM WATCHLIST", for: .normal)
-    //            watchListButton.backgroundColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
-    //        } else if movieModelDataPassed?.isFavorite == false {
-    //            watchListButton.setTitle("ADD TO WATCHLIST", for: .normal)
-    //        }
-    //    }
-    
     @IBAction func watchListButtonTapped(_ sender: Any) {
         
         for movie in actualWatchlistMoviesArray {

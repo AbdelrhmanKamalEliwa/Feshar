@@ -10,6 +10,7 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
     
+    @IBOutlet weak var movieTableViewHeightConstrain: NSLayoutConstraint!
     @IBOutlet weak var watchListButton: UIButton!
     @IBOutlet weak var movieNameLabel: UILabel!
     @IBOutlet weak var movieNameDetails: UILabel!
@@ -34,6 +35,9 @@ class MovieDetailsViewController: UIViewController {
         registerCollectionView()
         registerTableView()
         fetchData()
+        updateHeightConstrainOfTableView(numberOfCells: 3)
+//        castTableView.rowHeight = UITableView.automaticDimension
+//        castTableView.estimatedRowHeight = 600
     }
     
     func checkIfMovieInWatchlist() {
@@ -53,14 +57,14 @@ class MovieDetailsViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             } else {
-                WatchlistNetworkManager().fetchAddToWatchlistMovies(mediaId: movieDetailsScreenObject!.id) { (addToWatchlistResponse: AddToWatchlistResponse?) in
+                WatchlistNetworkManager().fetchAddToWatchlistMovies(mediaId: movieDetailsScreenObject!.id) { [weak self] (addToWatchlistResponse: AddToWatchlistResponse?) in
                     DispatchQueue.main.async {
                         if let addToWatchlistResponse = addToWatchlistResponse {
                             let alert = UIAlertController(title: addToWatchlistResponse.statusMessage , message: "Movie Added to Watchlist", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                            self.present(alert, animated: true, completion: nil)
-                            self.watchListButton.setTitle("REMOVE FROM WATCHLIST", for: .normal)
-                            self.watchListButton.backgroundColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
+                            self?.present(alert, animated: true, completion: nil)
+                            self?.watchListButton.setTitle("REMOVE FROM WATCHLIST", for: .normal)
+                            self?.watchListButton.backgroundColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
                         }
                     }
                 }
@@ -180,5 +184,8 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
+    func updateHeightConstrainOfTableView(numberOfCells: Int) {
+        movieTableViewHeightConstrain.constant = CGFloat(numberOfCells * 106)
+    }
     
 }

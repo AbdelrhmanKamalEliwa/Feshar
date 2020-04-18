@@ -26,15 +26,13 @@ class FeaturedViewController: UIViewController {
     }
     
     func logout() {
-        if let sessionId = sessionID {
-            LogoutNetworkManager().logout(sessionId: sessionId) { (response: LogoutResponse?) in
-                if let response = response {
-                    if response.success {
-                        DispatchQueue.main.async {
-                            self.dismiss(animated: true, completion: nil)
-                            sessionID = nil
-                        }
-                    }
+        guard let validSessionId = sessionID else { return}
+        LogoutNetworkManager().logout(sessionId: validSessionId) { (response: LogoutResponse?) in
+            guard let safeResponse = response else { return }
+            if safeResponse.success {
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                    sessionID = nil
                 }
             }
         }
@@ -80,7 +78,7 @@ extension FeaturedViewController {
 //MARK: - Setup Table View
 extension FeaturedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoriesArray.count
+        return categoriesOfFeaturedScreen.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -92,13 +90,13 @@ extension FeaturedViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             let cell = featuredTableView.dequeueReusableCell(withIdentifier: moviesCellIdentifier, for: indexPath) as! MoviesTableViewCell
             cell.updateCategory(movieNumber: moviesArray)
-            cell.categoryTitleLabel.text = categoriesArray[indexPath.row]
+            cell.categoryTitleLabel.text = categoriesOfFeaturedScreen[indexPath.row]
             return cell
             
         } else {
             let cell = featuredTableView.dequeueReusableCell(withIdentifier: tvShowsCellIdentifier, for: indexPath) as! TVShowsTableViewCell
             cell.updateCategory(movieNumber: tvShowsArray)
-            cell.categoryTitleLabel.text = categoriesArray[indexPath.row]
+            cell.categoryTitleLabel.text = categoriesOfFeaturedScreen[indexPath.row]
             return cell
         }
         

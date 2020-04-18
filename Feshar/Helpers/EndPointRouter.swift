@@ -39,6 +39,10 @@ struct EndPointRouter {
         return URL(string: APIService.baseURL() + "/discover/tv?api_key=" + APIService.apiKey() + "&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false")!
     }
     
+    static var getCategories: URL {
+        return URL(string: APIService.baseURL() + "/genre/movie/list?api_key=" + APIService.apiKey())!
+    }
+    
     static var createRequestToken: URL {
         return URL(string: APIService.baseURL() + "/authentication/token/new?api_key=" + APIService.apiKey())!
     }

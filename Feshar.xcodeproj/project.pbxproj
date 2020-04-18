@@ -40,6 +40,7 @@
 		F474303F24427AE10016A43A /* LogoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F474303E24427AE10016A43A /* LogoutResponse.swift */; };
 		F474304524427C2F0016A43A /* LogoutNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F474304424427C2F0016A43A /* LogoutNetworkManager.swift */; };
 		F4AF0898242A5CDC005E558A /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AF0897242A5CDC005E558A /* UIViewExtension.swift */; };
+		F4E01E812449C4A8001B8D5D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E01E802449C4A8001B8D5D /* Categories.swift */; };
 		F4ED3F56242EA267000190DE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED3F55242EA267000190DE /* Enums.swift */; };
 		F4ED3F5A242EB6F8000190DE /* RegisteredUserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */; };
 		F4EF53F42432C7CC00598B02 /* sf-compact-display in Resources */ = {isa = PBXBuildFile; fileRef = F4EF53F32432C7CC00598B02 /* sf-compact-display */; };
@@ -105,6 +106,7 @@
 		F474303E24427AE10016A43A /* LogoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResponse.swift; sourceTree = "<group>"; };
 		F474304424427C2F0016A43A /* LogoutNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutNetworkManager.swift; sourceTree = "<group>"; };
 		F4AF0897242A5CDC005E558A /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		F4E01E802449C4A8001B8D5D /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		F4ED3F55242EA267000190DE /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredUserClass.swift; sourceTree = "<group>"; };
 		F4EF53F32432C7CC00598B02 /* sf-compact-display */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "sf-compact-display"; sourceTree = "<group>"; };
@@ -442,13 +444,14 @@
 			isa = PBXGroup;
 			children = (
 				F4F249AE2432A95D007ED49A /* MovieModel.swift */,
-				F4743038244187750016A43A /* SearchMovieModel.swift */,
 				F4F9447E243CA6C500B88582 /* MovieDetailsModel.swift */,
+				F4743038244187750016A43A /* SearchMovieModel.swift */,
 				F409EEC0244018CC0091024E /* TVShowModel.swift */,
 				F409EEC224401BF50091024E /* TrendingMoviesModel.swift */,
 				F43017B8244137A400A4C615 /* WatchlistMoviesModel.swift */,
 				F4743032244173E60016A43A /* AddToWatchlistRequestModel.swift */,
 				F4743034244175860016A43A /* AddToWatchlistResponse.swift */,
+				F4E01E802449C4A8001B8D5D /* Categories.swift */,
 			);
 			path = Movie;
 			sourceTree = "<group>";
@@ -635,6 +638,7 @@
 				F474304524427C2F0016A43A /* LogoutNetworkManager.swift in Sources */,
 				F414656B2428F0120090052F /* AppDelegate.swift in Sources */,
 				F414656D2428F0120090052F /* SceneDelegate.swift in Sources */,
+				F4E01E812449C4A8001B8D5D /* Categories.swift in Sources */,
 				F4F249AF2432A95D007ED49A /* MovieModel.swift in Sources */,
 				F4F249A724328F19007ED49A /* HomeViewController.swift in Sources */,
 				F474303F24427AE10016A43A /* LogoutResponse.swift in Sources */,

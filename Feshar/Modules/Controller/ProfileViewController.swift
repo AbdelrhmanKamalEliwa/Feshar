@@ -40,15 +40,13 @@ class ProfileViewController: UIViewController {
     }
     
     func logout() {
-        if let sessionId = sessionID {
-            LogoutNetworkManager().logout(sessionId: sessionId) { (response: LogoutResponse?) in
-                if let response = response {
-                    if response.success {
-                        DispatchQueue.main.async {
-                            self.dismiss(animated: true, completion: nil)
-                            sessionID = nil
-                        }
-                    }
+        guard let validSessionId = sessionID else { return}
+        LogoutNetworkManager().logout(sessionId: validSessionId) { (response: LogoutResponse?) in
+            guard let safeResponse = response else { return }
+            if safeResponse.success {
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                    sessionID = nil
                 }
             }
         }

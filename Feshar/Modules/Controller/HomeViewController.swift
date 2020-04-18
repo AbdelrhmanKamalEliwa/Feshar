@@ -15,7 +15,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var movieTypeCollectionView: UICollectionView!
     let movieTypeIdentifier = "MovieTypesCollectionViewCell"
     let movieCellIdentifier = "MovieTableViewCell"
-    let movieTypeButtonNameArray = ["All Movies", "Romance", "Action", "Comedy", "Drama"]
     let searchBarIsHidden = true
     var movieHomeScreenArray = [MovieResults]()
     var allMoviesArray = [MovieResults]()
@@ -34,7 +33,6 @@ class HomeViewController: UIViewController {
         WatchlistNetworkManager().fetchWatchlistMoviesData { (data: WatchlistMovieModel?) in
             if let data = data {
                 actualWatchlistMoviesArray = data.results
-//                print(actualWatchlistMoviesArray.count)
             }
         }
     }
@@ -63,16 +61,13 @@ class HomeViewController: UIViewController {
     }
     
     func logout() {
-        if let sessionId = sessionID {
-            LogoutNetworkManager().logout(sessionId: sessionId) { (response: LogoutResponse?) in
-//                print(response)
-                if let response = response {
-                    if response.success {
-                        DispatchQueue.main.async {
-                            self.dismiss(animated: true, completion: nil)
-                            sessionID = nil
-                        }
-                    }
+        guard let validSessionId = sessionID else { return }
+        LogoutNetworkManager().logout(sessionId: validSessionId) { (response: LogoutResponse?) in
+            guard let safeResponse = response else { return }
+            if safeResponse.success {
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                    sessionID = nil
                 }
             }
         }
@@ -120,12 +115,12 @@ extension HomeViewController {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        movieTypeButtonNameArray.count
+        Categories().movieCategoriesArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = movieTypeCollectionView.dequeueReusableCell(withReuseIdentifier: movieTypeIdentifier, for: indexPath) as! MovieTypesCollectionViewCell
-        cell.movieTypeTitleLabel.text = movieTypeButtonNameArray[indexPath.item]
+        cell.movieTypeTitleLabel.text = Categories().movieCategoriesArray[indexPath.item]
         return cell
     }
     
@@ -137,23 +132,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         selectedCell.layer.backgroundColor = #colorLiteral(red: 0.9373905063, green: 0.2940055132, blue: 0.2428910136, alpha: 1)
         selectedCell.movieTypeTitleLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
-        var safeMovieModel: [MovieResults] = []
-        print(safeMovieModel.count)
-        for movie in allMoviesArray {
-            if movie.category.contains(28) && (selectedCell.movieTypeTitleLabel.text!.lowercased() == "action"){
-                safeMovieModel.append(movie)
-            } else if movie.category.contains(35) && (selectedCell.movieTypeTitleLabel.text!.lowercased() == "comedy"){
-                safeMovieModel.append(movie)
-            } else if movie.category.contains(18) && selectedCell.movieTypeTitleLabel.text?.lowercased() == "drama"{
-                safeMovieModel.append(movie)
-            } else if movie.category.contains(10749) && selectedCell.movieTypeTitleLabel.text?.lowercased() == "romance"{
-                safeMovieModel.append(movie)
-            } else if selectedCell.movieTypeTitleLabel.text!.lowercased() == "all movies" {
-                safeMovieModel = allMoviesArray
-            }
-        }
-
-        movieHomeScreenArray = safeMovieModel
+        movieHomeScreenArray = Categories().setupFiltrationButtonsForCollectionView(allMovies: allMoviesArray, cell: selectedCell)
         movieTableView.reloadData()
     }
     
@@ -248,13 +227,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                     } else {
-                        WatchlistNetworkManager().fetchAddToWatchlistMovies(mediaId: self.filteredMovies[indexPath.row].id) { (addToWatchlistResponse: AddToWatchlistResponse?) in
+                        WatchlistNetworkManager().fetchAddToWatchlistMovies(mediaId: self.filteredMovies[indexPath.row].id) { [weak self] (addToWatchlistResponse: AddToWatchlistResponse?) in
                             DispatchQueue.main.async {
-                                if let addToWatchlistResponse = addToWatchlistResponse {
-                                    let alert = UIAlertController(title: addToWatchlistResponse.statusMessage , message: "Movie Added to Watchlist", preferredStyle: .alert)
-                                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                                    self.present(alert, animated: true, completion: nil)
-                                }
+                                guard let addToWatchlistResponse = addToWatchlistResponse else { return }
+                                let alert = UIAlertController(title: addToWatchlistResponse.statusMessage , message: "Movie Added to Watchlist", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self?.present(alert, animated: true, completion: nil)
                             }
                         }
                     }
@@ -266,13 +244,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                     } else {
-                        WatchlistNetworkManager().fetchAddToWatchlistMovies(mediaId: self.movieHomeScreenArray[indexPath.row].id) { (addToWatchlistResponse: AddToWatchlistResponse?) in
+                        WatchlistNetworkManager().fetchAddToWatchlistMovies(mediaId: self.movieHomeScreenArray[indexPath.row].id) { [weak self] (addToWatchlistResponse: AddToWatchlistResponse?) in
                             DispatchQueue.main.async {
-                                if let addToWatchlistResponse = addToWatchlistResponse {
-                                    let alert = UIAlertController(title: addToWatchlistResponse.statusMessage , message: "Movie Added to Watchlist", preferredStyle: .alert)
-                                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                                    self.present(alert, animated: true, completion: nil)
-                                }
+                                guard let addToWatchlistResponse = addToWatchlistResponse else { return }
+                                let alert = UIAlertController(title: addToWatchlistResponse.statusMessage , message: "Movie Added to Watchlist", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self?.present(alert, animated: true, completion: nil)
                             }
                         }
                     }
@@ -324,7 +301,7 @@ extension HomeViewController {
                 self.allMoviesArray = data.results
                 DispatchQueue.main.async {
                     self.movieTableView.reloadData()
-                    allMovies = data.results
+                    //                    allMovies = data.results
                 }
             case .failure(let error):
                 if let error = error {
@@ -345,13 +322,13 @@ extension HomeViewController {
     
     func fetchSearchOnMoviesData(textSearch: String) {
         let networkManager = NetworkManager()
-        let _ = networkManager.request(url: EndPointRouter.searchOnMovies(movieName: textSearch), httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<SearchMovieModel>) in
+        let _ = networkManager.request(url: EndPointRouter.searchOnMovies(movieName: textSearch), httpMethod: .get, parameters: nil, headers: nil) { [weak self] (result: APIResult<SearchMovieModel>) in
             switch result {
                 
             case .success(let data):
-                self.filteredMovies = data.results
+                self?.filteredMovies = data.results
                 DispatchQueue.main.async {
-                    self.movieTableView.reloadData()
+                    self?.movieTableView.reloadData()
                 }
             case .failure(let error):
                 if let error = error {

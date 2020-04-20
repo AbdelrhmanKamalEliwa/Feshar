@@ -41,6 +41,7 @@
 		F474304524427C2F0016A43A /* LogoutNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F474304424427C2F0016A43A /* LogoutNetworkManager.swift */; };
 		F4AF0898242A5CDC005E558A /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AF0897242A5CDC005E558A /* UIViewExtension.swift */; };
 		F4E01E812449C4A8001B8D5D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E01E802449C4A8001B8D5D /* Categories.swift */; };
+		F4E01E8F244CA582001B8D5D /* FeaturedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E01E8E244CA582001B8D5D /* FeaturedVC.swift */; };
 		F4ED3F56242EA267000190DE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED3F55242EA267000190DE /* Enums.swift */; };
 		F4ED3F5A242EB6F8000190DE /* RegisteredUserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */; };
 		F4EF53F42432C7CC00598B02 /* sf-compact-display in Resources */ = {isa = PBXBuildFile; fileRef = F4EF53F32432C7CC00598B02 /* sf-compact-display */; };
@@ -107,6 +108,7 @@
 		F474304424427C2F0016A43A /* LogoutNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutNetworkManager.swift; sourceTree = "<group>"; };
 		F4AF0897242A5CDC005E558A /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		F4E01E802449C4A8001B8D5D /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		F4E01E8E244CA582001B8D5D /* FeaturedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedVC.swift; sourceTree = "<group>"; };
 		F4ED3F55242EA267000190DE /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredUserClass.swift; sourceTree = "<group>"; };
 		F4EF53F32432C7CC00598B02 /* sf-compact-display */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "sf-compact-display"; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				F4EF53FB2432CC1400598B02 /* WatchlistViewController.swift */,
 				F4EF54022433AEDC00598B02 /* FeaturedViewController.swift */,
 				F4612E0A243580A9003C866D /* ProfileViewController.swift */,
+				F4E01E8E244CA582001B8D5D /* FeaturedVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				F4EF54032433AEDC00598B02 /* FeaturedViewController.swift in Sources */,
 				F4F94473243C9F9700B88582 /* APIEnvironmentPath.swift in Sources */,
 				F4F9447D243CA03400B88582 /* APIResult.swift in Sources */,
+				F4E01E8F244CA582001B8D5D /* FeaturedVC.swift in Sources */,
 				F4FB31A02430BBA000F4DD22 /* MovieDetailsViewController.swift in Sources */,
 				F4F249A4243288F8007ED49A /* MovieTypesCollectionViewCell.swift in Sources */,
 				F4F94475243C9FAA00B88582 /* EndPointRouter.swift in Sources */,

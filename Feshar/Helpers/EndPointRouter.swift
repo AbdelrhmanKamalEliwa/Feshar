@@ -35,6 +35,14 @@ struct EndPointRouter {
         return MoviePosterServices.baseUrlImage() + posterPath
     }
     
+    static func getMovieCredits(movieId: String) -> URL {
+        return URL(string: APIService.baseURL() + "/movie/" + movieId + "/credits?api_key=" + APIService.apiKey())!
+    }
+    
+    static func getBiographyOfCast(id: String) -> URL {
+        return URL(string: APIService.baseURL() + "/person/" + id + "?api_key=" + APIService.apiKey())!
+    }
+    
     static var getTVShows: URL {
         return URL(string: APIService.baseURL() + "/discover/tv?api_key=" + APIService.apiKey() + "&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false")!
     }

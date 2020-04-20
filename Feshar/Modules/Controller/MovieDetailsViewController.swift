@@ -26,7 +26,7 @@ class MovieDetailsViewController: UIViewController {
     fileprivate var movieDetailsScreenObject: MovieDetailsScreen?
     var movieIdPassed: Int?
     fileprivate var moviePosters = [String]()
-    
+    fileprivate var movieCredits = [Cast]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +35,9 @@ class MovieDetailsViewController: UIViewController {
         registerCollectionView()
         registerTableView()
         fetchData()
-        updateHeightConstrainOfTableView(numberOfCells: 3)
-//        castTableView.rowHeight = UITableView.automaticDimension
-//        castTableView.estimatedRowHeight = 600
+        fetchMovieCredits()
+        //        castTableView.rowHeight = UITableView.automaticDimension
+        //        castTableView.estimatedRowHeight = 600
     }
     
     func checkIfMovieInWatchlist() {
@@ -124,6 +124,29 @@ extension MovieDetailsViewController {
             }
         }
     }
+    
+    func fetchMovieCredits() {
+        guard let safeMovieId = movieIdPassed else { return }
+        let networkManager = NetworkManager()
+        print(EndPointRouter.getMovieCredits(movieId: String(safeMovieId)))
+        let _ = networkManager.request(url: EndPointRouter.getMovieCredits(movieId: String(safeMovieId)), httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<MovieCredits>) in
+            switch result {
+            case .success(let data):
+                self.movieCredits = data.cast
+                DispatchQueue.main.async {
+                    self.castTableView.reloadData()
+                    self.updateHeightConstrainOfTableView(numberOfCells: self.movieCredits.count)
+                }
+            case .failure(let error):
+                if let error = error { print(error) }
+            case .decodingFailure(let error):
+                if let error = error { print(error) }
+            case .badRequest(let error):
+                if let error = error { print(error) }
+            }
+        }
+    }
+    
 }
 
 //MARK: - Setup Custome Nav-Bar
@@ -175,12 +198,12 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
 //MARK: - Setup Table View
 extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return movieCredits.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = castTableView.dequeueReusableCell(withIdentifier: castCellIdentifier, for: indexPath) as! CastCell
-        cell.displayCastData(castNameNumber: indexPath.row, castDiscriptionNumber: indexPath.row, castImageNumber: indexPath.row)
+        cell.displayCastData(castName: movieCredits[indexPath.row].name, castDiscription: movieCredits[indexPath.row].id, castImage: EndPointRouter.getMoviePoster(posterPath: movieCredits[indexPath.row].profileImage ?? ""))
         return cell
     }
     

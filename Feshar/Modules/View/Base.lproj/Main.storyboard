@@ -118,8 +118,8 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Sec-q7-Dn5">
-                                <rect key="frame" x="307" y="374.5" width="50" height="49"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.triangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Sec-q7-Dn5">
+                                <rect key="frame" x="307" y="374.5" width="50" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="0z9-ja-S2W"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="3Gt-gI-rM3"/>
@@ -998,7 +998,7 @@
     </scenes>
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
-        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="112"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="logo" width="166" height="63"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bLu-I2-8so">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -521,105 +521,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Utd-WQ-cy6">
-                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dzC-5G-d6R">
+                                <rect key="frame" x="20" y="56" width="374" height="32"/>
+                                <segments>
+                                    <segment title="Movies"/>
+                                    <segment title="TV Shows"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" red="0.90980392160000001" green="0.20000000000000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="segmentedControlButtonTapped:" destination="LCa-VO-zhA" eventType="valueChanged" id="98f-th-0HF"/>
+                                </connections>
+                            </segmentedControl>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TBB-ky-zMz" userLabel="Featured Collection View">
+                                <rect key="frame" x="0.0" y="87" width="414" height="672"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MoviesTableViewCell" rowHeight="232" id="jr0-MD-dqu" userLabel="MoviesTableViewCell" customClass="MoviesTableViewCell" customModule="Feshar" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="232"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jr0-MD-dqu" id="ZPf-NI-2WM">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="232"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yub-4x-0PB">
-                                                    <rect key="frame" x="20" y="11" width="379" height="18.5"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="S9O-nH-iYd">
-                                                    <rect key="frame" x="0.0" y="39.5" width="414" height="192.5"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lw6-XD-BEf">
-                                                        <size key="itemSize" width="143" height="173"/>
-                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    </collectionViewFlowLayout>
-                                                    <cells/>
-                                                </collectionView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="S9O-nH-iYd" secondAttribute="trailing" id="3dd-1o-dqM"/>
-                                                <constraint firstAttribute="trailing" secondItem="yub-4x-0PB" secondAttribute="trailing" constant="15" id="4Tx-Vm-rg8"/>
-                                                <constraint firstAttribute="bottom" secondItem="S9O-nH-iYd" secondAttribute="bottom" id="5Oi-YV-72a"/>
-                                                <constraint firstItem="S9O-nH-iYd" firstAttribute="top" secondItem="yub-4x-0PB" secondAttribute="bottom" constant="10" id="G7l-Lv-KDu"/>
-                                                <constraint firstItem="yub-4x-0PB" firstAttribute="top" secondItem="ZPf-NI-2WM" secondAttribute="topMargin" id="noj-CQ-RZp"/>
-                                                <constraint firstItem="S9O-nH-iYd" firstAttribute="leading" secondItem="ZPf-NI-2WM" secondAttribute="leading" id="w3k-dS-cuN"/>
-                                                <constraint firstItem="yub-4x-0PB" firstAttribute="leading" secondItem="ZPf-NI-2WM" secondAttribute="leading" constant="20" id="zid-ci-49y"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="categoryTitleLabel" destination="yub-4x-0PB" id="Mc2-Lb-J0a"/>
-                                            <outlet property="moviesCollectionView" destination="S9O-nH-iYd" id="jdr-Yj-uHU"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TVShowsTableViewCell" rowHeight="232" id="6t7-5G-FTk" userLabel="TVShowsTableViewCell" customClass="TVShowsTableViewCell" customModule="Feshar" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="260" width="414" height="232"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6t7-5G-FTk" id="4IB-Xz-y2D">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="232"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZbQ-Dh-jkz">
-                                                    <rect key="frame" x="20" y="11" width="379" height="18.5"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wwj-tW-oXX">
-                                                    <rect key="frame" x="0.0" y="39.5" width="414" height="192.5"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5nw-kH-zme">
-                                                        <size key="itemSize" width="143" height="173"/>
-                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    </collectionViewFlowLayout>
-                                                    <cells/>
-                                                </collectionView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="wwj-tW-oXX" secondAttribute="bottom" id="6yi-jU-U2i"/>
-                                                <constraint firstAttribute="trailing" secondItem="wwj-tW-oXX" secondAttribute="trailing" id="9zm-kM-OgK"/>
-                                                <constraint firstItem="wwj-tW-oXX" firstAttribute="top" secondItem="ZbQ-Dh-jkz" secondAttribute="bottom" constant="10" id="JIK-D7-5L9"/>
-                                                <constraint firstAttribute="trailing" secondItem="ZbQ-Dh-jkz" secondAttribute="trailing" constant="15" id="bss-YC-oYL"/>
-                                                <constraint firstItem="wwj-tW-oXX" firstAttribute="leading" secondItem="4IB-Xz-y2D" secondAttribute="leading" id="mNy-dL-uXp"/>
-                                                <constraint firstItem="ZbQ-Dh-jkz" firstAttribute="leading" secondItem="4IB-Xz-y2D" secondAttribute="leading" constant="20" id="qh1-t1-1KI"/>
-                                                <constraint firstItem="ZbQ-Dh-jkz" firstAttribute="top" secondItem="4IB-Xz-y2D" secondAttribute="topMargin" id="rdb-z1-qUr"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="categoryTitleLabel" destination="ZbQ-Dh-jkz" id="idQ-Pb-G70"/>
-                                            <outlet property="tvShowsCollectionView" destination="wwj-tW-oXX" id="i8P-eE-BoA"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gM0-1b-lqU">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Utd-WQ-cy6" secondAttribute="bottom" id="4hF-us-MdV"/>
-                            <constraint firstItem="Utd-WQ-cy6" firstAttribute="leading" secondItem="VBs-7W-d88" secondAttribute="leading" id="oKN-Bh-QwV"/>
-                            <constraint firstItem="Utd-WQ-cy6" firstAttribute="trailing" secondItem="VBs-7W-d88" secondAttribute="trailing" id="sbF-BP-glQ"/>
-                            <constraint firstItem="Utd-WQ-cy6" firstAttribute="top" secondItem="VBs-7W-d88" secondAttribute="top" id="xN2-f8-Y7V"/>
+                            <constraint firstItem="TBB-ky-zMz" firstAttribute="trailing" secondItem="VBs-7W-d88" secondAttribute="trailing" id="94L-ac-WI9"/>
+                            <constraint firstItem="TBB-ky-zMz" firstAttribute="top" secondItem="dzC-5G-d6R" secondAttribute="bottom" id="9kS-LM-x9m"/>
+                            <constraint firstItem="dzC-5G-d6R" firstAttribute="top" secondItem="VBs-7W-d88" secondAttribute="top" id="F7d-wm-G8M"/>
+                            <constraint firstItem="VBs-7W-d88" firstAttribute="trailing" secondItem="dzC-5G-d6R" secondAttribute="trailing" constant="20" id="RN8-EF-aiq"/>
+                            <constraint firstItem="dzC-5G-d6R" firstAttribute="leading" secondItem="VBs-7W-d88" secondAttribute="leading" constant="20" id="Vpv-kD-lfG"/>
+                            <constraint firstItem="TBB-ky-zMz" firstAttribute="leading" secondItem="VBs-7W-d88" secondAttribute="leading" id="coY-pK-O6R"/>
+                            <constraint firstItem="TBB-ky-zMz" firstAttribute="bottom" secondItem="VBs-7W-d88" secondAttribute="bottom" id="yqx-N9-CAh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VBs-7W-d88"/>
                     </view>
                     <navigationItem key="navigationItem" id="rtA-cC-Wze"/>
                     <connections>
-                        <outlet property="featuredTableView" destination="Utd-WQ-cy6" id="pkJ-mI-cBQ"/>
+                        <outlet property="featuredCollectionView" destination="TBB-ky-zMz" id="6xl-TW-1F3"/>
+                        <outlet property="segmentedControl" destination="dzC-5G-d6R" id="ndy-u1-hn6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nhT-38-SD6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -865,58 +805,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mhF-sM-EaD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4105.7971014492759" y="703.79464285714278"/>
-        </scene>
-        <!--FeaturedVC-->
-        <scene sceneID="pjM-Bx-ymP">
-            <objects>
-                <viewController id="bLu-I2-8so" customClass="FeaturedVC" customModule="Feshar" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="o6T-OZ-jLE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="y3z-bj-gnu">
-                                <rect key="frame" x="0.0" y="83" width="414" height="813"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qpA-PN-BTD">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Xsf-FW-j8I">
-                                <rect key="frame" x="20" y="44" width="374" height="32"/>
-                                <segments>
-                                    <segment title="Movies"/>
-                                    <segment title="TV Shows"/>
-                                </segments>
-                                <color key="selectedSegmentTintColor" red="0.90980392160000001" green="0.20000000000000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="segmentedControlButtonTapped:" destination="bLu-I2-8so" eventType="valueChanged" id="Uhx-em-2FQ"/>
-                                </connections>
-                            </segmentedControl>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="1sB-DX-dXU" firstAttribute="trailing" secondItem="Xsf-FW-j8I" secondAttribute="trailing" constant="20" id="Den-kv-a2Y"/>
-                            <constraint firstItem="Xsf-FW-j8I" firstAttribute="leading" secondItem="1sB-DX-dXU" secondAttribute="leading" constant="20" id="OgU-QO-sKn"/>
-                            <constraint firstItem="y3z-bj-gnu" firstAttribute="leading" secondItem="1sB-DX-dXU" secondAttribute="leading" id="SE0-Pa-lZK"/>
-                            <constraint firstItem="y3z-bj-gnu" firstAttribute="top" secondItem="Xsf-FW-j8I" secondAttribute="bottom" constant="8" id="V5M-GQ-Jiq"/>
-                            <constraint firstAttribute="bottom" secondItem="y3z-bj-gnu" secondAttribute="bottom" id="VAf-0F-LUa"/>
-                            <constraint firstItem="y3z-bj-gnu" firstAttribute="trailing" secondItem="1sB-DX-dXU" secondAttribute="trailing" id="dem-yU-g5O"/>
-                            <constraint firstItem="Xsf-FW-j8I" firstAttribute="top" secondItem="1sB-DX-dXU" secondAttribute="top" id="jEC-ZT-zhd"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="1sB-DX-dXU"/>
-                    </view>
-                    <connections>
-                        <outlet property="featuredCollectionView" destination="y3z-bj-gnu" id="era-uP-dmj"/>
-                        <outlet property="segmentedControlLabel" destination="Xsf-FW-j8I" id="EC7-Q2-9WJ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ofJ-D4-WpE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4204.347826086957" y="1554.9107142857142"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qJY-lJ-tZg">

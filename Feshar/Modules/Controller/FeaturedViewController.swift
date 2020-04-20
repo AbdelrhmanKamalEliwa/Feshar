@@ -10,23 +10,35 @@ import UIKit
 
 class FeaturedViewController: UIViewController {
     
-    @IBOutlet weak var featuredTableView: UITableView!
-    let moviesCellIdentifier = "MoviesTableViewCell"
-    let tvShowsCellIdentifier = "TVShowsTableViewCell"
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var featuredCollectionView: UICollectionView!
+    let cellIdentifier = "MoviesCollectionViewCell"
+    var selectedSegment = 0
     var moviesArray = [MovieResults]()
     var tvShowsArray = [TVShowResults]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        featuredCollectionView.delegate = self
+        featuredCollectionView.dataSource = self
         setupCustomNavBar()
-        featuredTableView.delegate = self
-        featuredTableView.dataSource = self
+        registerCollectionView()
         getMoviesData()
         getTVShowsData()
     }
     
+    @IBAction func segmentedControlButtonTapped(_ sender: UISegmentedControl) {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            selectedSegment = 0
+            featuredCollectionView.reloadData()
+        } else if segmentedControl.selectedSegmentIndex == 1 {
+            selectedSegment = 1
+            featuredCollectionView.reloadData()
+        }
+    }
+    
     func logout() {
-        guard let validSessionId = sessionID else { return}
+        guard let validSessionId = sessionID else { return }
         LogoutNetworkManager().logout(sessionId: validSessionId) { (response: LogoutResponse?) in
             guard let safeResponse = response else { return }
             if safeResponse.success {
@@ -75,37 +87,51 @@ extension FeaturedViewController {
 
 
 
-//MARK: - Setup Table View
-extension FeaturedViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoriesOfFeaturedScreen.count
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if indexPath.row == 0 {
-            let cell = featuredTableView.dequeueReusableCell(withIdentifier: moviesCellIdentifier, for: indexPath) as! MoviesTableViewCell
-            cell.updateCategory(movieNumber: moviesArray)
-            cell.categoryTitleLabel.text = categoriesOfFeaturedScreen[indexPath.row]
-            return cell
-            
+//MARK: - Setup Collection View
+extension FeaturedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if featuredCollectionView.panGestureRecognizer.translation(in: self.view).y < 0 {
+            self.segmentedControl.isHidden = true
         } else {
-            let cell = featuredTableView.dequeueReusableCell(withIdentifier: tvShowsCellIdentifier, for: indexPath) as! TVShowsTableViewCell
-            cell.updateCategory(movieNumber: tvShowsArray)
-            cell.categoryTitleLabel.text = categoriesOfFeaturedScreen[indexPath.row]
-            return cell
+        self.segmentedControl.isHidden = false
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if selectedSegment == 0 { return moviesArray.count }
+        return tvShowsArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = featuredCollectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! MoviesCollectionViewCell
+        if selectedSegment == 0 {
+            cell.displayMovieData(movieImage: EndPointRouter.getMoviePoster(posterPath: moviesArray[indexPath.item].poster))
+        } else {
+            cell.displayMovieData(movieImage: EndPointRouter.getMoviePoster(posterPath: tvShowsArray[indexPath.item].poster!))
         }
         
+        return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 232
+    func registerCollectionView() {
+        featuredCollectionView.register(UINib.init(nibName: cellIdentifier, bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = featuredCollectionView.frame.width / 3 - 1
+        return CGSize(width: width, height: width + 100)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        1.0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        1.0
+    }
+    
 }
+
 
 
 //MARK: - Networking
@@ -119,7 +145,7 @@ extension FeaturedViewController {
             case .success(let data):
                 self.moviesArray = data.results
                 DispatchQueue.main.async {
-                    self.featuredTableView.reloadData()
+                    self.featuredCollectionView.reloadData()
                 }
             case .failure(let error):
                 if let error = error {
@@ -145,7 +171,7 @@ extension FeaturedViewController {
             case .success(let data):
                 self.tvShowsArray = data.results
                 DispatchQueue.main.async {
-                    self.featuredTableView.reloadData()
+                    self.featuredCollectionView.reloadData()
                 }
             case .failure(let error):
                 if let error = error {

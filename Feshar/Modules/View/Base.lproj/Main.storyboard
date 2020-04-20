@@ -246,7 +246,6 @@
                                 </variation>
                                 <connections>
                                     <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TvD-ao-Tat"/>
-                                    <segue destination="jSO-AR-bWz" kind="show" identifier="goToHomeVC" id="PfK-1t-Ep3"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="ISN-Q7-YUE">
@@ -507,6 +506,7 @@
                         <outlet property="loginButton" destination="d11-gU-JuE" id="20u-1N-dOQ"/>
                         <outlet property="passwordTextField" destination="FpI-2c-pFm" id="7Pv-cz-Uvz"/>
                         <outlet property="usernameTextField" destination="Pbw-AU-5yO" id="5ew-Fz-atq"/>
+                        <segue destination="jSO-AR-bWz" kind="show" identifier="goToHomeVC" id="ito-4K-6Lp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

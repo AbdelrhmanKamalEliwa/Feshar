@@ -20,12 +20,12 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var castTableView: UITableView!
     @IBOutlet weak var moviePosterCollectionView: UICollectionView!
     
-    let moviePosterCellIdentifier = "MoviePostersCell"
-    let castCellIdentifier = "CastCell"
+    fileprivate let moviePosterCellIdentifier = "MoviePostersCell"
+    fileprivate let castCellIdentifier = "CastCell"
     
-    var movieDetailsScreenObject: MovieDetailsScreen?
+    fileprivate var movieDetailsScreenObject: MovieDetailsScreen?
     var movieIdPassed: Int?
-    var moviePosters = [String]()
+    fileprivate var moviePosters = [String]()
     
     
     override func viewDidLoad() {

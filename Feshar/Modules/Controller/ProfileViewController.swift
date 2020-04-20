@@ -13,7 +13,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userProfileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userDataTabelView: UITableView!
-    let profileCellIdentifier = "ProfileInfoTableViewCell"
+    fileprivate let profileCellIdentifier = "ProfileInfoTableViewCell"
     
     
     override func viewDidLoad() {

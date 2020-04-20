@@ -13,13 +13,12 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var movieTableView: UITableView!
     @IBOutlet weak var movieTypeCollectionView: UICollectionView!
-    let movieTypeIdentifier = "MovieTypesCollectionViewCell"
-    let movieCellIdentifier = "MovieTableViewCell"
-    let searchBarIsHidden = true
-    var movieHomeScreenArray = [MovieResults]()
-    var allMoviesArray = [MovieResults]()
-    var filteredMovies: [SearchMovieResults] = []
-    var searching = false
+    fileprivate let movieTypeIdentifier = "MovieTypesCollectionViewCell"
+    fileprivate let movieCellIdentifier = "MovieTableViewCell"
+    fileprivate var movieHomeScreenArray = [MovieResults]()
+    fileprivate var allMoviesArray = [MovieResults]()
+    fileprivate var filteredMovies: [SearchMovieResults] = []
+    fileprivate var searching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -11,8 +11,8 @@ import UIKit
 class WatchlistViewController: UIViewController {
     
     @IBOutlet weak var watchlistTableView: UITableView!
-    let watchlistCellIdentifier = "WatchlistTableViewCell"
-    var watchlistMoviesArray = [WatchlistMovieResults]()
+    fileprivate let watchlistCellIdentifier = "WatchlistTableViewCell"
+    fileprivate var watchlistMoviesArray = [WatchlistMovieResults]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -12,10 +12,10 @@ class FeaturedViewController: UIViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var featuredCollectionView: UICollectionView!
-    let cellIdentifier = "MoviesCollectionViewCell"
-    var selectedSegment = 0
-    var moviesArray = [MovieResults]()
-    var tvShowsArray = [TVShowResults]()
+    fileprivate let cellIdentifier = "MoviesCollectionViewCell"
+    fileprivate var selectedSegment = 0
+    fileprivate var moviesArray = [MovieResults]()
+    fileprivate var tvShowsArray = [TVShowResults]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

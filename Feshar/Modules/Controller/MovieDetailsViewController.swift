@@ -16,18 +16,16 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var movieNameDetails: UILabel!
     @IBOutlet weak var movieRateLabel: UILabel!
     @IBOutlet weak var movieDescriptionLabel: UILabel!
-    
     @IBOutlet weak var castTableView: UITableView!
     @IBOutlet weak var moviePosterCollectionView: UICollectionView!
-    
     fileprivate let moviePosterCellIdentifier = "MoviePostersCell"
     fileprivate let castCellIdentifier = "CastCell"
-    
     fileprivate var movieDetailsScreenObject: MovieDetailsScreen?
     var movieIdPassed: Int?
-    fileprivate var moviePosters = [String]()
+    fileprivate var details = ""
+    fileprivate var moviePosters = [Posters]()
     fileprivate var movieCredits = [Cast]()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCustomNavBar()
@@ -36,6 +34,7 @@ class MovieDetailsViewController: UIViewController {
         registerTableView()
         fetchData()
         fetchMovieCredits()
+        fetchMoviePosters()
         //        castTableView.rowHeight = UITableView.automaticDimension
         //        castTableView.estimatedRowHeight = 600
     }
@@ -73,11 +72,14 @@ class MovieDetailsViewController: UIViewController {
     }
     
     func displayPassedData() {
+        for genre in movieDetailsScreenObject!.genres {
+            details = details + genre.name + " | "
+        }
+        details.removeLast(3)
         movieNameLabel.text = movieDetailsScreenObject!.title
-        movieNameDetails.text = movieDetailsScreenObject!.title
+        movieNameDetails.text = details
         movieRateLabel.text = String(movieDetailsScreenObject!.imdbRate)
         movieDescriptionLabel.text = movieDetailsScreenObject!.description
-        moviePosters = [EndPointRouter.getMoviePoster(posterPath: movieDetailsScreenObject!.poster)]
     }
     
     func setupDelegateAndDataSource() {
@@ -125,10 +127,29 @@ extension MovieDetailsViewController {
         }
     }
     
+    func fetchMoviePosters() {
+        guard let safeMovieId = movieIdPassed else { return }
+        let networkManager = NetworkManager()
+        let _ = networkManager.request(url: EndPointRouter.getAllPostersMovie(movieId: String(safeMovieId)), httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<MoviePostersModel>) in
+            switch result {
+            case .success(let data):
+                self.moviePosters = data.posters
+                DispatchQueue.main.async {
+                    self.moviePosterCollectionView.reloadData()
+                }
+            case .failure(let error):
+                if let error = error { print(error) }
+            case .decodingFailure(let error):
+                if let error = error { print(error) }
+            case .badRequest(let error):
+                if let error = error { print(error) }
+            }
+        }
+    }
+    
     func fetchMovieCredits() {
         guard let safeMovieId = movieIdPassed else { return }
         let networkManager = NetworkManager()
-        print(EndPointRouter.getMovieCredits(movieId: String(safeMovieId)))
         let _ = networkManager.request(url: EndPointRouter.getMovieCredits(movieId: String(safeMovieId)), httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<MovieCredits>) in
             switch result {
             case .success(let data):
@@ -186,7 +207,7 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = moviePosterCollectionView.dequeueReusableCell(withReuseIdentifier: moviePosterCellIdentifier, for: indexPath) as! MoviePostersCell
-        cell.displayMoviePosters(moviePoster: moviePosters[indexPath.item])
+        cell.displayMoviePosters(moviePoster: EndPointRouter.getMoviePoster(posterPath: moviePosters[indexPath.item].posterPath ?? ""))
         return cell
     }
     

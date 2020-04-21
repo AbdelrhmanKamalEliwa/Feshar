@@ -14,6 +14,7 @@ struct MovieDetailsScreen: Codable {
     let imdbRate: Double
     let description: String
     let poster: String
+    let genres: [Genres]
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -21,5 +22,10 @@ struct MovieDetailsScreen: Codable {
         case imdbRate = "vote_average"
         case description = "overview"
         case poster = "poster_path"
+        case genres
     }
+}
+
+struct Genres: Codable {
+    let name: String
 }

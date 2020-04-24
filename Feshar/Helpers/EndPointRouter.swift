@@ -55,6 +55,10 @@ struct EndPointRouter {
         return URL(string: APIService.baseURL() + "/genre/movie/list?api_key=" + APIService.apiKey())!
     }
     
+    static func getAccountInfo(sessionId: String) -> URL {
+        return URL(string: APIService.baseURL() + "/account?api_key=" + APIService.apiKey() + "&session_id=" + sessionId)!
+    }
+    
     static var createRequestToken: URL {
         return URL(string: APIService.baseURL() + "/authentication/token/new?api_key=" + APIService.apiKey())!
     }

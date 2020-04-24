@@ -9,25 +9,17 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
-    @IBOutlet weak var userProfileImageView: UIImageView!
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var userDataTabelView: UITableView!
+    @IBOutlet private weak var userProfileImageView: UIImageView!
+    @IBOutlet private weak var usernameLabel: UILabel!
+    @IBOutlet private weak var userDataTabelView: UITableView!
     fileprivate let profileCellIdentifier = "ProfileInfoTableViewCell"
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegateAndDataSource()
         registerTableView()
-        displayUsernameLoggedIn()
         setupCustomNavBar()
-    }
-    
-    func displayUsernameLoggedIn() {
-        if let userName = userName {
-            usernameLabel.text = userName
-        }
+        getUserInfo()
     }
     
     func setupDelegateAndDataSource() {
@@ -40,7 +32,7 @@ class ProfileViewController: UIViewController {
     }
     
     func logout() {
-        guard let validSessionId = sessionID else { return}
+        guard let validSessionId = sessionID else { return }
         LogoutNetworkManager().logout(sessionId: validSessionId) { (response: LogoutResponse?) in
             guard let safeResponse = response else { return }
             if safeResponse.success {
@@ -110,6 +102,33 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
-    
+}
+
+
+//MARK: - Networking
+extension ProfileViewController {
+    func getUserInfo() {
+        guard let sessionId = sessionID else { return }
+        let networkManager = NetworkManager()
+        let _ = networkManager.request(url: EndPointRouter.getAccountInfo(sessionId: sessionId), httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<AccountInfo>) in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    self.usernameLabel.text = data.username
+                }
+            case .failure(let error):
+                if let error = error {
+                    print(error)
+                }
+            case .decodingFailure(let error):
+                if let error = error {
+                    print(error)
+                }
+            case .badRequest(let error):
+                if let error = error {
+                    print(error)
+                }
+            }
+        }
+    }
 }

@@ -9,12 +9,11 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var checkPasswordIcon: UIImageView!
-    @IBOutlet weak var checkPasswordLabel: UILabel!
+    @IBOutlet private weak var usernameTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var loginButton: UIButton!
+    @IBOutlet private weak var checkPasswordIcon: UIImageView!
+    @IBOutlet private weak var checkPasswordLabel: UILabel!
     fileprivate let segueID = "goToHomeVC"
     fileprivate var safeUsername = ""
     fileprivate var safePassword = ""
@@ -28,10 +27,6 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonTapped(_ sender: Any) {
         createLoginRequest()
-    }
-    
-    func usernameDataToBePassed() {
-        userName = usernameTextField.text
     }
 }
 

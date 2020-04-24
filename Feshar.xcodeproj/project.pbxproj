@@ -55,6 +55,7 @@
 		F4F249AC2432A24E007ED49A /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F249AA2432A24E007ED49A /* MovieTableViewCell.swift */; };
 		F4F249AD2432A24E007ED49A /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4F249AB2432A24E007ED49A /* MovieTableViewCell.xib */; };
 		F4F249AF2432A95D007ED49A /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F249AE2432A95D007ED49A /* MovieModel.swift */; };
+		F4F8098724530D1800543E83 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F8098624530D1800543E83 /* AccountInfo.swift */; };
 		F4F94473243C9F9700B88582 /* APIEnvironmentPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F94472243C9F9700B88582 /* APIEnvironmentPath.swift */; };
 		F4F94475243C9FAA00B88582 /* EndPointRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F94474243C9FAA00B88582 /* EndPointRouter.swift */; };
 		F4F94479243C9FDE00B88582 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F94478243C9FDE00B88582 /* NetworkManager.swift */; };
@@ -119,6 +120,7 @@
 		F4F249AA2432A24E007ED49A /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		F4F249AB2432A24E007ED49A /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
 		F4F249AE2432A95D007ED49A /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		F4F8098624530D1800543E83 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		F4F94472243C9F9700B88582 /* APIEnvironmentPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironmentPath.swift; sourceTree = "<group>"; };
 		F4F94474243C9FAA00B88582 /* EndPointRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointRouter.swift; sourceTree = "<group>"; };
 		F4F94478243C9FDE00B88582 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */,
+				F4F8098624530D1800543E83 /* AccountInfo.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				F4EF53FC2432CC1400598B02 /* WatchlistViewController.swift in Sources */,
 				F4743035244175860016A43A /* AddToWatchlistResponse.swift in Sources */,
 				F4FF02F4243DE35100C20FC1 /* LoginRequest.swift in Sources */,
+				F4F8098724530D1800543E83 /* AccountInfo.swift in Sources */,
 				F4743033244173E60016A43A /* AddToWatchlistRequestModel.swift in Sources */,
 				F43A6230243ED41500E684A5 /* SessionResponse.swift in Sources */,
 				F4ED3F56242EA267000190DE /* Enums.swift in Sources */,

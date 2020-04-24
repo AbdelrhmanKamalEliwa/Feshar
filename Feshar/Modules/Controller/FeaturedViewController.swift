@@ -10,8 +10,9 @@ import UIKit
 
 class FeaturedViewController: UIViewController {
     
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var featuredCollectionView: UICollectionView!
+    @IBOutlet private weak var featuredCollectionViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var segmentedControl: UISegmentedControl!
+    @IBOutlet private weak var featuredCollectionView: UICollectionView!
     fileprivate let cellIdentifier = "MoviesCollectionViewCell"
     fileprivate var selectedSegment = 0
     fileprivate var moviesArray = [MovieResults]()
@@ -92,8 +93,10 @@ extension FeaturedViewController: UICollectionViewDelegate, UICollectionViewData
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if featuredCollectionView.panGestureRecognizer.translation(in: self.view).y < 0 {
             self.segmentedControl.isHidden = true
+            featuredCollectionViewTopConstraint.constant = 0
         } else {
-        self.segmentedControl.isHidden = false
+            self.segmentedControl.isHidden = false
+            featuredCollectionViewTopConstraint.constant = 32
         }
     }
     

@@ -10,9 +10,10 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var movieTableView: UITableView!
-    @IBOutlet weak var movieTypeCollectionView: UICollectionView!
+    @IBOutlet private weak var movieTableViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var movieTableView: UITableView!
+    @IBOutlet private weak var movieTypeCollectionView: UICollectionView!
     fileprivate let movieTypeIdentifier = "MovieTypesCollectionViewCell"
     fileprivate let movieCellIdentifier = "MovieTableViewCell"
     fileprivate var movieHomeScreenArray = [MovieResults]()
@@ -158,6 +159,17 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 //MARK: - Setup Table View
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if movieTableView.panGestureRecognizer.translation(in: self.view).y < 0 {
+            self.searchBar.isHidden = true
+            self.movieTypeCollectionView.isHidden = true
+            movieTableViewTopConstraint.constant = 0
+        } else {
+            self.searchBar.isHidden = false
+            self.movieTypeCollectionView.isHidden = false
+            movieTableViewTopConstraint.constant = 136
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching {

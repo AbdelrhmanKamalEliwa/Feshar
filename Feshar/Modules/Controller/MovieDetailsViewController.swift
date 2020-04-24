@@ -10,14 +10,14 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
     
-    @IBOutlet weak var movieTableViewHeightConstrain: NSLayoutConstraint!
-    @IBOutlet weak var watchListButton: UIButton!
-    @IBOutlet weak var movieNameLabel: UILabel!
-    @IBOutlet weak var movieNameDetails: UILabel!
-    @IBOutlet weak var movieRateLabel: UILabel!
-    @IBOutlet weak var movieDescriptionLabel: UILabel!
-    @IBOutlet weak var castTableView: UITableView!
-    @IBOutlet weak var moviePosterCollectionView: UICollectionView!
+    @IBOutlet private weak var movieTableViewHeightConstrain: NSLayoutConstraint!
+    @IBOutlet private weak var watchListButton: UIButton!
+    @IBOutlet private weak var movieNameLabel: UILabel!
+    @IBOutlet private weak var movieNameDetails: UILabel!
+    @IBOutlet private weak var movieRateLabel: UILabel!
+    @IBOutlet private weak var movieDescriptionLabel: UILabel!
+    @IBOutlet private weak var castTableView: UITableView!
+    @IBOutlet private weak var moviePosterCollectionView: UICollectionView!
     fileprivate let moviePosterCellIdentifier = "MoviePostersCell"
     fileprivate let castCellIdentifier = "CastCell"
     fileprivate var movieDetailsScreenObject: MovieDetailsScreen?

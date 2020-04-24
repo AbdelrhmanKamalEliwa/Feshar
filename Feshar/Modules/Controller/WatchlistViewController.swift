@@ -10,7 +10,7 @@ import UIKit
 
 class WatchlistViewController: UIViewController {
     
-    @IBOutlet weak var watchlistTableView: UITableView!
+    @IBOutlet private weak var watchlistTableView: UITableView!
     fileprivate let watchlistCellIdentifier = "WatchlistTableViewCell"
     fileprivate var watchlistMoviesArray = [WatchlistMovieResults]()
     

@@ -300,7 +300,6 @@ extension HomeViewController {
                 self.allMoviesArray = data.results
                 DispatchQueue.main.async {
                     self.movieTableView.reloadData()
-                    //                    allMovies = data.results
                 }
             case .failure(let error):
                 if let error = error {

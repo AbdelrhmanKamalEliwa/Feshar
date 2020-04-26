@@ -69,6 +69,7 @@ extension WatchlistViewController {
     }
     
     @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!) {
+        ToastManager.shared.showToast(message: "Seccess", view: self.view)
         print("myRightSideBarButtonItemTapped")
     }
     

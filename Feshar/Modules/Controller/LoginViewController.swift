@@ -35,14 +35,12 @@ class LoginViewController: UIViewController {
 //MARK: - Authentication
 extension LoginViewController {
     func createLoginRequest() {
-        fetchAccessToken { (data: RequestTokenResponse?) in
+        fetchAccessToken { [weak self] (data: RequestTokenResponse?) in
             guard let data = data else { return }
-            self.fetchLogin(requestToken: data.requestToken) { [weak self] (response: LoginResponse?) in
+            self?.fetchLogin(requestToken: data.requestToken) { [weak self] (response: LoginResponse?) in
                 guard let response = response else { return }
-                guard let success = response.success else { return }
-                if success {
-                    print("hi")
-                    DispatchQueue.main.async {
+                if response.success != nil {
+                    DispatchQueue.main.async { [weak self] in
                         self?.performSegue(withIdentifier: self!.segueID, sender: self)
                     }
                     guard let resquestToken = response.requestToken else { return }
@@ -53,9 +51,11 @@ extension LoginViewController {
                             print(sessionID!)
                         }
                     }
-                } else {
-                    print("no hi")
-                    self?.loginAuthenticationAlert()
+                } else if response.errorMsg != nil {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.passwordPatternResult()
+                        self?.loginAuthenticationAlert()
+                    }
                 }
                 
             }
@@ -70,13 +70,11 @@ extension LoginViewController {
         return true
     }
     
-    func passwordPatternResult() -> Bool {
+    func passwordPatternResult() {
         if checkPasswordPattern() {
             displayUIPasswordPatternError(caseType: .success)
-            return true
         } else {
             displayUIPasswordPatternError(caseType: .failure)
-            return false
         }
     }
     
@@ -168,14 +166,14 @@ extension LoginViewController {
     
     
     func fetchLogin(requestToken: String, completion: @escaping(_ response: LoginResponse?) -> ()) {
-        DispatchQueue.main.sync {
-            if checkForEmptyTextField() {
-                guard passwordPatternResult() else { return }
-                self.safeUsername = self.usernameTextField.text!
-                self.safePassword = self.passwordTextField.text!
+        DispatchQueue.main.async { [weak self] in
+            
+            if (self?.checkForEmptyTextField())! {
+                self?.safeUsername = self!.usernameTextField.text!
+                self?.safePassword = self!.passwordTextField.text!
                 
                 let networkManager = NetworkManager()
-                let postData = try! JSONEncoder().encode(LoginRequest(username: safeUsername, password: safePassword, requestToken: requestToken))
+                let postData = try! JSONEncoder().encode(LoginRequest(username: self!.safeUsername, password: self!.safePassword, requestToken: requestToken))
                 
                 let _ = networkManager.request(url: EndPointRouter.createLoginAuthentication, httpMethod: .post, parameters: postData, headers: ["Content-Type":"application/json"]) { (result: APIResult<LoginResponse>) in
                     switch result {
@@ -195,9 +193,10 @@ extension LoginViewController {
                         }
                     }
                 }
+            } else {
+                self?.emptyTextFieldAlert()
             }
             
-            emptyTextFieldAlert()
         }
         
     }

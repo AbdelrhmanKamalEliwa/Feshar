@@ -579,7 +579,7 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="1207"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3xB-at-bpa" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1307.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1296"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YA9-Zo-ZUd">
                                                 <rect key="frame" x="20" y="0.0" width="374" height="391"/>
@@ -596,31 +596,31 @@
                                                 <cells/>
                                             </collectionView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="4iX-gW-7PU" userLabel="Movie Details Stack View">
-                                                <rect key="frame" x="77" y="457" width="260" height="91.5"/>
+                                                <rect key="frame" x="70" y="457" width="274" height="80"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star Wars: The Last Jedi (3D)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYq-WI-ZnH">
-                                                        <rect key="frame" x="0.0" y="0.0" width="260" height="23.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="274" height="18.5"/>
                                                         <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action | Science fiction - 2h 33m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e33-hn-18k">
-                                                        <rect key="frame" x="43" y="40.5" width="174.5" height="14"/>
+                                                        <rect key="frame" x="41" y="35.5" width="192.5" height="11.5"/>
                                                         <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="12"/>
                                                         <color key="textColor" red="0.65098039215686276" green="0.65098039215686276" blue="0.65098039215686276" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="S59-uk-tlG" userLabel="IMDB Stack View">
-                                                        <rect key="frame" x="85.5" y="71.5" width="89" height="20"/>
+                                                        <rect key="frame" x="91.5" y="64" width="91.5" height="16"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IMDB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvN-7p-HFW">
-                                                                <rect key="frame" x="0.0" y="0.0" width="43" height="20"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="42.5" height="16"/>
                                                                 <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="17"/>
                                                                 <color key="textColor" red="0.65098039215686276" green="0.65098039215686276" blue="0.65098039215686276" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jmq-OZ-uCu">
-                                                                <rect key="frame" x="65" y="0.0" width="24" height="20"/>
+                                                                <rect key="frame" x="64.5" y="0.0" width="27" height="16"/>
                                                                 <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="17"/>
                                                                 <color key="textColor" red="0.94901960784313721" green="0.67843137254901964" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -630,7 +630,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="C6f-uu-61J">
-                                                <rect key="frame" x="10" y="588.5" width="394" height="182.5"/>
+                                                <rect key="frame" x="10" y="577" width="394" height="182.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXG-iB-grz">
                                                         <rect key="frame" x="0.0" y="0.0" width="149" height="31.5"/>
@@ -648,7 +648,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="uVc-cG-B2g">
-                                                <rect key="frame" x="10" y="827" width="394" height="306.5"/>
+                                                <rect key="frame" x="10" y="815.5" width="394" height="306.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cast" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WfM-DL-R3l">
                                                         <rect key="frame" x="0.0" y="0.0" width="59" height="31.5"/>
@@ -670,7 +670,7 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcS-LP-tGt">
-                                                <rect key="frame" x="65" y="1189.5" width="284" height="48"/>
+                                                <rect key="frame" x="65" y="1178" width="284" height="48"/>
                                                 <color key="backgroundColor" red="0.8980392157" green="0.21960784310000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="y6P-0i-LxL"/>
@@ -769,7 +769,7 @@
                                     <constraint firstAttribute="width" constant="108" id="JVG-Qz-91s"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mohamed Hisham" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2C-lT-gNf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2C-lT-gNf">
                                 <rect key="frame" x="68" y="231" width="278" height="36"/>
                                 <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="30"/>
                                 <nil key="textColor"/>
@@ -901,22 +901,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="FiA-2V-jx1">
-                                <rect key="frame" x="24" y="54" width="158.5" height="35"/>
+                                <rect key="frame" x="24" y="54" width="158.5" height="36"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watchlist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NsB-D4-a7n">
-                                        <rect key="frame" x="0.0" y="0.0" width="123" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="123" height="36"/>
                                         <fontDescription key="fontDescription" name="SFCompactDisplay-Medium" family="SF Compact Display" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wand.and.stars.inverse" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LaB-CU-X3g">
-                                        <rect key="frame" x="137" y="0.5" width="21.5" height="34"/>
+                                        <rect key="frame" x="137" y="0.5" width="21.5" height="35"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="167" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YOq-az-8ko" userLabel="Watchlist Table View">
-                                <rect key="frame" x="0.0" y="97" width="414" height="799"/>
+                                <rect key="frame" x="0.0" y="98" width="414" height="798"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>

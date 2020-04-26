@@ -12,6 +12,8 @@ class MovieTypesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var movieTypeTitleLabel: UILabel!
     
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

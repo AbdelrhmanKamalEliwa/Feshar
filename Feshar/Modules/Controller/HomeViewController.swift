@@ -44,35 +44,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-    
-    func setupDelegateAndDataSource() {
-        movieTypeCollectionView.delegate = self
-        movieTypeCollectionView.dataSource = self
-        movieTableView.delegate = self
-        movieTableView.dataSource = self
-    }
-    
-    func registerCollectionView() {
-        movieTypeCollectionView.register(UINib.init(nibName: movieTypeIdentifier, bundle: nil), forCellWithReuseIdentifier: movieTypeIdentifier)
-    }
-    
-    func registerTableView() {
-        movieTableView.register(UINib.init(nibName: movieCellIdentifier, bundle: nil), forCellReuseIdentifier: movieCellIdentifier)
-    }
-    
-    func logout() {
-        guard let validSessionId = sessionID else { return }
-        LogoutNetworkManager().logout(sessionId: validSessionId) { (response: LogoutResponse?) in
-            guard let safeResponse = response else { return }
-            if safeResponse.success {
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                    sessionID = nil
-                }
-            }
-        }
-    }
-    
     func goToWatchlistViewController() {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let watchlistViewController = storyboard.instantiateViewController(identifier: "WatchlistViewController") as! WatchlistViewController
@@ -143,6 +114,16 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         selectedCell?.movieTypeTitleLabel.textColor = #colorLiteral(red: 0.2392156863, green: 0.2392156863, blue: 0.2392156863, alpha: 1)
     }
     
+    func registerCollectionView() {
+        movieTypeCollectionView.register(UINib.init(nibName: movieTypeIdentifier, bundle: nil), forCellWithReuseIdentifier: movieTypeIdentifier)
+    }
+    
+    func setupDelegateAndDataSource() {
+        movieTypeCollectionView.delegate = self
+        movieTypeCollectionView.dataSource = self
+        movieTableView.delegate = self
+        movieTableView.dataSource = self
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
@@ -204,6 +185,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(movieDetailsViewController , animated: true)
     }
     
+    func registerTableView() {
+        movieTableView.register(UINib.init(nibName: movieCellIdentifier, bundle: nil), forCellReuseIdentifier: movieCellIdentifier)
+    }
     
     //    swipe to left
     func tableView(_ tableView: UITableView,
@@ -352,6 +336,19 @@ extension HomeViewController {
             case .badRequest(let error):
                 if let error = error {
                     print(error)
+                }
+            }
+        }
+    }
+    
+    func logout() {
+        guard let validSessionId = sessionID else { return }
+        LogoutNetworkManager().logout(sessionId: validSessionId) { [weak self] (response: LogoutResponse?) in
+            guard let safeResponse = response else { return }
+            if safeResponse.success {
+                DispatchQueue.main.async { [weak self] in
+                    self?.dismiss(animated: true, completion: nil)
+                    sessionID = nil
                 }
             }
         }

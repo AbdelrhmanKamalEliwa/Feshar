@@ -22,28 +22,6 @@ class ProfileViewController: UIViewController {
         getUserInfo()
     }
     
-    func setupDelegateAndDataSource() {
-        userDataTabelView.delegate = self
-        userDataTabelView.dataSource = self
-    }
-    
-    func registerTableView() {
-        userDataTabelView.register(UINib.init(nibName: profileCellIdentifier, bundle: nil), forCellReuseIdentifier: profileCellIdentifier)
-    }
-    
-    func logout() {
-        guard let validSessionId = sessionID else { return }
-        LogoutNetworkManager().logout(sessionId: validSessionId) { (response: LogoutResponse?) in
-            guard let safeResponse = response else { return }
-            if safeResponse.success {
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                    sessionID = nil
-                }
-            }
-        }
-    }
-    
     func goToWatchlistViewController() {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let watchlistViewController = storyboard.instantiateViewController(identifier: "WatchlistViewController") as! WatchlistViewController
@@ -102,6 +80,15 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    func setupDelegateAndDataSource() {
+        userDataTabelView.delegate = self
+        userDataTabelView.dataSource = self
+    }
+    
+    func registerTableView() {
+        userDataTabelView.register(UINib.init(nibName: profileCellIdentifier, bundle: nil), forCellReuseIdentifier: profileCellIdentifier)
+    }
 }
 
 
@@ -113,8 +100,8 @@ extension ProfileViewController {
         let _ = networkManager.request(url: EndPointRouter.getAccountInfo(sessionId: sessionId), httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<AccountInfo>) in
             switch result {
             case .success(let data):
-                DispatchQueue.main.async {
-                    self.usernameLabel.text = data.username
+                DispatchQueue.main.async { [weak self] in
+                    self?.usernameLabel.text = data.username
                 }
             case .failure(let error):
                 if let error = error {
@@ -127,6 +114,19 @@ extension ProfileViewController {
             case .badRequest(let error):
                 if let error = error {
                     print(error)
+                }
+            }
+        }
+    }
+    
+    func logout() {
+        guard let validSessionId = sessionID else { return }
+        LogoutNetworkManager().logout(sessionId: validSessionId) { (response: LogoutResponse?) in
+            guard let safeResponse = response else { return }
+            if safeResponse.success {
+                DispatchQueue.main.async { [weak self] in
+                    self?.dismiss(animated: true, completion: nil)
+                    sessionID = nil
                 }
             }
         }

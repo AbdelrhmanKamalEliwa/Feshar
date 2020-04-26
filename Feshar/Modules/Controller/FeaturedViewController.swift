@@ -38,19 +38,6 @@ class FeaturedViewController: UIViewController {
         }
     }
     
-    func logout() {
-        guard let validSessionId = sessionID else { return }
-        LogoutNetworkManager().logout(sessionId: validSessionId) { (response: LogoutResponse?) in
-            guard let safeResponse = response else { return }
-            if safeResponse.success {
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                    sessionID = nil
-                }
-            }
-        }
-    }
-    
     func goToWatchlistViewController() {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let watchlistViewController = storyboard.instantiateViewController(identifier: "WatchlistViewController") as! WatchlistViewController
@@ -142,13 +129,13 @@ extension FeaturedViewController {
     
     func getMoviesData() {
         let networkManager = NetworkManager()
-        let _ = networkManager.request(url: EndPointRouter.getMovies, httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<MovieModel>) in
+        let _ = networkManager.request(url: EndPointRouter.getMovies, httpMethod: .get, parameters: nil, headers: nil) { [weak self] (result: APIResult<MovieModel>) in
             switch result {
                 
             case .success(let data):
-                self.moviesArray = data.results
-                DispatchQueue.main.async {
-                    self.featuredCollectionView.reloadData()
+                self?.moviesArray = data.results
+                DispatchQueue.main.async { [weak self] in
+                    self?.featuredCollectionView.reloadData()
                 }
             case .failure(let error):
                 if let error = error {
@@ -168,13 +155,13 @@ extension FeaturedViewController {
     
     func getTVShowsData() {
         let networkManager = NetworkManager()
-        let _ = networkManager.request(url: EndPointRouter.getTVShows, httpMethod: .get, parameters: nil, headers: nil) { (result: APIResult<TVShowModel>) in
+        let _ = networkManager.request(url: EndPointRouter.getTVShows, httpMethod: .get, parameters: nil, headers: nil) { [weak self] (result: APIResult<TVShowModel>) in
             switch result {
                 
             case .success(let data):
-                self.tvShowsArray = data.results
-                DispatchQueue.main.async {
-                    self.featuredCollectionView.reloadData()
+                self?.tvShowsArray = data.results
+                DispatchQueue.main.async { [weak self] in
+                    self?.featuredCollectionView.reloadData()
                 }
             case .failure(let error):
                 if let error = error {
@@ -192,4 +179,16 @@ extension FeaturedViewController {
         }
     }
     
+    func logout() {
+        guard let validSessionId = sessionID else { return }
+        LogoutNetworkManager().logout(sessionId: validSessionId) { (response: LogoutResponse?) in
+            guard let safeResponse = response else { return }
+            if safeResponse.success {
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                    sessionID = nil
+                }
+            }
+        }
+    }
 }

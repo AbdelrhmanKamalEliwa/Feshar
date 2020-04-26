@@ -24,6 +24,7 @@
 		F43017BB24414C6700A4C615 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43017BA24414C6700A4C615 /* LoginResponse.swift */; };
 		F43017BD24414CBD00A4C615 /* SessionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43017BC24414CBD00A4C615 /* SessionRequest.swift */; };
 		F43A6230243ED41500E684A5 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43A622F243ED41500E684A5 /* SessionResponse.swift */; };
+		F45E129F2455862D00D7DF10 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E129E2455862D00D7DF10 /* UITextFieldExtension.swift */; };
 		F46056FF24315BCF00CCC489 /* SF-Pro-Text in Resources */ = {isa = PBXBuildFile; fileRef = F46056FE24315BCF00CCC489 /* SF-Pro-Text */; };
 		F4612E0B243580A9003C866D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4612E0A243580A9003C866D /* ProfileViewController.swift */; };
 		F4612E102437C4DA003C866D /* ProfileInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4612E0E2437C4DA003C866D /* ProfileInfoTableViewCell.swift */; };
@@ -40,7 +41,7 @@
 		F4C6BDA7244E337B00FEFF1A /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C6BDA6244E337B00FEFF1A /* PersonModel.swift */; };
 		F4C6BDAA244EC2FC00FEFF1A /* MoviePostersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C6BDA9244EC2FC00FEFF1A /* MoviePostersModel.swift */; };
 		F4E01E812449C4A8001B8D5D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E01E802449C4A8001B8D5D /* Categories.swift */; };
-		F4ED3F56242EA267000190DE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED3F55242EA267000190DE /* Enums.swift */; };
+		F4ED3F56242EA267000190DE /* ErrorCaseEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED3F55242EA267000190DE /* ErrorCaseEnum.swift */; };
 		F4ED3F5A242EB6F8000190DE /* RegisteredUserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */; };
 		F4EF53F42432C7CC00598B02 /* sf-compact-display in Resources */ = {isa = PBXBuildFile; fileRef = F4EF53F32432C7CC00598B02 /* sf-compact-display */; };
 		F4EF53F92432CBD900598B02 /* WatchlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF53F72432CBD900598B02 /* WatchlistTableViewCell.swift */; };
@@ -93,6 +94,7 @@
 		F43017BA24414C6700A4C615 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		F43017BC24414CBD00A4C615 /* SessionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRequest.swift; sourceTree = "<group>"; };
 		F43A622F243ED41500E684A5 /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
+		F45E129E2455862D00D7DF10 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		F46056FE24315BCF00CCC489 /* SF-Pro-Text */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "SF-Pro-Text"; sourceTree = "<group>"; };
 		F4612E0A243580A9003C866D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Feshar/Modules/Controller/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		F4612E0E2437C4DA003C866D /* ProfileInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -109,7 +111,7 @@
 		F4C6BDA6244E337B00FEFF1A /* PersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
 		F4C6BDA9244EC2FC00FEFF1A /* MoviePostersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePostersModel.swift; sourceTree = "<group>"; };
 		F4E01E802449C4A8001B8D5D /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
-		F4ED3F55242EA267000190DE /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		F4ED3F55242EA267000190DE /* ErrorCaseEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCaseEnum.swift; sourceTree = "<group>"; };
 		F4ED3F59242EB6F8000190DE /* RegisteredUserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredUserClass.swift; sourceTree = "<group>"; };
 		F4EF53F32432C7CC00598B02 /* sf-compact-display */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "sf-compact-display"; sourceTree = "<group>"; };
 		F4EF53F72432CBD900598B02 /* WatchlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistTableViewCell.swift; sourceTree = "<group>"; };
@@ -292,6 +294,23 @@
 			path = Configurations;
 			sourceTree = "<group>";
 		};
+		F45E129D245585DC00D7DF10 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F4AF0897242A5CDC005E558A /* UIViewExtension.swift */,
+				F45E129E2455862D00D7DF10 /* UITextFieldExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F45E12A02455864A00D7DF10 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				F4ED3F55242EA267000190DE /* ErrorCaseEnum.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		F4612E0C24358A80003C866D /* Users */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,10 +368,10 @@
 		F4AF0896242A5CAB005E558A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				F4AF0897242A5CDC005E558A /* UIViewExtension.swift */,
-				F4ED3F55242EA267000190DE /* Enums.swift */,
 				F4F94472243C9F9700B88582 /* APIEnvironmentPath.swift */,
 				F4F94474243C9FAA00B88582 /* EndPointRouter.swift */,
+				F45E12A02455864A00D7DF10 /* Enums */,
+				F45E129D245585DC00D7DF10 /* Extensions */,
 				F4F8098824531EC200543E83 /* Generic Toast */,
 			);
 			path = Helpers;
@@ -727,6 +746,7 @@
 				F4F809902453225B00543E83 /* KeyboardStateManager.swift in Sources */,
 				F474303D24427ACE0016A43A /* LogoutRequest.swift in Sources */,
 				F4612E0B243580A9003C866D /* ProfileViewController.swift in Sources */,
+				F45E129F2455862D00D7DF10 /* UITextFieldExtension.swift in Sources */,
 				F43017BD24414CBD00A4C615 /* SessionRequest.swift in Sources */,
 				F43017B9244137A400A4C615 /* WatchlistMoviesModel.swift in Sources */,
 				F4EF53FC2432CC1400598B02 /* WatchlistViewController.swift in Sources */,
@@ -735,7 +755,7 @@
 				F4F8098724530D1800543E83 /* AccountInfo.swift in Sources */,
 				F4743033244173E60016A43A /* AddToWatchlistRequestModel.swift in Sources */,
 				F43A6230243ED41500E684A5 /* SessionResponse.swift in Sources */,
-				F4ED3F56242EA267000190DE /* Enums.swift in Sources */,
+				F4ED3F56242EA267000190DE /* ErrorCaseEnum.swift in Sources */,
 				F4ED3F5A242EB6F8000190DE /* RegisteredUserClass.swift in Sources */,
 				F4F8098B24531F5200543E83 /* ToastView.swift in Sources */,
 				F474303724417DE90016A43A /* WatchlistNetworkManager.swift in Sources */,

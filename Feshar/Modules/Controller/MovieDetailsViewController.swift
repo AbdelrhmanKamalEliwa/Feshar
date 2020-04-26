@@ -57,7 +57,7 @@ class MovieDetailsViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             } else {
                 WatchlistNetworkManager().fetchAddToWatchlistMovies(mediaId: movieDetailsScreenObject!.id) { [weak self] (addToWatchlistResponse: AddToWatchlistResponse?) in
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [weak self] in
                         if let addToWatchlistResponse = addToWatchlistResponse {
                             let alert = UIAlertController(title: addToWatchlistResponse.statusMessage , message: "Movie Added to Watchlist", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -80,21 +80,6 @@ class MovieDetailsViewController: UIViewController {
         movieNameDetails.text = details
         movieRateLabel.text = String(movieDetailsScreenObject!.imdbRate)
         movieDescriptionLabel.text = movieDetailsScreenObject!.description
-    }
-    
-    func setupDelegateAndDataSource() {
-        moviePosterCollectionView.delegate = self
-        moviePosterCollectionView.dataSource = self
-        castTableView.delegate = self
-        castTableView.dataSource = self
-    }
-    
-    func registerCollectionView() {
-        moviePosterCollectionView.register(UINib.init(nibName: moviePosterCellIdentifier, bundle: nil), forCellWithReuseIdentifier: moviePosterCellIdentifier)
-    }
-    
-    func registerTableView() {
-        castTableView.register(UINib.init(nibName: castCellIdentifier, bundle: nil), forCellReuseIdentifier: castCellIdentifier)
     }
     
     func backToPreviousViewController() { self.navigationController?.popViewController(animated: true) }
@@ -201,6 +186,13 @@ extension MovieDetailsViewController {
 //MARK: - Setup Collection View
 extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
+    func setupDelegateAndDataSource() {
+        moviePosterCollectionView.delegate = self
+        moviePosterCollectionView.dataSource = self
+        castTableView.delegate = self
+        castTableView.dataSource = self
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         moviePosters.count
     }
@@ -211,7 +203,9 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
         return cell
     }
     
-    
+    func registerCollectionView() {
+        moviePosterCollectionView.register(UINib.init(nibName: moviePosterCellIdentifier, bundle: nil), forCellWithReuseIdentifier: moviePosterCellIdentifier)
+    }
     
 }
 
@@ -232,4 +226,7 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
         movieTableViewHeightConstrain.constant = CGFloat(numberOfCells * 106)
     }
     
+    func registerTableView() {
+        castTableView.register(UINib.init(nibName: castCellIdentifier, bundle: nil), forCellReuseIdentifier: castCellIdentifier)
+    }
 }

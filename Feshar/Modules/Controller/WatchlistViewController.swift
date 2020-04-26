@@ -19,12 +19,12 @@ class WatchlistViewController: UIViewController {
         setupCustomNavBar()
         setupDelegateAndDataSource()
         registerTableView()
-        WatchlistNetworkManager().fetchWatchlistMoviesData { (data: WatchlistMovieModel?) in
+        WatchlistNetworkManager().fetchWatchlistMoviesData { [weak self] (data: WatchlistMovieModel?) in
             if let data = data {
-                self.watchlistMoviesArray = data.results
+                self?.watchlistMoviesArray = data.results
                 actualWatchlistMoviesArray = data.results
-                DispatchQueue.main.async {
-                    self.watchlistTableView.reloadData()
+                DispatchQueue.main.async { [weak self] in
+                    self?.watchlistTableView.reloadData()
                 }
             }
         }
@@ -33,15 +33,6 @@ class WatchlistViewController: UIViewController {
     
     @IBAction func backButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    func setupDelegateAndDataSource() {
-        watchlistTableView.delegate = self
-        watchlistTableView.dataSource = self
-    }
-    
-    func registerTableView() {
-        watchlistTableView.register(UINib.init(nibName: watchlistCellIdentifier, bundle: nil), forCellReuseIdentifier: watchlistCellIdentifier)
     }
     
     func backToPreviousViewController() { self.navigationController?.popViewController(animated: true) }
@@ -134,4 +125,12 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
+    func setupDelegateAndDataSource() {
+        watchlistTableView.delegate = self
+        watchlistTableView.dataSource = self
+    }
+    
+    func registerTableView() {
+        watchlistTableView.register(UINib.init(nibName: watchlistCellIdentifier, bundle: nil), forCellReuseIdentifier: watchlistCellIdentifier)
+    }
 }
